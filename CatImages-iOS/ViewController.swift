@@ -9,7 +9,7 @@
 import UIKit
 
 // TODO: Create widget
-class ViewController: UIViewController {
+class CatViewController: UIViewController {
 
     @IBOutlet private weak var catImageView: UIImageView!
     

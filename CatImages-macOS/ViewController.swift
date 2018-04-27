@@ -10,7 +10,7 @@ import Cocoa
 
 /// don't forget about sanbox and outgoing requests
 
-class ViewController: NSViewController {
+class CatViewController: NSViewController {
     
     @IBOutlet private weak var catImageView: NSImageView!
     

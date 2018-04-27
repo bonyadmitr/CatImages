@@ -18,6 +18,8 @@
 		CE14CF012091E7A0003333F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE14CF002091E7A0003333F9 /* Assets.xcassets */; };
 		CE14CF042091E7A0003333F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE14CF022091E7A0003333F9 /* Main.storyboard */; };
 		CE14CF0A2091E7C5003333F9 /* CatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14CEF32091E558003333F9 /* CatService.swift */; };
+		CEF7BA3D209328A500020A85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
+		CEF7BA3E209328C100020A85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		CE14CF052091E7A0003333F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE14CF062091E7A0003333F9 /* CatImages_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatImages_macOS.entitlements; sourceTree = "<group>"; };
 		CE14CF0B2091E7EE003333F9 /* CatImages-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CatImages-macOS.entitlements"; sourceTree = "<group>"; };
+		CEF7BA3C209328A500020A85 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		CEF7BA3F2093311300020A85 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +64,7 @@
 		CE14CEA42091E2F0003333F9 = {
 			isa = PBXGroup;
 			children = (
-				CE14CEF32091E558003333F9 /* CatService.swift */,
+				CEF7BA3B2093289500020A85 /* CatImages */,
 				CE14CEE22091E539003333F9 /* CatImages-iOS */,
 				CE14CEFB2091E79F003333F9 /* CatImages-macOS */,
 				CE14CEAE2091E2F1003333F9 /* Products */,
@@ -101,6 +105,16 @@
 				CE14CF062091E7A0003333F9 /* CatImages_macOS.entitlements */,
 			);
 			path = "CatImages-macOS";
+			sourceTree = "<group>";
+		};
+		CEF7BA3B2093289500020A85 /* CatImages */ = {
+			isa = PBXGroup;
+			children = (
+				CE14CEF32091E558003333F9 /* CatService.swift */,
+				CEF7BA3C209328A500020A85 /* Image.swift */,
+				CEF7BA3F2093311300020A85 /* GraphicsImageRenderer.swift */,
+			);
+			path = CatImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE14CEF52091E581003333F9 /* CatService.swift in Sources */,
+				CEF7BA3D209328A500020A85 /* Image.swift in Sources */,
 				CE14CEE62091E539003333F9 /* ViewController.swift in Sources */,
 				CE14CEE42091E539003333F9 /* AppDelegate.swift in Sources */,
 			);
@@ -220,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE14CF0A2091E7C5003333F9 /* CatService.swift in Sources */,
+				CEF7BA3E209328C100020A85 /* Image.swift in Sources */,
 				CE14CEFF2091E79F003333F9 /* ViewController.swift in Sources */,
 				CE14CEFD2091E79F003333F9 /* AppDelegate.swift in Sources */,
 			);

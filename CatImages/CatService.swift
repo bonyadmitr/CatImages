@@ -8,17 +8,19 @@
 
 import Foundation
 
+typealias HandlerResult<T> = (ResponseResult<T>) -> Void
+typealias ArrayHandlerResult<T> = (ResponseResult<[T]>) -> Void
+
 typealias VoidResult = (ResponseResult<Void>) -> Void
 typealias BoolResult = (ResponseResult<Bool>) -> Void
 typealias DataResult = (ResponseResult<Data>) -> Void
-typealias HandlerResult<T> = (ResponseResult<T>) -> Void
-typealias ArrayHandlerResult<T> = (ResponseResult<[T]>) -> Void
+
+typealias ImageResult = (ResponseResult<Image>) -> Void
 
 enum ResponseResult<T> {
     case success(T)
     case failure(Error)
 }
-
 
 final class CatService {
     
