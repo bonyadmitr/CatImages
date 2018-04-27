@@ -18,11 +18,10 @@ class CatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        catService.getRandom { [weak self] result in
+        catService.getRandomImage { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let data):
-                    let image = UIImage(data: data)
+                case .success(let image):
                     self?.catImageView.image = image
                 case .failure(let error):
                     print(error.localizedDescription)

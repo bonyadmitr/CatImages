@@ -22,6 +22,8 @@ enum ResponseResult<T> {
     case failure(Error)
 }
 
+let unknownError = NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo: [:])
+
 final class CatService {
     
     func getRandom(handler: @escaping DataResult) {
@@ -43,4 +45,18 @@ final class CatService {
         }.resume()
     }
     
+    func getRandomImage(handler: @escaping ImageResult) {
+        getRandom { result in
+            switch result {
+            case .success(let data):
+                if let image = Image(data: data) {
+                    handler(.success(image))
+                } else {
+                    handler(.failure(unknownError))
+                }
+            case .failure(let error):
+                handler(.failure(error))
+            } 
+        }
+    }
 }
