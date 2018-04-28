@@ -16,10 +16,15 @@ class TodayViewController: NSViewController {
     
     private lazy var catService = CatService()
     
-    override var nibName: NSNib.Name? {
-        return NSNib.Name("TodayViewController")
-    }
+    /// don't need
+//    override var nibName: NSNib.Name? {
+//        return NSNib.Name("TodayViewController")
+//    }
 }
+
+// TODO: CHECK protocols
+//NCWidgetListViewDelegate
+//NCWidgetSearchViewDelegate
 
 extension TodayViewController: NCWidgetProviding {
     
@@ -40,4 +45,26 @@ extension TodayViewController: NCWidgetProviding {
         
         completionHandler(.newData)
     }
+    
+    /// Override the left margin so that the list view is flush with the edge.
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInset: NSEdgeInsets) -> NSEdgeInsets {
+        var defaultMarginInset = defaultMarginInset
+        defaultMarginInset.left = 5
+        return defaultMarginInset
+    }
+    
+    /// Return true to indicate that the widget supports editing of content and
+    /// that the list view should be allowed to enter an edit mode.
+    var widgetAllowsEditing: Bool {
+        return false
+    }
+    
+    /* Called in response to the begin editing button when widgetAllowsEditing. */
+    //func widgetDidBeginEditing() {}
+    
+    
+    /* Called in response to the end editing button when widgetAllowsEditing.
+     This will also be called when the widget is deactivated in response to
+     another widget being edited. */
+    //func widgetDidEndEditing() {}
 }
