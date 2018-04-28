@@ -108,6 +108,7 @@
 		CEBAB14520944294002824C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEBAB14720944294002824C6 /* CatImages_macOS_widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatImages_macOS_widget.entitlements; sourceTree = "<group>"; };
 		CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CatImages-macOS-widget.entitlements"; sourceTree = "<group>"; };
+		CEBAB1522094499D002824C6 /* SharedUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUserDefaults.swift; sourceTree = "<group>"; };
 		CEF7BA3C209328A500020A85 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		CEF7BA3F2093311300020A85 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +236,7 @@
 				CE14CEF32091E558003333F9 /* CatService.swift */,
 				CEF7BA3C209328A500020A85 /* Image.swift */,
 				CEF7BA3F2093311300020A85 /* GraphicsImageRenderer.swift */,
+				CEBAB1522094499D002824C6 /* SharedUserDefaults.swift */,
 			);
 			path = CatImages;
 			sourceTree = "<group>";
