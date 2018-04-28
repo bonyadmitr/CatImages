@@ -25,6 +25,13 @@
 		CEBAB13320943EF0002824C6 /* CatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14CEF32091E558003333F9 /* CatService.swift */; };
 		CEBAB13420943EF0002824C6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 		CEBAB136209440D5002824C6 /* NSExtensionContext+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAB135209440D5002824C6 /* NSExtensionContext+URL.swift */; };
+		CEBAB13C20944293002824C6 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBAB12320943EE0002824C6 /* NotificationCenter.framework */; };
+		CEBAB13F20944293002824C6 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAB13E20944293002824C6 /* TodayViewController.swift */; };
+		CEBAB14220944293002824C6 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEBAB14020944293002824C6 /* TodayViewController.xib */; };
+		CEBAB14620944294002824C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEBAB14420944294002824C6 /* InfoPlist.strings */; };
+		CEBAB14A20944294002824C6 /* CatImages-macOS-widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEBAB13B20944293002824C6 /* CatImages-macOS-widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CEBAB14F209442BA002824C6 /* CatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14CEF32091E558003333F9 /* CatService.swift */; };
+		CEBAB150209442BA002824C6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 		CEF7BA3D209328A500020A85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 		CEF7BA3E209328C100020A85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +44,13 @@
 			remoteGlobalIDString = CEBAB12020943EE0002824C6;
 			remoteInfo = "CatImages-iOS-widget";
 		};
+		CEBAB14820944294002824C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE14CEA52091E2F0003333F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEBAB13A20944293002824C6;
+			remoteInfo = "CatImages-macOS-widget";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +61,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				CEBAB12E20943EE0002824C6 /* CatImages-iOS-widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEBAB14E20944294002824C6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CEBAB14A20944294002824C6 /* CatImages-macOS-widget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +101,13 @@
 		CEBAB12920943EE0002824C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		CEBAB12B20943EE0002824C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEBAB135209440D5002824C6 /* NSExtensionContext+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSExtensionContext+URL.swift"; sourceTree = "<group>"; };
+		CEBAB13B20944293002824C6 /* CatImages-macOS-widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CatImages-macOS-widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEBAB13E20944293002824C6 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		CEBAB14120944293002824C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		CEBAB14320944294002824C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEBAB14520944294002824C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEBAB14720944294002824C6 /* CatImages_macOS_widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatImages_macOS_widget.entitlements; sourceTree = "<group>"; };
+		CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CatImages-macOS-widget.entitlements"; sourceTree = "<group>"; };
 		CEF7BA3C209328A500020A85 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		CEF7BA3F2093311300020A85 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +135,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEBAB13820944293002824C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEBAB13C20944293002824C6 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -113,6 +153,7 @@
 				CE14CEE22091E539003333F9 /* CatImages-iOS */,
 				CE14CEFB2091E79F003333F9 /* CatImages-macOS */,
 				CEBAB12520943EE0002824C6 /* CatImages-iOS-widget */,
+				CEBAB13D20944293002824C6 /* CatImages-macOS-widget */,
 				CEBAB12220943EE0002824C6 /* Frameworks */,
 				CE14CEAE2091E2F1003333F9 /* Products */,
 			);
@@ -124,6 +165,7 @@
 				CE14CEE12091E539003333F9 /* CatImages-iOS.app */,
 				CE14CEFA2091E79F003333F9 /* CatImages-macOS.app */,
 				CEBAB12120943EE0002824C6 /* CatImages-iOS-widget.appex */,
+				CEBAB13B20944293002824C6 /* CatImages-macOS-widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,6 +216,19 @@
 			path = "CatImages-iOS-widget";
 			sourceTree = "<group>";
 		};
+		CEBAB13D20944293002824C6 /* CatImages-macOS-widget */ = {
+			isa = PBXGroup;
+			children = (
+				CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */,
+				CEBAB14020944293002824C6 /* TodayViewController.xib */,
+				CEBAB13E20944293002824C6 /* TodayViewController.swift */,
+				CEBAB14320944294002824C6 /* Info.plist */,
+				CEBAB14420944294002824C6 /* InfoPlist.strings */,
+				CEBAB14720944294002824C6 /* CatImages_macOS_widget.entitlements */,
+			);
+			path = "CatImages-macOS-widget";
+			sourceTree = "<group>";
+		};
 		CEF7BA3B2093289500020A85 /* CatImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,10 +268,12 @@
 				CE14CEF62091E79F003333F9 /* Sources */,
 				CE14CEF72091E79F003333F9 /* Frameworks */,
 				CE14CEF82091E79F003333F9 /* Resources */,
+				CEBAB14E20944294002824C6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CEBAB14920944294002824C6 /* PBXTargetDependency */,
 			);
 			name = "CatImages-macOS";
 			productName = "CatImages-macOS";
@@ -238,6 +295,23 @@
 			name = "CatImages-iOS-widget";
 			productName = "CatImages-iOS-widget";
 			productReference = CEBAB12120943EE0002824C6 /* CatImages-iOS-widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		CEBAB13A20944293002824C6 /* CatImages-macOS-widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEBAB14B20944294002824C6 /* Build configuration list for PBXNativeTarget "CatImages-macOS-widget" */;
+			buildPhases = (
+				CEBAB13720944293002824C6 /* Sources */,
+				CEBAB13820944293002824C6 /* Frameworks */,
+				CEBAB13920944293002824C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CatImages-macOS-widget";
+			productName = "CatImages-macOS-widget";
+			productReference = CEBAB13B20944293002824C6 /* CatImages-macOS-widget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -264,6 +338,14 @@
 					CEBAB12020943EE0002824C6 = {
 						CreatedOnToolsVersion = 9.3;
 					};
+					CEBAB13A20944293002824C6 = {
+						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = CE14CEA82091E2F0003333F9 /* Build configuration list for PBXProject "CatImages" */;
@@ -282,6 +364,7 @@
 				CE14CEE02091E539003333F9 /* CatImages-iOS */,
 				CE14CEF92091E79F003333F9 /* CatImages-macOS */,
 				CEBAB12020943EE0002824C6 /* CatImages-iOS-widget */,
+				CEBAB13A20944293002824C6 /* CatImages-macOS-widget */,
 			);
 		};
 /* End PBXProject section */
@@ -311,6 +394,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEBAB12A20943EE0002824C6 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEBAB13920944293002824C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEBAB14220944293002824C6 /* TodayViewController.xib in Resources */,
+				CEBAB14620944294002824C6 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +442,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEBAB13720944293002824C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEBAB14F209442BA002824C6 /* CatService.swift in Sources */,
+				CEBAB150209442BA002824C6 /* Image.swift in Sources */,
+				CEBAB13F20944293002824C6 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -357,6 +459,11 @@
 			isa = PBXTargetDependency;
 			target = CEBAB12020943EE0002824C6 /* CatImages-iOS-widget */;
 			targetProxy = CEBAB12C20943EE0002824C6 /* PBXContainerItemProxy */;
+		};
+		CEBAB14920944294002824C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEBAB13A20944293002824C6 /* CatImages-macOS-widget */;
+			targetProxy = CEBAB14820944294002824C6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -391,6 +498,22 @@
 				CEBAB12920943EE0002824C6 /* Base */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		CEBAB14020944293002824C6 /* TodayViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEBAB14120944293002824C6 /* Base */,
+			);
+			name = TodayViewController.xib;
+			sourceTree = "<group>";
+		};
+		CEBAB14420944294002824C6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEBAB14520944294002824C6 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -555,6 +678,7 @@
 		CE14CF082091E7A0003333F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -572,6 +696,7 @@
 		CE14CF092091E7A0003333F9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -629,6 +754,44 @@
 			};
 			name = Release;
 		};
+		CEBAB14C20944294002824C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "CatImages-macOS-widget/CatImages-macOS-widget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CatImages-macOS-widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.by.CatImages-macOS.CatImages-macOS-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		CEBAB14D20944294002824C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "CatImages-macOS-widget/CatImages-macOS-widget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "CatImages-macOS-widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.by.CatImages-macOS.CatImages-macOS-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -664,6 +827,15 @@
 			buildConfigurations = (
 				CEBAB12F20943EE0002824C6 /* Debug */,
 				CEBAB13020943EE0002824C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEBAB14B20944294002824C6 /* Build configuration list for PBXNativeTarget "CatImages-macOS-widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEBAB14C20944294002824C6 /* Debug */,
+				CEBAB14D20944294002824C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
