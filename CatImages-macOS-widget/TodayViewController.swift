@@ -14,7 +14,17 @@ import NotificationCenter
 /// mac-today-extension must be sandboxed to debug
 class TodayViewController: NSViewController {
 
-    @IBOutlet private weak var catImageView: NSImageView!
+    @IBOutlet private weak var catImageView: NSImageView! {
+        didSet {
+            catImageView.imageScaling = .scaleProportionallyUpOrDown
+        }
+    }
+    
+    @IBOutlet private weak var catImageProgressIndicator: NSProgressIndicator! {
+        didSet {
+            catImageProgressIndicator.isDisplayedWhenStopped = false
+        }
+    }
     
     private lazy var catService = CatService()
     
@@ -35,14 +45,21 @@ class TodayViewController: NSViewController {
     
     @objc private func getNewCat(_ gesture: NSClickGestureRecognizer) {
         gesture.isEnabled = false
+        catImageProgressIndicator.startAnimation(nil)
         
         catService.getRandomImage { [weak self] result in
+            guard let `self` = self else {
+                return
+            }
+            
             DispatchQueue.main.async {
+                
                 gesture.isEnabled = true
+                self.catImageProgressIndicator.stopAnimation(nil)
                 
                 switch result {
                 case .success(let image):
-                    self?.catImageView.image = image
+                    self.catImageView.image = image
                 case .failure(let error):
                     print(error.localizedDescription)
                 } 
