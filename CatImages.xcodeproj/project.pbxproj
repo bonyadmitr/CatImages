@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		663CB11D209A277A00F44E4F /* NSExtensionContext+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAB135209440D5002824C6 /* NSExtensionContext+URL.swift */; };
 		66F17393209A10E5002DA594 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
 		66F17394209A10E6002DA594 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
 		66F17395209A10E7002DA594 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
@@ -457,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				663CB11D209A277A00F44E4F /* NSExtensionContext+URL.swift in Sources */,
 				66F17395209A10E7002DA594 /* ActivityIndicator.swift in Sources */,
 				CEBAB14F209442BA002824C6 /* CatService.swift in Sources */,
 				CEBAB150209442BA002824C6 /* Image.swift in Sources */,

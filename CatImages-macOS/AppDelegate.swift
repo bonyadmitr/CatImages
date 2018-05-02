@@ -21,6 +21,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-
+    func application(_ application: NSApplication, open urls: [URL]) {
+        
+    }
+    
+    
 }
 
