@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,6 +26,7 @@
                 <constraint firstAttribute="bottom" secondItem="zRt-ZG-EE8" secondAttribute="bottom" id="7vf-Cv-hBI"/>
                 <constraint firstItem="zRt-ZG-EE8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Fbi-pw-AYI"/>
                 <constraint firstAttribute="trailing" secondItem="zRt-ZG-EE8" secondAttribute="trailing" id="SMA-nc-hZ4"/>
+                <constraint firstAttribute="height" constant="191" id="hST-uQ-21d"/>
                 <constraint firstItem="zRt-ZG-EE8" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="uve-Qi-PYe"/>
             </constraints>
             <point key="canvasLocation" x="139" y="223.5"/>

@@ -9,6 +9,8 @@
 import Cocoa
 import NotificationCenter
 
+/// https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/Today.html
+///
 /// mac-today-extension must be sandboxed to debug
 class TodayViewController: NSViewController {
 
@@ -20,6 +22,34 @@ class TodayViewController: NSViewController {
 //    override var nibName: NSNib.Name? {
 //        return NSNib.Name("TodayViewController")
 //    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(getNewCat))
+        catImageView.addGestureRecognizer(clickGesture)
+        
+//        NCWidgetController.default().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
+//        preferredContentSize = NSSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+    }
+    
+    @objc private func getNewCat(_ gesture: NSClickGestureRecognizer) {
+        gesture.isEnabled = false
+        
+        catService.getRandomImage { [weak self] result in
+            DispatchQueue.main.async {
+                gesture.isEnabled = true
+                
+                switch result {
+                case .success(let image):
+                    self?.catImageView.image = image
+                case .failure(let error):
+                    print(error.localizedDescription)
+                } 
+            }
+        }
+        
+    }
 }
 
 // TODO: CHECK protocols
@@ -28,7 +58,8 @@ class TodayViewController: NSViewController {
 
 extension TodayViewController: NCWidgetProviding {
     
-    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+    @available(OSX 10.10, *)
+    func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
         // Update your data and prepare for a snapshot. Call completion handler when you are done
         // with NoData if nothing has changed or NewData if there is new data since the last
         // time we called you
