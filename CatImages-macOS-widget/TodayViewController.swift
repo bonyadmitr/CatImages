@@ -36,35 +36,51 @@ class TodayViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /// to activate view.layer
+        view.wantsLayer = true
+        /// to activate view for gesture
+        view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
+        
+
+        view.becomeFirstResponder()
+//        view.wantsRestingTouches = true
+//        view.acceptsTouchEvents = true
+        
         let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(getNewCat))
-        catImageView.addGestureRecognizer(clickGesture)
+//        clickGesture.numberOfClicksRequired = 2
+//        clickGesture.shouldRequireFailure(of: <#T##NSGestureRecognizer#>)
+        view.addGestureRecognizer(clickGesture)
         
 //        NCWidgetController.default().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
 //        preferredContentSize = NSSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
     }
     
     @objc private func getNewCat(_ gesture: NSClickGestureRecognizer) {
-        gesture.isEnabled = false
-        catImageProgressIndicator.startAnimation(nil)
+        catService.setRandomImage(enablable: gesture,
+                                  activityIndicator: catImageProgressIndicator,
+                                  imageView: catImageView)
         
-        catService.getRandomImage { [weak self] result in
-            guard let `self` = self else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                
-                gesture.isEnabled = true
-                self.catImageProgressIndicator.stopAnimation(nil)
-                
-                switch result {
-                case .success(let image):
-                    self.catImageView.image = image
-                case .failure(let error):
-                    print(error.localizedDescription)
-                } 
-            }
-        }
+//        gesture.isEnabled = false
+//        catImageProgressIndicator.startAnimation(nil)
+//
+//        catService.getRandomImage { [weak self] result in
+//            guard let `self` = self else {
+//                return
+//            }
+//
+//            DispatchQueue.main.async {
+//
+//                gesture.isEnabled = true
+//                self.catImageProgressIndicator.stopAnimation(nil)
+//
+//                switch result {
+//                case .success(let image):
+//                    self.catImageView.image = image
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
         
     }
 }

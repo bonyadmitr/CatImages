@@ -59,4 +59,24 @@ final class CatService {
             } 
         }
     }
+    
+    func setRandomImage(enablable: Enablable, activityIndicator: ActivityIndicator, imageView: ImageView) {
+        
+        activityIndicator.startAnimating()
+        enablable.isEnabled = false
+        
+        getRandomImage { result in
+            DispatchQueue.main.async {
+                enablable.isEnabled = true
+                activityIndicator.stopAnimating()
+                
+                switch result {
+                case .success(let image):
+                    imageView.image = image
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }
