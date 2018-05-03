@@ -151,6 +151,10 @@ class TodayViewController: NSViewController {
     
     @objc private func openApp(_ gesture: NSClickGestureRecognizer) {
         print("openApp")
+        let url = URL(string: "main-app://")!
+        
+        /// https://stackoverflow.com/a/28446720/5893286
+        NSWorkspace.shared.open(url)
 //        extensionContext?.open("main-app://")
     }
 }
