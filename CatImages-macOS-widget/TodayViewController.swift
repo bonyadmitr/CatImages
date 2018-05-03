@@ -9,20 +9,6 @@
 import Cocoa
 import NotificationCenter
 
-
-extension NSUserNotification {
-    convenience init(title: String?, message: String?) {
-        self.init()
-        self.title = title
-        self.informativeText = message
-        soundName = NSUserNotificationDefaultSoundName
-    }
-    
-    func show() {
-        NSUserNotificationCenter.default.deliver(self)
-    }
-}
-
 final class ImageConextMenu: NSMenu {
     
     override init(title: String) {
@@ -51,10 +37,14 @@ final class ImageConextMenu: NSMenu {
                                   keyEquivalent: "s")
         let saveAsItem = NSMenuItem(title: "Save as...",
                                     action: #selector(saveAs),
-                                    keyEquivalent: "a")
+                                    keyEquivalent: "S")
         
-//        items = [openInWindowItem, NSMenuItem.separator(), saveItem, saveAsItem]
+        /// keyEquivalent: "s" with keyEquivalentModifierMask [.command, .shift] ==
+        /// keyEquivalent: "S" with keyEquivalentModifierMask [.command] or default keyEquivalentModifierMask
+        //saveAsItem.keyEquivalentModifierMask = [.command, .shift]
         
+        /// add target or action will not work
+        /// and NSMenuItem will be disabled with "autoenablesItems = true"(default value)
         openInWindowItem.target = self
         saveItem.target = self
         saveAsItem.target = self
@@ -72,7 +62,9 @@ final class ImageConextMenu: NSMenu {
 //    }
     
     @objc private func openInWindow(_ menuItem: NSMenuItem) {
-        print(" ")
+        let url = URL(string: "main-app://")!
+        /// https://stackoverflow.com/a/28446720/5893286
+        NSWorkspace.shared.open(url)
     }
     
     @objc private func saveInImages() {
@@ -132,7 +124,19 @@ final class ImageConextMenu: NSMenu {
         
         
         // TODO: enable window of NSSavePanel, allow editing
+        // TODO: open app menu
+        // TODO: local notification by time (and disable it)
+        // TODO: settings menu and window
+        // TODO: about
         
+        
+//        @IBAction func quit(_ sender: NSMenuItem) {
+//            NSApp.terminate(nil)
+//        }
+//
+//        @IBAction func about(_ sender: NSMenuItem) {
+//            NSApp.orderFrontStandardAboutPanel(self)
+//        }
         
         
         /// https://stackoverflow.com/a/42857068
@@ -220,6 +224,8 @@ class TodayViewController: NSViewController {
         
         NSUserNotificationCenter.default.delegate = self
         
+        NSUserNotification(title: "Timer", message: "Come to me, please").show()
+        
         /// to activate view.layer
         view.wantsLayer = true
         /// to activate view for gesture
@@ -259,6 +265,8 @@ class TodayViewController: NSViewController {
     
     /// https://stackoverflow.com/a/28202696
     override func mouseDown(with event: NSEvent) {
+        
+        NSUserNotification(title: "Timer", message: "Come to me, please").show()
         
         /// command + left click
         if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
