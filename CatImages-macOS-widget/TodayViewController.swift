@@ -9,6 +9,11 @@
 import Cocoa
 import NotificationCenter
 
+// TODO: Add double tap to open big screen
+// TODO: add tap to view, not only image
+// TODO: added save button and "save to..."
+
+
 /// https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/Today.html
 ///
 /// mac-today-extension must be sandboxed to debug
@@ -37,7 +42,8 @@ class TodayViewController: NSViewController {
         super.viewDidLoad()
         
         let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(getNewCat))
-        catImageView.addGestureRecognizer(clickGesture)
+//        catImageView.addGestureRecognizer(clickGesture)
+        view.addGestureRecognizer(clickGesture)
         
 //        NCWidgetController.default().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
 //        preferredContentSize = NSSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
