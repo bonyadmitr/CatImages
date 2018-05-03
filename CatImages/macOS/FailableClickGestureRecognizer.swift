@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// delegates of both gestures are used, self and otherGestureRecognizer in require(toFail
 final class FailableClickGestureRecognizer: NSClickGestureRecognizer {
     
     override init(target: Any?, action: Selector?) {
