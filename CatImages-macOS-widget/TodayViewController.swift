@@ -9,6 +9,165 @@
 import Cocoa
 import NotificationCenter
 
+
+extension NSUserNotification {
+    convenience init(title: String?, message: String?) {
+        self.init()
+        self.title = title
+        self.informativeText = message
+        soundName = NSUserNotificationDefaultSoundName
+    }
+    
+    func show() {
+        NSUserNotificationCenter.default.deliver(self)
+    }
+}
+
+final class ImageConextMenu: NSMenu {
+    
+    override init(title: String) {
+        super.init(title: title)
+        setup()
+    }
+    
+    required init(coder decoder: NSCoder) {
+        super.init(coder: decoder)
+        setup()
+    }
+    
+    private func setup() {
+        autoenablesItems = false
+        seupItems()
+    }
+    
+    private func seupItems() {
+        let openInWindowItem = NSMenuItem(title: "Open in window",
+                                          action: #selector(openInWindow),
+                                          keyEquivalent: "o")
+        let saveItem = NSMenuItem(title: "Save in Images",
+                                  action: #selector(saveInImages),
+                                  keyEquivalent: "s")
+        let saveAsItem = NSMenuItem(title: "Save as...",
+                                    action: #selector(saveAs),
+                                    keyEquivalent: "a")
+        
+//        items = [openInWindowItem, NSMenuItem.separator(), saveItem, saveAsItem]
+        
+        openInWindowItem.target = self
+        saveItem.target = self
+        saveAsItem.target = self
+        
+        addItem(openInWindowItem)
+        addItem(NSMenuItem.separator())
+        addItem(saveItem)
+        addItem(saveAsItem)
+    }
+    
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        return true
+    }
+    
+    @objc private func openInWindow(_ menuItem: NSMenuItem) {
+        print(" ")
+    }
+    
+    @objc private func saveInImages() {
+        
+        guard let imageData = TodayViewController.currentImageData else {
+            return
+        }
+        
+        /// Capabilities - File Access list - Pictures Folder - Read/Write
+        let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
+        
+        guard let pictureFolderPath = pictureDirectories.first else {
+            return
+        }
+        let pictureFolderUrl = URL(fileURLWithPath: pictureFolderPath + "/someImage.jpg")
+        
+        do {
+            try imageData.write(to: pictureFolderUrl)
+        } catch {
+            
+            NSUserNotification(title: "Timer", message: "Come to me, please").show()
+            
+//             let notification = NSUserNotification()
+//            notification.title = pictureFolderUrl.path
+//            notification.informativeText = error.localizedDescription
+//            notification.soundName = NSUserNotificationDefaultSoundName
+            
+//            NSUserNotificationCenter.default.deliver(notification)
+            
+            
+            print(error.localizedDescription)
+        }
+    }
+    
+    @objc private func saveAs() {
+        
+        guard let imageData = TodayViewController.currentImageData else {
+            return
+        }
+        
+        
+        
+        
+//        CFStringRef newExtension = UTTypeCopyPreferredTagWithClass((CFStringRef)typeUTI,
+//                                                                   kUTTagClassFilenameExtension);
+//        NSString* newName = [[name stringByDeletingPathExtension]
+//            stringByAppendingPathExtension:(NSString*)newExtension];
+        
+        
+        /// error: caught non-fatal NSInternalInconsistencyException 'bridge absent' with backtrace
+        /// Capabilities - File Access list - User Selected File - Read/Write
+        /// https://stackoverflow.com/a/48248271
+        ///
+        /// https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/UsingtheOpenandSavePanels/UsingtheOpenandSavePanels.html
+        let savePanel = NSSavePanel()
+        
+        
+        
+        // TODO: enable window of NSSavePanel, allow editing
+        
+        
+        
+        /// https://stackoverflow.com/a/42857068
+        savePanel.allowedFileTypes = ["jpg", "png"] //NSImage.imageTypes
+        savePanel.allowsOtherFileTypes = true
+        savePanel.nameFieldStringValue = "someImageName"
+        
+        savePanel.nameFieldLabel = "nameFieldLabel"
+        savePanel.prompt = "savePanel.prompt"
+        
+        
+        savePanel.begin { result in
+            
+            
+            //NSFileHandlingPanelOKButton
+            if result == NSApplication.ModalResponse.OK {
+                guard let fileUrl = savePanel.url else {
+                    return
+                }
+                
+                do {
+                    try imageData.write(to: fileUrl)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+            
+        }
+        
+    }
+    
+}
+
+extension TodayViewController: NSUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
+}
+
 // TODO: Add double tap to open big screen
 // TODO: add tap to view, not only image
 // TODO: added save button and "save to..."
@@ -25,6 +184,8 @@ import NotificationCenter
 /// mac-today-extension must be sandboxed to debug
 class TodayViewController: NSViewController {
 
+    static var currentImageData: Data?
+    
     @IBOutlet private weak var catImageView: NSImageView! {
         didSet {
             catImageView.imageScaling = .scaleProportionallyUpOrDown
@@ -48,21 +209,25 @@ class TodayViewController: NSViewController {
 //        print(event)
 //    }
     
+    private var imageConextMenu = ImageConextMenu(title: "ImageConextMenu title")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSUserNotificationCenter.default.delegate = self
         
         /// to activate view.layer
         view.wantsLayer = true
         /// to activate view for gesture
         view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
         
-        let doubleClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
-        doubleClickGesture.numberOfClicksRequired = 2
-        view.addGestureRecognizer(doubleClickGesture)
+//        let doubleClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
+//        doubleClickGesture.numberOfClicksRequired = 2
+//        view.addGestureRecognizer(doubleClickGesture)
         
-        let clickGesture = FailableClickGestureRecognizer(target: self, action: #selector(getNewCat))
-        clickGesture.require(toFail: doubleClickGesture)
-        view.addGestureRecognizer(clickGesture)
+//        let clickGesture = FailableClickGestureRecognizer(target: self, action: #selector(getNewCat))
+//        clickGesture.require(toFail: doubleClickGesture)
+//        view.addGestureRecognizer(clickGesture)
         
 //        let rightClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
 //        rightClickGesture.buttonMask = 0x2 //0x2 right mouse button, 0x1 left
@@ -89,21 +254,55 @@ class TodayViewController: NSViewController {
 //    }
     
     /// https://stackoverflow.com/a/28202696
-//    override func mouseDown(with event: NSEvent) {
-//        if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
-//            print("command+click")
-//        } else {
-//            print("click")
-//        }
-//
-//    }
+    override func mouseDown(with event: NSEvent) {
+        
+        /// command + left click
+        if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
+            
+            /// sync func. waiting hiding of menu
+            openImageConextMenu(with: event)
+            
+        /// left click
+        } else {
+            
+            view.window?.ignoresMouseEvents = true
+            view.acceptsTouchEvents = true
+            catImageProgressIndicator.startAnimation(nil)
+            
+            catService.getRandom { [weak self] result in
+                guard let `self` = self else {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.view.window?.ignoresMouseEvents = false
+                    self.catImageProgressIndicator.stopAnimation(nil)
+                    
+                    switch result {
+                    case .success(let data):
+                        TodayViewController.currentImageData = data
+                        if let image = Image(data: data) {
+                            self.catImageView.image = image
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+            
+        }
+
+    }
     
-//    override func rightMouseDown(with event: NSEvent) {
-//        /// rightMouseDown
-//        if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
-//            print("1")
-//        }
-//    }
+    /// right mouse click
+    override func rightMouseDown(with event: NSEvent) {
+        openImageConextMenu(with: event)
+    }
+    
+    /// sync func. waiting hiding of menu
+    private func openImageConextMenu(with event: NSEvent) {
+        NSMenu.popUpContextMenu(imageConextMenu, with: event, for: catImageView)
+    }
     
     @objc private func getNewCat(_ gesture: NSClickGestureRecognizer) {
         catService.setRandomImage(enablable: gesture,
