@@ -13,6 +13,12 @@ import NotificationCenter
 // TODO: add tap to view, not only image
 // TODO: added save button and "save to..."
 
+/// https://stackoverflow.com/a/32447474
+//class View: NSView {
+//    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+//        return true
+//    }
+//}
 
 /// https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/Today.html
 ///
@@ -38,42 +44,132 @@ class TodayViewController: NSViewController {
 //        return NSNib.Name("TodayViewController")
 //    }
     
+//    override func keyDown(with event: NSEvent) {
+//        print(event)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /// to activate view.layer
+        view.wantsLayer = true
+        /// to activate view for gesture
+        view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
+        
+
+        view.becomeFirstResponder()
+//        view.wantsRestingTouches = true
+//        view.acceptsTouchEvents = true
+        
+        
+        
+        
+        
+        
         let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(getNewCat))
-//        catImageView.addGestureRecognizer(clickGesture)
+        clickGesture.delegate = self
         view.addGestureRecognizer(clickGesture)
+        
+        
+        let doubleClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
+        doubleClickGesture.numberOfClicksRequired = 2
+        doubleClickGesture.delegate = self
+////        doubleClickGesture.shouldBeRequiredToFail(by: clickGesture)
+        view.addGestureRecognizer(doubleClickGesture)
+        
+        
+//        let rightClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
+//        rightClickGesture.buttonMask = 0x2 //0x2 right mouse button, 0x1 left
+//        view.addGestureRecognizer(rightClickGesture)
+        
+        
+        
+        /// https://stackoverflow.com/a/32447474
+        /// add NSEvent.removeMonitor
+//        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
+//            self.flagsChanged(with: $0)
+//            return $0
+//        }
         
 //        NCWidgetController.default().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
 //        preferredContentSize = NSSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
     }
     
+//    override func flagsChanged(with event: NSEvent) {
+//        switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
+//        case [.command]:
+//            print("command")
+//        default:
+//            break
+//        }
+//    }
+    
+    /// https://stackoverflow.com/a/28202696
+//    override func mouseDown(with event: NSEvent) {
+//        if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
+//            print("command+click")
+//        } else {
+//            print("click")
+//        }
+//
+//    }
+    
+//    override func rightMouseDown(with event: NSEvent) {
+//        /// rightMouseDown
+//        if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
+//            print("1")
+//        }
+//    }
+    
     @objc private func getNewCat(_ gesture: NSClickGestureRecognizer) {
-        gesture.isEnabled = false
-        catImageProgressIndicator.startAnimation(nil)
+        catService.setRandomImage(enablable: gesture,
+                                  activityIndicator: catImageProgressIndicator,
+                                  imageView: catImageView)
         
-        catService.getRandomImage { [weak self] result in
-            guard let `self` = self else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                
-                gesture.isEnabled = true
-                self.catImageProgressIndicator.stopAnimation(nil)
-                
-                switch result {
-                case .success(let image):
-                    self.catImageView.image = image
-                case .failure(let error):
-                    print(error.localizedDescription)
-                } 
-            }
-        }
-        
+//        gesture.isEnabled = false
+//        catImageProgressIndicator.startAnimation(nil)
+//
+//        catService.getRandomImage { [weak self] result in
+//            guard let `self` = self else {
+//                return
+//            }
+//
+//            DispatchQueue.main.async {
+//
+//                gesture.isEnabled = true
+//                self.catImageProgressIndicator.stopAnimation(nil)
+//
+//                switch result {
+//                case .success(let image):
+//                    self.catImageView.image = image
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
+    }
+    
+    @objc private func openApp(_ gesture: NSClickGestureRecognizer) {
+        print("openApp")
+//        extensionContext?.open("main-app://")
     }
 }
+
+extension TodayViewController: NSGestureRecognizerDelegate {
+    
+    /// https://forums.developer.apple.com/thread/21347
+    func gestureRecognizer(_ gestureRecognizer: NSGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: NSGestureRecognizer) -> Bool {
+        if let gestureRecognizer1 = gestureRecognizer as? NSClickGestureRecognizer,
+            let gestureRecognizer2 = otherGestureRecognizer as? NSClickGestureRecognizer,
+            gestureRecognizer1.numberOfClicksRequired == 1,
+            gestureRecognizer2.numberOfClicksRequired == 2
+        {
+            return true
+        }
+        return false
+    }
+}
+
 
 // TODO: CHECK protocols
 //NCWidgetListViewDelegate
