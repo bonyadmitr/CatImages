@@ -22,6 +22,7 @@
 		CE14CF012091E7A0003333F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE14CF002091E7A0003333F9 /* Assets.xcassets */; };
 		CE14CF042091E7A0003333F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE14CF022091E7A0003333F9 /* Main.storyboard */; };
 		CE14CF0A2091E7C5003333F9 /* CatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14CEF32091E558003333F9 /* CatService.swift */; };
+		CE158077209B292200C73A2E /* FailableClickGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE158076209B292200C73A2E /* FailableClickGestureRecognizer.swift */; };
 		CE49E8FD2099D33D007F05A6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
 		CEBAB12420943EE0002824C6 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBAB12320943EE0002824C6 /* NotificationCenter.framework */; };
 		CEBAB12720943EE0002824C6 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAB12620943EE0002824C6 /* TodayViewController.swift */; };
@@ -100,6 +101,7 @@
 		CE14CF052091E7A0003333F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE14CF062091E7A0003333F9 /* CatImages_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatImages_macOS.entitlements; sourceTree = "<group>"; };
 		CE14CF0B2091E7EE003333F9 /* CatImages-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CatImages-macOS.entitlements"; sourceTree = "<group>"; };
+		CE158076209B292200C73A2E /* FailableClickGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailableClickGestureRecognizer.swift; sourceTree = "<group>"; };
 		CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		CEBAB12120943EE0002824C6 /* CatImages-iOS-widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CatImages-iOS-widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBAB12320943EE0002824C6 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -204,6 +206,14 @@
 			path = "CatImages-macOS";
 			sourceTree = "<group>";
 		};
+		CE158078209B295500C73A2E /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				CE158076209B292200C73A2E /* FailableClickGestureRecognizer.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
 		CEBAB12220943EE0002824C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +254,7 @@
 				CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */,
 				CEF7BA3F2093311300020A85 /* GraphicsImageRenderer.swift */,
 				CEBAB1522094499D002824C6 /* SharedUserDefaults.swift */,
+				CE158078209B295500C73A2E /* macOS */,
 			);
 			path = CatImages;
 			sourceTree = "<group>";
@@ -426,6 +437,7 @@
 				CE49E8FD2099D33D007F05A6 /* ActivityIndicator.swift in Sources */,
 				CEF7BA3D209328A500020A85 /* Image.swift in Sources */,
 				CE14CEE62091E539003333F9 /* ViewController.swift in Sources */,
+				CE158077209B292200C73A2E /* FailableClickGestureRecognizer.swift in Sources */,
 				CE14CEE42091E539003333F9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
