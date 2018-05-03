@@ -36,6 +36,8 @@ final class ImageConextMenu: NSMenu {
     }
     
     private func setup() {
+        /// use or autoenablesItems = false
+        /// or override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
         autoenablesItems = false
         seupItems()
     }
@@ -63,9 +65,11 @@ final class ImageConextMenu: NSMenu {
         addItem(saveAsItem)
     }
     
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        return true
-    }
+    /// use or autoenablesItems = false
+    /// or override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
+//    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+//        return true
+//    }
     
     @objc private func openInWindow(_ menuItem: NSMenuItem) {
         print(" ")
