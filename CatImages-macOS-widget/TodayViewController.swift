@@ -9,6 +9,9 @@
 import Cocoa
 import NotificationCenter
 
+// TODO: Add double tap to open big screen
+// TODO: add tap to view, not only image
+// TODO: added save button and "save to..."
 
 /// https://stackoverflow.com/a/32447474
 //class View: NSView {
@@ -53,33 +56,17 @@ class TodayViewController: NSViewController {
         /// to activate view for gesture
         view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
         
-
-        view.becomeFirstResponder()
-//        view.wantsRestingTouches = true
-//        view.acceptsTouchEvents = true
-        
-        
-        
-        
-        
-        
-        let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(getNewCat))
-        clickGesture.delegate = self
-        view.addGestureRecognizer(clickGesture)
-        
-        
         let doubleClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
         doubleClickGesture.numberOfClicksRequired = 2
-        doubleClickGesture.delegate = self
-////        doubleClickGesture.shouldBeRequiredToFail(by: clickGesture)
         view.addGestureRecognizer(doubleClickGesture)
         
+        let clickGesture = FailableClickGestureRecognizer(target: self, action: #selector(getNewCat))
+        clickGesture.require(toFail: doubleClickGesture)
+        view.addGestureRecognizer(clickGesture)
         
 //        let rightClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
 //        rightClickGesture.buttonMask = 0x2 //0x2 right mouse button, 0x1 left
 //        view.addGestureRecognizer(rightClickGesture)
-        
-        
         
         /// https://stackoverflow.com/a/32447474
         /// add NSEvent.removeMonitor
@@ -148,25 +135,13 @@ class TodayViewController: NSViewController {
     
     @objc private func openApp(_ gesture: NSClickGestureRecognizer) {
         print("openApp")
+        let url = URL(string: "main-app://")!
+        
+        /// https://stackoverflow.com/a/28446720/5893286
+        NSWorkspace.shared.open(url)
 //        extensionContext?.open("main-app://")
     }
 }
-
-extension TodayViewController: NSGestureRecognizerDelegate {
-    
-    /// https://forums.developer.apple.com/thread/21347
-    func gestureRecognizer(_ gestureRecognizer: NSGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: NSGestureRecognizer) -> Bool {
-        if let gestureRecognizer1 = gestureRecognizer as? NSClickGestureRecognizer,
-            let gestureRecognizer2 = otherGestureRecognizer as? NSClickGestureRecognizer,
-            gestureRecognizer1.numberOfClicksRequired == 1,
-            gestureRecognizer2.numberOfClicksRequired == 2
-        {
-            return true
-        }
-        return false
-    }
-}
-
 
 // TODO: CHECK protocols
 //NCWidgetListViewDelegate
