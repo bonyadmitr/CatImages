@@ -6,7 +6,7 @@
 //  Copyright © 2018 Bondar Yaroslav. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 /// delegates of both gestures are used, self and otherGestureRecognizer in require(toFail
 final class FailableClickGestureRecognizer: NSClickGestureRecognizer {
