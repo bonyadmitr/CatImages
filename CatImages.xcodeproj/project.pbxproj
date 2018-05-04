@@ -39,6 +39,7 @@
 		CEBAB14A20944294002824C6 /* CatImages-macOS-widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEBAB13B20944293002824C6 /* CatImages-macOS-widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEBAB14F209442BA002824C6 /* CatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14CEF32091E558003333F9 /* CatService.swift */; };
 		CEBAB150209442BA002824C6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
+		CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEF39856209B4B23000EC9BD /* FailableClickGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE158076209B292200C73A2E /* FailableClickGestureRecognizer.swift */; };
 		CEF7BA3D209328A500020A85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 		CEF7BA3E209328C100020A85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
@@ -120,6 +121,7 @@
 		CEBAB14720944294002824C6 /* CatImages_macOS_widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatImages_macOS_widget.entitlements; sourceTree = "<group>"; };
 		CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CatImages-macOS-widget.entitlements"; sourceTree = "<group>"; };
 		CEBAB1522094499D002824C6 /* SharedUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUserDefaults.swift; sourceTree = "<group>"; };
+		CEE2C824209C33D500546E64 /* ImageConextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConextMenu.swift; sourceTree = "<group>"; };
 		CEF7BA3C209328A500020A85 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		CEF7BA3F2093311300020A85 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -243,6 +245,7 @@
 				CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */,
 				CEBAB14020944293002824C6 /* TodayViewController.xib */,
 				CEBAB13E20944293002824C6 /* TodayViewController.swift */,
+				CEE2C824209C33D500546E64 /* ImageConextMenu.swift */,
 				CEBAB14320944294002824C6 /* Info.plist */,
 				CEBAB14420944294002824C6 /* InfoPlist.strings */,
 				CEBAB14720944294002824C6 /* CatImages_macOS_widget.entitlements */,
@@ -475,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				663CB11D209A277A00F44E4F /* NSExtensionContext+URL.swift in Sources */,
+				CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */,
 				66DADCB3209BB553004FBC37 /* NSUserNotification+Init.swift in Sources */,
 				66F17395209A10E7002DA594 /* ActivityIndicator.swift in Sources */,
 				CEBAB14F209442BA002824C6 /* CatService.swift in Sources */,
