@@ -19,20 +19,58 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="191"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zRt-ZG-EE8">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="191"/>
+                    <rect key="frame" x="0.0" y="40" width="320" height="151"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="GzV-5u-sm0"/>
                 </imageView>
                 <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ptX-uX-QQI">
-                    <rect key="frame" x="152" y="88" width="16" height="16"/>
+                    <rect key="frame" x="152" y="108" width="16" height="16"/>
                 </progressIndicator>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="tWl-if-kiZ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jnq-be-U4A">
+                            <rect key="frame" x="2" y="2" width="62" height="32"/>
+                            <buttonCell key="cell" type="push" title="Full" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="k0l-fx-8BD">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ssl-Ln-Z9e">
+                            <rect key="frame" x="60" y="2" width="70" height="32"/>
+                            <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CgI-11-lCQ">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gif-dU-Y3E">
+                            <rect key="frame" x="125" y="2" width="87" height="32"/>
+                            <buttonCell key="cell" type="push" title="Save as" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tgt-k6-ggy">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Gif-dU-Y3E" firstAttribute="leading" secondItem="ssl-Ln-Z9e" secondAttribute="trailing" constant="7" id="5hA-yN-XNt"/>
+                        <constraint firstItem="Jnq-be-U4A" firstAttribute="leading" secondItem="tWl-if-kiZ" secondAttribute="leading" constant="8" id="D1W-IR-Z4K"/>
+                        <constraint firstItem="ssl-Ln-Z9e" firstAttribute="leading" secondItem="Jnq-be-U4A" secondAttribute="trailing" constant="8" id="M46-nO-voj"/>
+                        <constraint firstItem="ssl-Ln-Z9e" firstAttribute="centerY" secondItem="tWl-if-kiZ" secondAttribute="centerY" id="OF7-Tu-Opv"/>
+                        <constraint firstItem="Jnq-be-U4A" firstAttribute="centerY" secondItem="tWl-if-kiZ" secondAttribute="centerY" id="TQ7-rS-nVZ"/>
+                        <constraint firstAttribute="height" constant="40" id="Yvx-q3-8En"/>
+                        <constraint firstItem="Gif-dU-Y3E" firstAttribute="centerY" secondItem="tWl-if-kiZ" secondAttribute="centerY" id="rDU-Eh-JBQ"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="ptX-uX-QQI" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="3XQ-YH-Oq9"/>
-                <constraint firstAttribute="bottom" secondItem="zRt-ZG-EE8" secondAttribute="bottom" id="7vf-Cv-hBI"/>
-                <constraint firstItem="ptX-uX-QQI" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="BvZ-zX-vR3"/>
+                <constraint firstAttribute="bottom" secondItem="tWl-if-kiZ" secondAttribute="bottom" id="2m5-cQ-zdf"/>
+                <constraint firstAttribute="trailing" secondItem="tWl-if-kiZ" secondAttribute="trailing" id="52L-4D-3pT"/>
+                <constraint firstItem="ptX-uX-QQI" firstAttribute="centerY" secondItem="zRt-ZG-EE8" secondAttribute="centerY" id="8Cb-yP-Igk"/>
+                <constraint firstItem="tWl-if-kiZ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="E5u-zl-x7J"/>
+                <constraint firstItem="ptX-uX-QQI" firstAttribute="centerX" secondItem="zRt-ZG-EE8" secondAttribute="centerX" id="Eyl-IL-bjF"/>
                 <constraint firstItem="zRt-ZG-EE8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Fbi-pw-AYI"/>
                 <constraint firstAttribute="trailing" secondItem="zRt-ZG-EE8" secondAttribute="trailing" id="SMA-nc-hZ4"/>
                 <constraint firstAttribute="height" constant="191" id="hST-uQ-21d"/>
+                <constraint firstItem="tWl-if-kiZ" firstAttribute="top" secondItem="zRt-ZG-EE8" secondAttribute="bottom" id="jLa-WW-koG"/>
                 <constraint firstItem="zRt-ZG-EE8" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="uve-Qi-PYe"/>
             </constraints>
             <point key="canvasLocation" x="139" y="223.5"/>
