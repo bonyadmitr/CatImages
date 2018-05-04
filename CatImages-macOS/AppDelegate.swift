@@ -16,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         NSUserNotificationCenter.default.delegate = self
+        
+        NSUserNotification(title: "AppDelegate", message: "AppDelegate").show()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -14,10 +14,14 @@ extension NSUserNotification {
         self.init()
         self.title = title
         self.informativeText = message
+        self.deliveryDate = Date(timeIntervalSinceNow: 5)
         soundName = NSUserNotificationDefaultSoundName
     }
     
     func show() {
+        /// will crash with scheduleNotification with current runloop realization
+//        NSUserNotificationCenter.default.scheduleNotification(self)
+        
         NSUserNotificationCenter.default.deliver(self)
     }
 }
