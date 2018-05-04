@@ -38,95 +38,33 @@ class TodayViewController: NSViewController {
     private lazy var catService = CatService()
     
     /// don't need
-//    override var nibName: NSNib.Name? {
-//        return NSNib.Name("TodayViewController")
-//    }
+    //override var nibName: NSNib.Name? {
+    //    return NSNib.Name("TodayViewController")
+    //}
     
-//    override func keyDown(with event: NSEvent) {
-//        print(event)
-//    }
-    
-    private var imageConextMenu = ImageConextMenu(title: "ImageConextMenu title")
+    private var imageConextMenu = ImageConextMenu()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /// to activate view.layer
         view.wantsLayer = true
-        /// to activate view for gesture
+        /// to activate view for gestures and mouse clicks
         view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
         
-//        let doubleClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
-//        doubleClickGesture.numberOfClicksRequired = 2
-//        view.addGestureRecognizer(doubleClickGesture)
-        
-//        let clickGesture = FailableClickGestureRecognizer(target: self, action: #selector(getNewCat))
-//        clickGesture.require(toFail: doubleClickGesture)
-//        view.addGestureRecognizer(clickGesture)
-        
-//        let rightClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
-//        rightClickGesture.buttonMask = 0x2 //0x2 right mouse button, 0x1 left
-//        view.addGestureRecognizer(rightClickGesture)
-        
-        /// https://stackoverflow.com/a/32447474
-        /// add NSEvent.removeMonitor
-//        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
-//            self.flagsChanged(with: $0)
-//            return $0
-//        }
-        
-//        NCWidgetController.default().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
+//        NCWidgetController.widgetController().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
 //        preferredContentSize = NSSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
     }
     
-//    override func flagsChanged(with event: NSEvent) {
-//        switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
-//        case [.command]:
-//            print("command")
-//        default:
-//            break
-//        }
-//    }
-    
     /// https://stackoverflow.com/a/28202696
     override func mouseDown(with event: NSEvent) {
-        
         /// command + left click
         if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
-            
-            /// sync func. waiting hiding of menu
             openImageConextMenu(with: event)
-            
         /// left click
         } else {
-            
-            view.window?.ignoresMouseEvents = true
-            view.acceptsTouchEvents = true
-            catImageProgressIndicator.startAnimation(nil)
-            
-            catService.getRandom { [weak self] result in
-                guard let `self` = self else {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self.view.window?.ignoresMouseEvents = false
-                    self.catImageProgressIndicator.stopAnimation(nil)
-                    
-                    switch result {
-                    case .success(let data):
-                        TodayViewController.currentImageData = data
-                        if let image = Image(data: data) {
-                            self.catImageView.image = image
-                        }
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                }
-            }
-            
+            getRandomImage()
         }
-
     }
     
     /// right mouse click
@@ -139,41 +77,30 @@ class TodayViewController: NSViewController {
         NSMenu.popUpContextMenu(imageConextMenu, with: event, for: catImageView)
     }
     
-    @objc private func getNewCat(_ gesture: NSClickGestureRecognizer) {
-        catService.setRandomImage(enablable: gesture,
-                                  activityIndicator: catImageProgressIndicator,
-                                  imageView: catImageView)
+    private func getRandomImage() {
+        view.window?.ignoresMouseEvents = true
+        catImageProgressIndicator.startAnimation(nil)
         
-//        gesture.isEnabled = false
-//        catImageProgressIndicator.startAnimation(nil)
-//
-//        catService.getRandomImage { [weak self] result in
-//            guard let `self` = self else {
-//                return
-//            }
-//
-//            DispatchQueue.main.async {
-//
-//                gesture.isEnabled = true
-//                self.catImageProgressIndicator.stopAnimation(nil)
-//
-//                switch result {
-//                case .success(let image):
-//                    self.catImageView.image = image
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        }
-    }
-    
-    @objc private func openApp(_ gesture: NSClickGestureRecognizer) {
-        print("openApp")
-        let url = URL(string: "main-app://")!
-        
-        /// https://stackoverflow.com/a/28446720/5893286
-        NSWorkspace.shared.open(url)
-//        extensionContext?.open("main-app://")
+        catService.getRandom { [weak self] result in
+            guard let `self` = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.view.window?.ignoresMouseEvents = false
+                self.catImageProgressIndicator.stopAnimation(nil)
+                
+                switch result {
+                case .success(let data):
+                    TodayViewController.currentImageData = data
+                    if let image = Image(data: data) {
+                        self.catImageView.image = image
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 

@@ -47,5 +47,17 @@ extension NSProgressIndicator: ActivityIndicator {
 
 extension NSImageView: ImageView {}
 extension NSGestureRecognizer: Enablable {}
+extension NSView: Enablable {
+    var isEnabled: Bool {
+        get {
+            return window?.ignoresMouseEvents ?? false
+        }
+        set {
+            window?.ignoresMouseEvents = newValue
+        }
+    }
+    
+    
+}
 
 #endif

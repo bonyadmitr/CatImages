@@ -60,6 +60,8 @@ final class CatService {
         }
     }
     
+    /// using:
+    /// catService.setRandomImage(enablable: gesture, activityIndicator: catImageProgressIndicator, imageView: catImageView)
     func setRandomImage(enablable: Enablable, activityIndicator: ActivityIndicator, imageView: ImageView) {
         
         activityIndicator.startAnimating()

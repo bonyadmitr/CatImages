@@ -10,6 +10,10 @@ import Cocoa
 
 final class ImageConextMenu: NSMenu {
     
+    convenience init() {
+        self.init(title: "")
+    }
+    
     override init(title: String) {
         super.init(title: title)
         setup()
