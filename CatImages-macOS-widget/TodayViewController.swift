@@ -84,17 +84,6 @@ final class ImageConextMenu: NSMenu {
         do {
             try imageData.write(to: pictureFolderUrl)
         } catch {
-            
-            NSUserNotification(title: "Timer", message: "Come to me, please").show()
-            
-//             let notification = NSUserNotification()
-//            notification.title = pictureFolderUrl.path
-//            notification.informativeText = error.localizedDescription
-//            notification.soundName = NSUserNotificationDefaultSoundName
-            
-//            NSUserNotificationCenter.default.deliver(notification)
-            
-            
             print(error.localizedDescription)
         }
     }
@@ -125,7 +114,6 @@ final class ImageConextMenu: NSMenu {
         
         // TODO: enable window of NSSavePanel, allow editing
         // TODO: open app menu
-        // TODO: local notification by time (and disable it)
         // TODO: settings menu and window
         // TODO: about
         
@@ -168,12 +156,6 @@ final class ImageConextMenu: NSMenu {
         
     }
     
-}
-
-extension TodayViewController: NSUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return true
-    }
 }
 
 // TODO: Add double tap to open big screen
@@ -222,10 +204,6 @@ class TodayViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSUserNotificationCenter.default.delegate = self
-        
-        NSUserNotification(title: "Timer", message: "Come to me, please").show()
-        
         /// to activate view.layer
         view.wantsLayer = true
         /// to activate view for gesture
@@ -265,8 +243,6 @@ class TodayViewController: NSViewController {
     
     /// https://stackoverflow.com/a/28202696
     override func mouseDown(with event: NSEvent) {
-        
-        NSUserNotification(title: "Timer", message: "Come to me, please").show()
         
         /// command + left click
         if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
