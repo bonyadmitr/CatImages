@@ -9,6 +9,19 @@
 import Cocoa
 import NotificationCenter
 
+
+final class NotificationCenterDelegate: NSObject {
+    var keepRunning = true
+}
+extension NotificationCenterDelegate: NSUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
+    func userNotificationCenter(_ center: NSUserNotificationCenter, didDeliver notification: NSUserNotification) {
+        keepRunning = false
+    }
+}
+
 final class ImageConextMenu: NSMenu {
     
     override init(title: String) {
@@ -54,12 +67,6 @@ final class ImageConextMenu: NSMenu {
         addItem(saveItem)
         addItem(saveAsItem)
     }
-    
-    /// use or autoenablesItems = false
-    /// or override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
-//    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-//        return true
-//    }
     
     @objc private func openInWindow(_ menuItem: NSMenuItem) {
         let url = URL(string: "main-app://")!
@@ -266,7 +273,19 @@ class TodayViewController: NSViewController {
     /// https://stackoverflow.com/a/28202696
     override func mouseDown(with event: NSEvent) {
         
+        ///https://github.com/norio-nomura/usernotification/blob/master/usernotification/main.m
+        /// shouldPresent notification in NSUserNotificationCenterDelegate not called
+        /// didDeliver notification called but NSUserNotification not shown
+        let ncDelegate = NotificationCenterDelegate()
+        ncDelegate.keepRunning = true
+        NSUserNotificationCenter.default.delegate = ncDelegate
+        
         NSUserNotification(title: "Timer", message: "Come to me, please").show()
+        
+        while ncDelegate.keepRunning {
+            print("RunLoop")
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
+        }
         
         /// command + left click
         if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
