@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		663CB11D209A277A00F44E4F /* NSExtensionContext+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAB135209440D5002824C6 /* NSExtensionContext+URL.swift */; };
+		66DADCB3209BB553004FBC37 /* NSUserNotification+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DADCB1209BB540004FBC37 /* NSUserNotification+Init.swift */; };
+		66DADCB4209BB554004FBC37 /* NSUserNotification+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DADCB1209BB540004FBC37 /* NSUserNotification+Init.swift */; };
 		66F17393209A10E5002DA594 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
 		66F17394209A10E6002DA594 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
 		66F17395209A10E7002DA594 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
@@ -85,6 +87,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		66DADCB1209BB540004FBC37 /* NSUserNotification+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserNotification+Init.swift"; sourceTree = "<group>"; };
 		CE14CEE12091E539003333F9 /* CatImages-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CatImages-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE14CEE32091E539003333F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE14CEE52091E539003333F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				CE158076209B292200C73A2E /* FailableClickGestureRecognizer.swift */,
+				66DADCB1209BB540004FBC37 /* NSUserNotification+Init.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -445,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66DADCB4209BB554004FBC37 /* NSUserNotification+Init.swift in Sources */,
 				CE14CF0A2091E7C5003333F9 /* CatService.swift in Sources */,
 				66F17393209A10E5002DA594 /* ActivityIndicator.swift in Sources */,
 				CEF7BA3E209328C100020A85 /* Image.swift in Sources */,
@@ -470,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				663CB11D209A277A00F44E4F /* NSExtensionContext+URL.swift in Sources */,
+				66DADCB3209BB553004FBC37 /* NSUserNotification+Init.swift in Sources */,
 				66F17395209A10E7002DA594 /* ActivityIndicator.swift in Sources */,
 				CEBAB14F209442BA002824C6 /* CatService.swift in Sources */,
 				CEBAB150209442BA002824C6 /* Image.swift in Sources */,
