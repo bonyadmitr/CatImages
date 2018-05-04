@@ -113,6 +113,7 @@ final class ImageConextMenu: NSMenu {
         
         // TODO: enable window of NSSavePanel, allow editing
         // TODO: open app menu
+        // TODO: local notification by time (and disable it)
         // TODO: settings menu and window
         // TODO: about
         
@@ -127,12 +128,12 @@ final class ImageConextMenu: NSMenu {
         
         
         /// https://stackoverflow.com/a/42857068
-        savePanel.allowedFileTypes = NSImage.imageTypes
-//        savePanel.allowsOtherFileTypes = true
-//        savePanel.nameFieldStringValue = "someImageName"
+        savePanel.allowedFileTypes = ["jpg", "png"] //NSImage.imageTypes
+        savePanel.allowsOtherFileTypes = true
+        savePanel.nameFieldStringValue = "someImageName"
         
-//        savePanel.nameFieldLabel = "nameFieldLabel"
-//        savePanel.prompt = "savePanel.prompt"
+        savePanel.nameFieldLabel = "nameFieldLabel"
+        savePanel.prompt = "savePanel.prompt"
         
         
         savePanel.begin { result in
