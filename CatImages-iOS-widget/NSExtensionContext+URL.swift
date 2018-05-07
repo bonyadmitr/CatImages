@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// for macOS not working https://stackoverflow.com/a/28446720/5893286
+/// use: NSWorkspace.shared.open(url)
 extension NSExtensionContext {
     func open(_ scheme: String) {
         if let url = URL(string: scheme) {

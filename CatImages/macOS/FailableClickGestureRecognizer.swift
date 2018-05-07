@@ -47,6 +47,9 @@ extension FailableClickGestureRecognizer: NSGestureRecognizerDelegate {
     }
 }
 
+/// to activate view for gestures and mouse clicks
+//view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
+
 /// Basic solution
 ///
 //let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(getNewCat))
@@ -72,3 +75,41 @@ extension FailableClickGestureRecognizer: NSGestureRecognizerDelegate {
 //        return false
 //    }
 //}
+
+
+
+/// click gestures
+///
+//let doubleClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
+//doubleClickGesture.numberOfClicksRequired = 2
+//view.addGestureRecognizer(doubleClickGesture)
+//
+//let clickGesture = FailableClickGestureRecognizer(target: self, action: #selector(getNewCat))
+//clickGesture.require(toFail: doubleClickGesture)
+//view.addGestureRecognizer(clickGesture)
+//
+//let rightClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
+//rightClickGesture.buttonMask = 0x2 //0x2 right mouse button, 0x1 left
+//view.addGestureRecognizer(rightClickGesture)
+
+
+
+/// https://stackoverflow.com/a/32447474
+/// add NSEvent.removeMonitor
+//        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
+//            self.flagsChanged(with: $0)
+//            return $0
+//        }
+///+
+//    override func flagsChanged(with event: NSEvent) {
+//        switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
+//        case [.command]:
+//            print("command")
+//        default:
+//            break
+//        }
+//    }
+//
+//    override func keyDown(with event: NSEvent) {
+//        print(event)
+//    }

@@ -706,23 +706,33 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="CatViewController" customModule="CatImages_macOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl" customClass="DisablableView" customModule="CatImages_macOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QdN-Xl-RgB">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="480" id="4hB-Y1-XrI"/>
+                                    <constraint firstAttribute="height" constant="270" id="aLD-6g-b2B"/>
+                                </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="66y-sw-jvq"/>
                             </imageView>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="dcj-sp-oKS">
+                                <rect key="frame" x="232" y="127" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="dcj-sp-oKS" firstAttribute="centerX" secondItem="QdN-Xl-RgB" secondAttribute="centerX" id="3BU-Tr-isx"/>
                             <constraint firstAttribute="bottom" secondItem="QdN-Xl-RgB" secondAttribute="bottom" id="Ags-jb-Udh"/>
+                            <constraint firstItem="dcj-sp-oKS" firstAttribute="centerY" secondItem="QdN-Xl-RgB" secondAttribute="centerY" id="KEt-TZ-JG8"/>
                             <constraint firstItem="QdN-Xl-RgB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="YIa-o7-QPi"/>
                             <constraint firstAttribute="trailing" secondItem="QdN-Xl-RgB" secondAttribute="trailing" id="gNM-b2-03C"/>
                             <constraint firstItem="QdN-Xl-RgB" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="wla-1j-GAQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="catImageProgressIndicator" destination="dcj-sp-oKS" id="GXA-Ay-5XU"/>
                         <outlet property="catImageView" destination="QdN-Xl-RgB" id="LoS-GZ-vyu"/>
                     </connections>
                 </viewController>

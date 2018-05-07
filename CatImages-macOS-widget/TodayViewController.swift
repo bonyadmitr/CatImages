@@ -15,177 +15,6 @@ import NotificationCenter
 //toolbar mac os
 //share in toolbar mac os
 
-final class ImageConextMenu: NSMenu {
-    
-    override init(title: String) {
-        super.init(title: title)
-        setup()
-    }
-    
-    required init(coder decoder: NSCoder) {
-        super.init(coder: decoder)
-        setup()
-    }
-    
-    private func setup() {
-        /// use or autoenablesItems = false
-        /// or override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
-        autoenablesItems = false
-        seupItems()
-    }
-    
-    private func seupItems() {
-        let openInWindowItem = NSMenuItem(title: "Open in window",
-                                          action: #selector(openInWindow),
-                                          keyEquivalent: "o")
-        let saveItem = NSMenuItem(title: "Save in Images",
-                                  action: #selector(saveInImages),
-                                  keyEquivalent: "s")
-        let saveAsItem = NSMenuItem(title: "Save as...",
-                                    action: #selector(saveAs),
-                                    keyEquivalent: "S")
-        
-        /// keyEquivalent: "s" with keyEquivalentModifierMask [.command, .shift] ==
-        /// keyEquivalent: "S" with keyEquivalentModifierMask [.command] or default keyEquivalentModifierMask
-        //saveAsItem.keyEquivalentModifierMask = [.command, .shift]
-        
-        /// add target or action will not work
-        /// and NSMenuItem will be disabled with "autoenablesItems = true"(default value)
-        openInWindowItem.target = self
-        saveItem.target = self
-        saveAsItem.target = self
-        
-        addItem(openInWindowItem)
-        addItem(NSMenuItem.separator())
-        addItem(saveItem)
-        addItem(saveAsItem)
-    }
-    
-    /// use or autoenablesItems = false
-    /// or override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
-//    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-//        return true
-//    }
-    
-    @objc private func openInWindow(_ menuItem: NSMenuItem) {
-        let url = URL(string: "main-app://")!
-        /// https://stackoverflow.com/a/28446720/5893286
-        NSWorkspace.shared.open(url)
-    }
-    
-    @objc private func saveInImages() {
-        
-        guard let imageData = TodayViewController.currentImageData else {
-            return
-        }
-        
-        /// Capabilities - File Access list - Pictures Folder - Read/Write
-        let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
-        
-        guard let pictureFolderPath = pictureDirectories.first else {
-            return
-        }
-        let pictureFolderUrl = URL(fileURLWithPath: pictureFolderPath + "/someImage.jpg")
-        
-        do {
-            try imageData.write(to: pictureFolderUrl)
-        } catch {
-            
-            NSUserNotification(title: "Timer", message: "Come to me, please").show()
-            
-//             let notification = NSUserNotification()
-//            notification.title = pictureFolderUrl.path
-//            notification.informativeText = error.localizedDescription
-//            notification.soundName = NSUserNotificationDefaultSoundName
-            
-//            NSUserNotificationCenter.default.deliver(notification)
-            
-            
-            print(error.localizedDescription)
-        }
-    }
-    
-    @objc private func saveAs() {
-        
-        guard let imageData = TodayViewController.currentImageData else {
-            return
-        }
-        
-        
-        
-        
-//        CFStringRef newExtension = UTTypeCopyPreferredTagWithClass((CFStringRef)typeUTI,
-//                                                                   kUTTagClassFilenameExtension);
-//        NSString* newName = [[name stringByDeletingPathExtension]
-//            stringByAppendingPathExtension:(NSString*)newExtension];
-        
-        
-        /// error: caught non-fatal NSInternalInconsistencyException 'bridge absent' with backtrace
-        /// Capabilities - File Access list - User Selected File - Read/Write
-        /// https://stackoverflow.com/a/48248271
-        ///
-        /// https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/UsingtheOpenandSavePanels/UsingtheOpenandSavePanels.html
-        let savePanel = NSSavePanel()
-        
-        
-        
-        // TODO: enable window of NSSavePanel, allow editing
-        // TODO: open app menu
-        // TODO: local notification by time (and disable it)
-        // TODO: settings menu and window
-        // TODO: about
-        
-        
-//        @IBAction func quit(_ sender: NSMenuItem) {
-//            NSApp.terminate(nil)
-//        }
-//
-//        @IBAction func about(_ sender: NSMenuItem) {
-//            NSApp.orderFrontStandardAboutPanel(self)
-//        }
-        
-        
-        /// https://stackoverflow.com/a/42857068
-        savePanel.allowedFileTypes = ["jpg", "png"] //NSImage.imageTypes
-        savePanel.allowsOtherFileTypes = true
-        savePanel.nameFieldStringValue = "someImageName"
-        
-        savePanel.nameFieldLabel = "nameFieldLabel"
-        savePanel.prompt = "savePanel.prompt"
-        
-        
-        savePanel.begin { result in
-            
-            
-            //NSFileHandlingPanelOKButton
-            if result == NSApplication.ModalResponse.OK {
-                guard let fileUrl = savePanel.url else {
-                    return
-                }
-                
-                do {
-                    try imageData.write(to: fileUrl)
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-            
-        }
-        
-    }
-    
-}
-
-extension TodayViewController: NSUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return true
-    }
-}
-
-// TODO: Add double tap to open big screen
-// TODO: add tap to view, not only image
-// TODO: added save button and "save to..."
-
 /// https://stackoverflow.com/a/32447474
 //class View: NSView {
 //    override func performKeyEquivalent(with event: NSEvent) -> Bool {
@@ -197,8 +26,6 @@ extension TodayViewController: NSUserNotificationCenterDelegate {
 ///
 /// mac-today-extension must be sandboxed to debug
 class TodayViewController: NSViewController {
-
-    static var currentImageData: Data?
     
     @IBOutlet private weak var catImageView: NSImageView! {
         didSet {
@@ -212,104 +39,42 @@ class TodayViewController: NSViewController {
         }
     }
     
+    private lazy var mainView = view as! DisablableView
+    
     private lazy var catService = CatService()
     
+    private var currentImageData: Data?
+    
     /// don't need
-//    override var nibName: NSNib.Name? {
-//        return NSNib.Name("TodayViewController")
-//    }
+    //override var nibName: NSNib.Name? {
+    //    return NSNib.Name("TodayViewController")
+    //}
     
-//    override func keyDown(with event: NSEvent) {
-//        print(event)
-//    }
-    
-    private var imageConextMenu = ImageConextMenu(title: "ImageConextMenu title")
+    private var imageConextMenu = ImageConextMenu()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSUserNotificationCenter.default.delegate = self
-        
-        NSUserNotification(title: "Timer", message: "Come to me, please").show()
+        imageConextMenu.imageDelegate = self
         
         /// to activate view.layer
         view.wantsLayer = true
-        /// to activate view for gesture
+        /// to activate view for gestures and mouse clicks
         view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
         
-//        let doubleClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
-//        doubleClickGesture.numberOfClicksRequired = 2
-//        view.addGestureRecognizer(doubleClickGesture)
-        
-//        let clickGesture = FailableClickGestureRecognizer(target: self, action: #selector(getNewCat))
-//        clickGesture.require(toFail: doubleClickGesture)
-//        view.addGestureRecognizer(clickGesture)
-        
-//        let rightClickGesture = NSClickGestureRecognizer(target: self, action: #selector(openApp))
-//        rightClickGesture.buttonMask = 0x2 //0x2 right mouse button, 0x1 left
-//        view.addGestureRecognizer(rightClickGesture)
-        
-        /// https://stackoverflow.com/a/32447474
-        /// add NSEvent.removeMonitor
-//        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
-//            self.flagsChanged(with: $0)
-//            return $0
-//        }
-        
-//        NCWidgetController.default().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
+//        NCWidgetController.widgetController().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
 //        preferredContentSize = NSSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
     }
     
-//    override func flagsChanged(with event: NSEvent) {
-//        switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
-//        case [.command]:
-//            print("command")
-//        default:
-//            break
-//        }
-//    }
-    
     /// https://stackoverflow.com/a/28202696
     override func mouseDown(with event: NSEvent) {
-        
-        NSUserNotification(title: "Timer", message: "Come to me, please").show()
-        
         /// command + left click
         if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
-            
-            /// sync func. waiting hiding of menu
             openImageConextMenu(with: event)
-            
         /// left click
         } else {
-            
-            view.window?.ignoresMouseEvents = true
-            view.acceptsTouchEvents = true
-            catImageProgressIndicator.startAnimation(nil)
-            
-            catService.getRandom { [weak self] result in
-                guard let `self` = self else {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self.view.window?.ignoresMouseEvents = false
-                    self.catImageProgressIndicator.stopAnimation(nil)
-                    
-                    switch result {
-                    case .success(let data):
-                        TodayViewController.currentImageData = data
-                        if let image = Image(data: data) {
-                            self.catImageView.image = image
-                        }
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                }
-            }
-            
+            getRandomImage()
         }
-
     }
     
     /// right mouse click
@@ -322,41 +87,32 @@ class TodayViewController: NSViewController {
         NSMenu.popUpContextMenu(imageConextMenu, with: event, for: catImageView)
     }
     
-    @objc private func getNewCat(_ gesture: NSClickGestureRecognizer) {
-        catService.setRandomImage(enablable: gesture,
-                                  activityIndicator: catImageProgressIndicator,
-                                  imageView: catImageView)
+    private func getRandomImage() {
+        DispatchQueue.main.async {
+            self.mainView.ignoresMouseEvents = true
+            self.catImageProgressIndicator.startAnimation(nil)
+        }
         
-//        gesture.isEnabled = false
-//        catImageProgressIndicator.startAnimation(nil)
-//
-//        catService.getRandomImage { [weak self] result in
-//            guard let `self` = self else {
-//                return
-//            }
-//
-//            DispatchQueue.main.async {
-//
-//                gesture.isEnabled = true
-//                self.catImageProgressIndicator.stopAnimation(nil)
-//
-//                switch result {
-//                case .success(let image):
-//                    self.catImageView.image = image
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        }
-    }
-    
-    @objc private func openApp(_ gesture: NSClickGestureRecognizer) {
-        print("openApp")
-        let url = URL(string: "main-app://")!
-        
-        /// https://stackoverflow.com/a/28446720/5893286
-        NSWorkspace.shared.open(url)
-//        extensionContext?.open("main-app://")
+        catService.getRandom { [weak self] result in
+            guard let `self` = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.mainView.ignoresMouseEvents = false
+                self.catImageProgressIndicator.stopAnimation(nil)
+                
+                switch result {
+                case .success(let data):
+                    self.currentImageData = data
+                    if let image = Image(data: data) {
+                        self.catImageView.image = image
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 
@@ -406,4 +162,10 @@ extension TodayViewController: NCWidgetProviding {
      This will also be called when the widget is deactivated in response to
      another widget being edited. */
     //func widgetDidEndEditing() {}
+}
+
+extension TodayViewController: ImageConextMenuDelegate {
+    func imageConextMenuImageData() -> Data? {
+        return currentImageData
+    }
 }

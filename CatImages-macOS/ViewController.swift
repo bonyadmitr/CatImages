@@ -22,22 +22,29 @@ import Cocoa
  */
 final class CatViewController: NSViewController {
     
-    @IBOutlet private weak var catImageView: NSImageView!
+    @IBOutlet private weak var catImageView: NSImageView! {
+        didSet {
+            catImageView.imageScaling = .scaleProportionallyUpOrDown
+        }
+    }
+    
+    @IBOutlet private weak var catImageProgressIndicator: NSProgressIndicator! {
+        didSet {
+            catImageProgressIndicator.isDisplayedWhenStopped = false
+        }
+    }
+    
+    private lazy var mainView = view as! DisablableView
     
     private lazy var catService = CatService()
     
+    private var currentImageData: Data?
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
         
-        catService.getRandomImage { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let image):
-                    self?.catImageView.image = image
-                case .failure(let error):
-                    print(error.localizedDescription)
-                } 
-            }
-        }
+        imageConextMenu.imageDelegate = self
+        getRandomImage()
     }
     
     override var representedObject: Any? {
@@ -45,5 +52,64 @@ final class CatViewController: NSViewController {
             // Update the view, if already loaded.
         }
     }
+    
+    private var imageConextMenu = ImageConextMenu()
+    
+    
+    
+    
+    /// https://stackoverflow.com/a/28202696
+    override func mouseDown(with event: NSEvent) {
+        /// command + left click
+        if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
+            openImageConextMenu(with: event)
+            /// left click
+        } else {
+            getRandomImage()
+        }
+    }
+    
+    /// right mouse click
+    override func rightMouseDown(with event: NSEvent) {
+        openImageConextMenu(with: event)
+    }
+    
+    /// sync func. waiting hiding of menu
+    private func openImageConextMenu(with event: NSEvent) {
+        NSMenu.popUpContextMenu(imageConextMenu, with: event, for: catImageView)
+    }
+    
+    private func getRandomImage() {
+        DispatchQueue.main.async {
+            self.mainView.ignoresMouseEvents = true
+            self.catImageProgressIndicator.startAnimation(nil)
+        }
+        
+        catService.getRandom { [weak self] result in
+            guard let `self` = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.mainView.ignoresMouseEvents = false
+                self.catImageProgressIndicator.stopAnimation(nil)
+                
+                switch result {
+                case .success(let data):
+                    self.currentImageData = data
+                    if let image = Image(data: data) {
+                        self.catImageView.image = image
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }
 
+extension CatViewController: ImageConextMenuDelegate {
+    func imageConextMenuImageData() -> Data? {
+        return currentImageData
+    }
+}
