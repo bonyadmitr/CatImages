@@ -22,10 +22,6 @@ import Cocoa
  */
 final class CatViewController: NSViewController {
     
-    private var currentImageData: Data?
-    
-    private lazy var mainView = view as! DisablableView
-    
     @IBOutlet private weak var catImageView: NSImageView! {
         didSet {
             catImageView.imageScaling = .scaleProportionallyUpOrDown
@@ -38,7 +34,11 @@ final class CatViewController: NSViewController {
         }
     }
     
+    private lazy var mainView = view as! DisablableView
+    
     private lazy var catService = CatService()
+    
+    private var currentImageData: Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +80,10 @@ final class CatViewController: NSViewController {
     }
     
     private func getRandomImage() {
-        mainView.ignoresMouseEvents = true
-        catImageProgressIndicator.startAnimation(nil)
+        DispatchQueue.main.async {
+            self.mainView.ignoresMouseEvents = true
+            self.catImageProgressIndicator.startAnimation(nil)
+        }
         
         catService.getRandom { [weak self] result in
             guard let `self` = self else {

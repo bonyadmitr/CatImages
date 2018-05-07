@@ -20,8 +20,6 @@ import NotificationCenter
 ///
 /// mac-today-extension must be sandboxed to debug
 class TodayViewController: NSViewController {
-
-    private var currentImageData: Data?
     
     @IBOutlet private weak var catImageView: NSImageView! {
         didSet {
@@ -35,7 +33,11 @@ class TodayViewController: NSViewController {
         }
     }
     
+    private lazy var mainView = view as! DisablableView
+    
     private lazy var catService = CatService()
+    
+    private var currentImageData: Data?
     
     /// don't need
     //override var nibName: NSNib.Name? {
@@ -80,8 +82,10 @@ class TodayViewController: NSViewController {
     }
     
     private func getRandomImage() {
-        view.window?.ignoresMouseEvents = true
-        catImageProgressIndicator.startAnimation(nil)
+        DispatchQueue.main.async {
+            self.mainView.ignoresMouseEvents = true
+            self.catImageProgressIndicator.startAnimation(nil)
+        }
         
         catService.getRandom { [weak self] result in
             guard let `self` = self else {
@@ -89,7 +93,7 @@ class TodayViewController: NSViewController {
             }
             
             DispatchQueue.main.async {
-                self.view.window?.ignoresMouseEvents = false
+                self.mainView.ignoresMouseEvents = false
                 self.catImageProgressIndicator.stopAnimation(nil)
                 
                 switch result {
