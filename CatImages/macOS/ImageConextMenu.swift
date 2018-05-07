@@ -8,6 +8,10 @@
 
 import Cocoa
 
+protocol ImageConextMenuDelegate: class {
+    func imageConextMenuImageData() -> Data?
+}
+
 final class ImageConextMenu: NSMenu {
     
     convenience init() {
@@ -64,6 +68,8 @@ final class ImageConextMenu: NSMenu {
     //        return true
     //    }
     
+    weak var imageDelegate: ImageConextMenuDelegate?
+    
     @objc private func openInWindow(_ menuItem: NSMenuItem) {
         let url = URL(string: "main-app://")!
         /// https://stackoverflow.com/a/28446720/5893286
@@ -72,7 +78,7 @@ final class ImageConextMenu: NSMenu {
     
     @objc private func saveInImages() {
         
-        guard let imageData = TodayViewController.currentImageData else {
+        guard let imageData = imageDelegate?.imageConextMenuImageData() else {
             return
         }
         
@@ -93,7 +99,7 @@ final class ImageConextMenu: NSMenu {
     
     @objc private func saveAs() {
         
-        guard let imageData = TodayViewController.currentImageData else {
+        guard let imageData = imageDelegate?.imageConextMenuImageData() else {
             return
         }
         
@@ -136,7 +142,10 @@ final class ImageConextMenu: NSMenu {
         savePanel.allowsOtherFileTypes = true
         savePanel.nameFieldStringValue = "someImageName"
         
+        /// string displayed in front of the filename text field
         savePanel.nameFieldLabel = "nameFieldLabel"
+        
+        /// default button
         savePanel.prompt = "savePanel.prompt"
         
         

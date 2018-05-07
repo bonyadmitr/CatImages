@@ -21,7 +21,7 @@ import NotificationCenter
 /// mac-today-extension must be sandboxed to debug
 class TodayViewController: NSViewController {
 
-    static var currentImageData: Data?
+    private var currentImageData: Data?
     
     @IBOutlet private weak var catImageView: NSImageView! {
         didSet {
@@ -46,6 +46,8 @@ class TodayViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageConextMenu.imageDelegate = self
         
         /// to activate view.layer
         view.wantsLayer = true
@@ -92,7 +94,7 @@ class TodayViewController: NSViewController {
                 
                 switch result {
                 case .success(let data):
-                    TodayViewController.currentImageData = data
+                    self.currentImageData = data
                     if let image = Image(data: data) {
                         self.catImageView.image = image
                     }
@@ -150,4 +152,10 @@ extension TodayViewController: NCWidgetProviding {
      This will also be called when the widget is deactivated in response to
      another widget being edited. */
     //func widgetDidEndEditing() {}
+}
+
+extension TodayViewController: ImageConextMenuDelegate {
+    func imageConextMenuImageData() -> Data? {
+        return currentImageData
+    }
 }
