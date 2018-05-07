@@ -9,6 +9,12 @@
 import Cocoa
 import NotificationCenter
 
+///TODO
+//copy to copyboard button
+//share in extension menu
+//toolbar mac os
+//share in toolbar mac os
+
 final class ImageConextMenu: NSMenu {
     
     override init(title: String) {
