@@ -88,10 +88,10 @@ class TodayViewController: NSViewController {
     }
     
     private func getRandomImage() {
-        DispatchQueue.main.async {
-            self.mainView.ignoresMouseEvents = true
-            self.catImageProgressIndicator.startAnimation(nil)
-        }
+        print("getRandomImage")
+        
+        mainView.ignoresMouseEvents = true
+        catImageProgressIndicator.startAnimation(nil)
         
         catService.getRandom { [weak self] result in
             guard let `self` = self else {

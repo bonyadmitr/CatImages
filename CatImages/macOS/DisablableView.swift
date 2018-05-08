@@ -12,28 +12,34 @@ class DisablableView: NSView {
     
     var ignoresMouseEvents = false
     
-    override func hitTest(_ point: NSPoint) -> NSView? {
+//    override func hitTest(_ point: NSPoint) -> NSView? {
+//        if !ignoresMouseEvents {
+//            return super.hitTest(point)
+//        }
+//        return nil
+//    }
+    
+    override func mouseDown(with event: NSEvent) {
         if !ignoresMouseEvents {
-            return super.hitTest(point)
+            super.mouseDown(with: event)
         }
-        return nil
     }
     
-    //    override func mouseDown(with event: NSEvent) {
-    //        if !ignoresMouseEvents {
-    //            super.mouseDown(with: event)
-    //        }
-    //    }
-    //    
-    //    override func rightMouseDown(with event: NSEvent) {
-    //        if !ignoresMouseEvents {
-    //            super.rightMouseDown(with: event)
-    //        }
-    //    }
-    //    
-    //    override func scrollWheel(with event: NSEvent) {
-    //        if !ignoresMouseEvents {
-    //            super.scrollWheel(with: event)
-    //        }
-    //    }
+    override func rightMouseDown(with event: NSEvent) {
+        if !ignoresMouseEvents {
+            super.rightMouseDown(with: event)
+        }
+    }
+    
+    override func otherMouseDown(with event: NSEvent) {
+        if !ignoresMouseEvents {
+            super.otherMouseDown(with: event)
+        }
+    }
+    
+    override func scrollWheel(with event: NSEvent) {
+        if !ignoresMouseEvents {
+            super.scrollWheel(with: event)
+        }
+    }
 }
