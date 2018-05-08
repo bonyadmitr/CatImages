@@ -9,6 +9,12 @@
 import Cocoa
 import NotificationCenter
 
+///TODO
+//copy to copyboard button
+//share in extension menu
+//toolbar mac os
+//share in toolbar mac os
+
 /// https://stackoverflow.com/a/32447474
 //class View: NSView {
 //    override func performKeyEquivalent(with event: NSEvent) -> Bool {
