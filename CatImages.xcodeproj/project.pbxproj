@@ -43,6 +43,7 @@
 		CEBAB150209442BA002824C6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 		CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEE2C82620A01FBE00546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
+		CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7D920B4155900BF5493 /* WindowController.swift */; };
 		CEF39856209B4B23000EC9BD /* FailableClickGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE158076209B292200C73A2E /* FailableClickGestureRecognizer.swift */; };
 		CEF7BA3D209328A500020A85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 		CEF7BA3E209328C100020A85 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
@@ -126,6 +127,7 @@
 		CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CatImages-macOS-widget.entitlements"; sourceTree = "<group>"; };
 		CEBAB1522094499D002824C6 /* SharedUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUserDefaults.swift; sourceTree = "<group>"; };
 		CEE2C824209C33D500546E64 /* ImageConextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConextMenu.swift; sourceTree = "<group>"; };
+		CEE2E7D920B4155900BF5493 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		CEF7BA3C209328A500020A85 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		CEF7BA3F2093311300020A85 /* GraphicsImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsImageRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,6 +208,7 @@
 			children = (
 				CE14CF0B2091E7EE003333F9 /* CatImages-macOS.entitlements */,
 				CE14CEFC2091E79F003333F9 /* AppDelegate.swift */,
+				CEE2E7D920B4155900BF5493 /* WindowController.swift */,
 				CE14CEFE2091E79F003333F9 /* ViewController.swift */,
 				CE14CF002091E7A0003333F9 /* Assets.xcassets */,
 				CE14CF022091E7A0003333F9 /* Main.storyboard */,
@@ -461,6 +464,7 @@
 				CEE2C82620A01FBE00546E64 /* ImageConextMenu.swift in Sources */,
 				CE14CF0A2091E7C5003333F9 /* CatService.swift in Sources */,
 				66F17393209A10E5002DA594 /* ActivityIndicator.swift in Sources */,
+				CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */,
 				CEF7BA3E209328C100020A85 /* Image.swift in Sources */,
 				CE97D4A520A0271900514320 /* DisablableView.swift in Sources */,
 				CE14CEFF2091E79F003333F9 /* ViewController.swift in Sources */,

@@ -42,8 +42,6 @@ final class CatViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        imageConextMenu.imageDelegate = self
         getRandomImage()
     }
     
@@ -53,37 +51,11 @@ final class CatViewController: NSViewController {
         }
     }
     
-    private var imageConextMenu = ImageConextMenu()
-    
-    
-    
-    
-    /// https://stackoverflow.com/a/28202696
-    override func mouseDown(with event: NSEvent) {
-        /// command + left click
-        if event.modifierFlags.intersection(.deviceIndependentFlagsMask) == [.command] {
-            openImageConextMenu(with: event)
-            /// left click
-        } else {
-            getRandomImage()
-        }
-    }
-    
-    /// right mouse click
-    override func rightMouseDown(with event: NSEvent) {
-        openImageConextMenu(with: event)
-    }
-    
-    /// sync func. waiting hiding of menu
-    private func openImageConextMenu(with event: NSEvent) {
-        NSMenu.popUpContextMenu(imageConextMenu, with: event, for: catImageView)
-    }
-    
     private func getRandomImage() {
-        DispatchQueue.main.async {
-            self.mainView.ignoresMouseEvents = true
-            self.catImageProgressIndicator.startAnimation(nil)
-        }
+        print("getRandomImage")
+        
+        mainView.ignoresMouseEvents = true
+        catImageProgressIndicator.startAnimation(nil)
         
         catService.getRandom { [weak self] result in
             guard let `self` = self else {
