@@ -8,6 +8,104 @@
 
 import Cocoa
 
+enum CustomErrors {
+    case system
+    case debugString(String)
+}
+extension CustomErrors: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .system:
+            return "System error"
+        case .debugString(let text):
+            #if DEBUG
+            return text
+            #else
+            return "System error"
+            #endif
+        }
+    }
+}
+
+final class SaveManager {
+    
+    /// Capabilities - File Access list - Pictures Folder - Read/Write
+    static func save(data: Data, name: String) throws {
+        let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
+        guard let pictureFolderPath = pictureDirectories.first else {
+            throw CustomErrors.system
+        }
+        let pictureFolderUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)")
+        try data.write(to: pictureFolderUrl)
+    }
+    
+    static func saveAs(data: Data, name: String, handler: @escaping VoidCancelableResult) throws {
+        /// error: caught non-fatal NSInternalInconsistencyException 'bridge absent' with backtrace
+        /// Capabilities - File Access list - User Selected File - Read/Write
+        /// https://stackoverflow.com/a/48248271
+        ///
+        /// https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/UsingtheOpenandSavePanels/UsingtheOpenandSavePanels.html
+        let savePanel = NSSavePanel()
+        
+        
+        
+        // TODO: enable window of NSSavePanel, allow editing
+        // TODO: open app menu
+        // TODO: local notification by time (and disable it)
+        // TODO: settings menu and window
+        // TODO: about
+        
+        
+        //        @IBAction func quit(_ sender: NSMenuItem) {
+        //            NSApp.terminate(nil)
+        //        }
+        //
+        //        @IBAction func about(_ sender: NSMenuItem) {
+        //            NSApp.orderFrontStandardAboutPanel(self)
+        //        }
+        
+        
+        /// https://stackoverflow.com/a/42857068
+        savePanel.allowedFileTypes = ["jpg", "png"] //NSImage.imageTypes
+        savePanel.allowsOtherFileTypes = true
+        savePanel.nameFieldStringValue = name
+        
+        /// string displayed in front of the filename text field
+        //savePanel.nameFieldLabel = "nameFieldLabel"
+        
+        /// default button
+        //savePanel.prompt = "savePanel.prompt"
+        
+        
+        savePanel.begin { result in
+            switch result {
+            case .OK: ///NSFileHandlingPanelOKButton or 
+                guard let fileUrl = savePanel.url else {
+                    handler(.failure(CustomErrors.system))
+                    return
+                }
+                
+                do {
+                    try data.write(to: fileUrl)
+                    handler(.success(()))
+                } catch {
+                    handler(.failure(error))
+                }
+                
+            case .cancel:
+                handler(.cancel)
+            default:
+                let errorString = "\(result), raw: \(result.rawValue)" 
+                let error = CustomErrors.debugString(errorString)
+                print(error.localizedDescription)
+                handler(.failure(error))
+            }
+            
+        }
+        
+    }
+}
+
 protocol ImageConextMenuDelegate: class {
     func imageConextMenuImageData() -> Data?
 }
@@ -39,7 +137,7 @@ final class ImageConextMenu: NSMenu {
         let openInWindowItem = NSMenuItem(title: "Open in window",
                                           action: #selector(openInWindow),
                                           keyEquivalent: "o")
-        let saveItem = NSMenuItem(title: "Save in Images",
+        let saveItem = NSMenuItem(title: "Save in Pictures",
                                   action: #selector(saveInImages),
                                   keyEquivalent: "s")
         let saveAsItem = NSMenuItem(title: "Save as...",
@@ -140,10 +238,10 @@ final class ImageConextMenu: NSMenu {
         /// https://stackoverflow.com/a/42857068
         savePanel.allowedFileTypes = ["jpg", "png"] //NSImage.imageTypes
         savePanel.allowsOtherFileTypes = true
-        savePanel.nameFieldStringValue = "someImageName"
+        //savePanel.nameFieldStringValue = "someImageName"
         
         /// string displayed in front of the filename text field
-        savePanel.nameFieldLabel = "nameFieldLabel"
+        //savePanel.nameFieldLabel = "nameFieldLabel"
         
         /// default button
         savePanel.prompt = "savePanel.prompt"

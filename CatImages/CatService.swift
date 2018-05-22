@@ -22,6 +22,19 @@ enum ResponseResult<T> {
     case failure(Error)
 }
 
+
+
+
+typealias VoidCancelableResult = (CancelableResult<Void>) -> Void
+
+enum CancelableResult<T> {
+    case success(T)
+    case failure(Error)
+    case cancel
+}
+
+
+
 let unknownError = NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo: [:])
 
 final class CatService {
