@@ -1,0 +1,98 @@
+//
+//  SaveManager.swift
+//  CatImages-macOS
+//
+//  Created by Bondar Yaroslav on 5/23/18.
+//  Copyright © 2018 Bondar Yaroslav. All rights reserved.
+//
+
+import Cocoa
+
+final class SaveManager {
+    
+    /// Capabilities - File Access list - Pictures Folder - Read/Write
+    /// type: png, jpg, etc..
+    /// if type == nil it will be detected from data
+    static func save(data: Data, name: String, type: String? = nil) throws {
+        let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
+        guard let pictureFolderPath = pictureDirectories.first else {
+            throw CustomErrors.system
+        }
+        
+        let fileExtension = type ?? ImageFormat.get(from: data).imageTypeForSave
+        let pictureFolderUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name).\(fileExtension)")
+        try data.write(to: pictureFolderUrl)
+    }
+    
+    static func saveAs(data: Data, name: String, type: String? = nil,  handler: @escaping VoidCancelableResult) {
+        /// error: caught non-fatal NSInternalInconsistencyException 'bridge absent' with backtrace
+        /// Capabilities - File Access list - User Selected File - Read/Write
+        /// https://stackoverflow.com/a/48248271
+        ///
+        /// https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/UsingtheOpenandSavePanels/UsingtheOpenandSavePanels.html
+        let savePanel = NSSavePanel()
+        
+        
+        
+        // TODO: enable window of NSSavePanel, allow editing
+        // TODO: open app menu
+        // TODO: local notification by time (and disable it)
+        // TODO: settings menu and window
+        // TODO: about
+        
+        
+        //        @IBAction func quit(_ sender: NSMenuItem) {
+        //            NSApp.terminate(nil)
+        //        }
+        //
+        //        @IBAction func about(_ sender: NSMenuItem) {
+        //            NSApp.orderFrontStandardAboutPanel(self)
+        //        }
+        
+        
+        /// https://stackoverflow.com/a/42857068
+//        savePanel.allowedFileTypes = ["jpg", "png"]
+//        savePanel.allowedFileTypes = NSImage.imageTypes
+//        savePanel.allowsOtherFileTypes = true
+        let fileExtension = type ?? ImageFormat.get(from: data).imageTypeForSave
+        savePanel.nameFieldStringValue = "\(name).\(fileExtension)"
+        
+        /// string displayed in front of the filename text field
+        //savePanel.nameFieldLabel = "nameFieldLabel"
+        
+        /// default button
+        //savePanel.prompt = "savePanel.prompt"
+        
+        let savePanelCompletionHandler: (NSApplication.ModalResponse) -> Void = { result in
+            switch result {
+            case .OK: ///NSFileHandlingPanelOKButton or 
+                guard let fileUrl = savePanel.url else {
+                    handler(.failure(CustomErrors.system))
+                    return
+                }
+                
+                do {
+                    try data.write(to: fileUrl)
+                    handler(.success(()))
+                } catch {
+                    handler(.failure(error))
+                }
+                
+            case .cancel:
+                handler(.cancel)
+            default:
+                let errorString = "\(result), raw: \(result.rawValue)" 
+                let error = CustomErrors.debugString(errorString)
+                print(error.localizedDescription)
+                handler(.failure(error))
+            }   
+        }
+        
+        
+        if let window = NSApplication.shared.mainWindow {
+            savePanel.beginSheetModal(for: window, completionHandler: savePanelCompletionHandler)
+        } else {
+            savePanel.begin(completionHandler: savePanelCompletionHandler)
+        }
+    }
+}
