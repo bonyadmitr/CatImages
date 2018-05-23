@@ -10,21 +10,13 @@ import Cocoa
 
 final class WindowController: NSWindowController {
     
-    @IBOutlet private weak var toolBar: NSToolbar!
-    
-    @IBAction private func saveInPictures(_ sender: NSToolbarItem) {
-        
-    }
-    
-    @IBAction private func saveAs(_ sender: NSToolbarItem) {
-        
-    }
+    @IBOutlet private weak var toolBar: Toolbar!
     
     override func windowDidLoad() {
         super.windowDidLoad()
         
         if let vc = contentViewController as? CatViewController {
-            
+            toolBar.customDelegate = vc
         }
     }
 }

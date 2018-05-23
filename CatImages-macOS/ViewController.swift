@@ -51,6 +51,11 @@ final class CatViewController: NSViewController {
         }
     }
     
+    override func mouseDown(with event: NSEvent) {
+        /// click
+        getRandomImage()
+    }
+    
     private func getRandomImage() {
         print("getRandomImage")
         
@@ -80,8 +85,9 @@ final class CatViewController: NSViewController {
     }
 }
 
-extension CatViewController: ImageConextMenuDelegate {
-    func imageConextMenuImageData() -> Data? {
+extension CatViewController: ToolbarDelegate {
+    func passImageData() -> Data? {
         return currentImageData
     }
 }
+
