@@ -9,5 +9,5 @@
 import Foundation
 
 enum Constants {
-    static let defaultSaveImageName = "image"
+    static let defaultSaveImageName = "cat_image"
 }
