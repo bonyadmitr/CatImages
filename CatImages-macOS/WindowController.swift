@@ -15,8 +15,29 @@ final class WindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
+        
         if let vc = contentViewController as? CatViewController {
             toolBar.customDelegate = vc
         }
+        
+        guard let window = window else {
+            return
+        }
+        
+        
+        /// http://robin.github.io/cocoa/mac/2016/03/28/title-bar-and-toolbar-showcase/
+        window.titleVisibility = .hidden
+//        window.titlebarAppearsTransparent = true
+//        window.styleMask = .fullSizeContentView
+        
+        /// not working for me
+//        window.isMovableByWindowBackground = true
+        
+        
+//        let toolbar = Toolbar(identifier: NSToolbar.Identifier(rawValue: "ToolBar"))
+//        /// Set the delegate of the toolbar before adding the toolbar to the window
+//        /// https://stackoverflow.com/a/38405301
+//        toolbar.delegate = toolbar
+//        window.toolbar = toolbar
     }
 }

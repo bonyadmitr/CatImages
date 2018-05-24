@@ -18,6 +18,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         print("NSHomeDirectory:", NSHomeDirectory())
         
         
+        // Here we just opt-in for allowing our instance of the NSTouchBar class to be customized throughout the app.
+        if #available(OSX 10.12.2, *) {
+            NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
