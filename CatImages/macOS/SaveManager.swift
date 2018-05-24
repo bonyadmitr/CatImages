@@ -21,7 +21,7 @@ final class SaveManager {
         
         let fileExtension = type ?? ImageFormat.get(from: data).imageTypeForSave
         
-        let namePrefix: String
+        let nameSuffix: String
         
         if let files = try? FileManager.default.contentsOfDirectory(atPath: pictureFolderPath) {
             let imagesWithName = files.filter({ $0.contains(name)})
@@ -39,19 +39,19 @@ final class SaveManager {
             print()
             
             if let last = numbers.last {
-                namePrefix = "_\(last)"
+                nameSuffix = "_\(last)"
             } else {
-                namePrefix = "_1"
+                nameSuffix = "_1"
             }
             
         } else {
-            namePrefix = "_1"
+            nameSuffix = "_1"
         }
         
         
         
         
-        let pictureFolderUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)\(namePrefix).\(fileExtension)")
+        let pictureFolderUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)\(nameSuffix).\(fileExtension)")
         try data.write(to: pictureFolderUrl)
     }
     
