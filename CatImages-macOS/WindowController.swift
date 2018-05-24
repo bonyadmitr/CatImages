@@ -15,7 +15,6 @@ final class WindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        
         if let vc = contentViewController as? CatViewController {
             toolBar.customDelegate = vc
         }
@@ -27,11 +26,11 @@ final class WindowController: NSWindowController {
         window.title = "Cat Images"
         
         
+        /// window customization
         /// http://robin.github.io/cocoa/mac/2016/03/28/title-bar-and-toolbar-showcase/
         
         /// compact tool bar with buttons
 //        window.titleVisibility = .hidden
-        
         
         /// clear titlebar.
         /// use with window.styleMask = window.styleMask.union(.fullSizeContentView),
