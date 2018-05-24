@@ -8,6 +8,17 @@
 
 import Cocoa
 
+/// https://gist.github.com/shpakovski/7585136
+/// How to customize NSButton for the image and no background
+//1. Drag and drop `Push` buton to the XIB and change its title;
+//2. Configure bindings and actions, test that the button works as expected;
+//3. Uncheck the flag `Bordered` in the Attributes inspector;
+//4. Change Type to `Momentary Change`;
+//5. Set an appropriate image name;
+//6. Change Position to `Image Only`;
+//7. Change Scaling to `None`;
+//8. Configure size and auto layout if needed.
+
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
 

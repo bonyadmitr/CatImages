@@ -24,9 +24,11 @@ final class WindowController: NSWindowController {
             return
         }
         
+        window.title = "Cat Images"
+        
         
         /// http://robin.github.io/cocoa/mac/2016/03/28/title-bar-and-toolbar-showcase/
-        window.titleVisibility = .hidden
+//        window.titleVisibility = .hidden /// compact tool bar
 //        window.titlebarAppearsTransparent = true
 //        window.styleMask = .fullSizeContentView
         
