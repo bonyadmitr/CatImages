@@ -693,7 +693,7 @@
                         <toolbar key="toolbar" implicitIdentifier="EE09A594-FFF0-48F3-8D65-AA42A40AB91E" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="VnB-Z3-9TS" customClass="Toolbar" customModule="CatImages_macOS" customModuleProvider="target">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="O9U-nR-SnV"/>
-                                <toolbarItem implicitItemIdentifier="F7575D4E-62C9-4445-9922-621686919F40" label="Save in Pictures" paletteLabel="Save in Pictures" tag="-1" image="download_folder" autovalidates="NO" id="0rN-12-hPT">
+                                <toolbarItem implicitItemIdentifier="F7575D4E-62C9-4445-9922-621686919F40" label="Save in Pictures" paletteLabel="Save in Pictures" tag="-1" image="pictures_folder" autovalidates="NO" id="0rN-12-hPT">
                                     <connections>
                                         <action selector="saveInPictures:" target="VnB-Z3-9TS" id="Flm-ez-dCo"/>
                                     </connections>
@@ -764,5 +764,6 @@
     </scenes>
     <resources>
         <image name="download_folder" width="64" height="64"/>
+        <image name="pictures_folder" width="128" height="101"/>
     </resources>
 </document>
