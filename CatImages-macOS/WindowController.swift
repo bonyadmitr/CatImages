@@ -28,11 +28,22 @@ final class WindowController: NSWindowController {
         
         
         /// http://robin.github.io/cocoa/mac/2016/03/28/title-bar-and-toolbar-showcase/
-//        window.titleVisibility = .hidden /// compact tool bar
-//        window.titlebarAppearsTransparent = true
-//        window.styleMask = .fullSizeContentView
         
-        /// not working for me
+        /// compact tool bar with buttons
+//        window.titleVisibility = .hidden
+        
+        
+        /// clear titlebar.
+        /// use with window.styleMask = window.styleMask.union(.fullSizeContentView),
+        /// and toolBar.showsBaselineSeparator = false
+//        window.titlebarAppearsTransparent = true
+        
+        /// blured titlebar
+        /// views in vc will be under titlebar. need relayout
+        /// also https://stackoverflow.com/questions/24414483/how-can-i-use-nsvisualeffectview-in-windows-title-bar
+//        window.styleMask = window.styleMask.union(.fullSizeContentView)
+        
+        /// not working for me. need to test
 //        window.isMovableByWindowBackground = true
         
         
