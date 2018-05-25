@@ -685,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="CatImages_macOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="TranslucentWindow" customModule="CatImages_macOS" customModuleProvider="target">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -731,6 +731,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="5vJ-tq-Gbf">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            </visualEffectView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QdN-Xl-RgB">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <constraints>
@@ -745,10 +748,14 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="dcj-sp-oKS" firstAttribute="centerX" secondItem="QdN-Xl-RgB" secondAttribute="centerX" id="3BU-Tr-isx"/>
+                            <constraint firstAttribute="bottom" secondItem="5vJ-tq-Gbf" secondAttribute="bottom" id="4gy-A1-h2T"/>
+                            <constraint firstItem="5vJ-tq-Gbf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="8I3-rd-S1H"/>
                             <constraint firstAttribute="bottom" secondItem="QdN-Xl-RgB" secondAttribute="bottom" id="Ags-jb-Udh"/>
                             <constraint firstItem="dcj-sp-oKS" firstAttribute="centerY" secondItem="QdN-Xl-RgB" secondAttribute="centerY" id="KEt-TZ-JG8"/>
                             <constraint firstItem="QdN-Xl-RgB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="YIa-o7-QPi"/>
+                            <constraint firstItem="5vJ-tq-Gbf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="bMm-Pf-Hd6"/>
                             <constraint firstAttribute="trailing" secondItem="QdN-Xl-RgB" secondAttribute="trailing" id="gNM-b2-03C"/>
+                            <constraint firstAttribute="trailing" secondItem="5vJ-tq-Gbf" secondAttribute="trailing" id="m7S-zr-m1V"/>
                             <constraint firstItem="QdN-Xl-RgB" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="wla-1j-GAQ"/>
                         </constraints>
                     </view>
