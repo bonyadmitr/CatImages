@@ -9,10 +9,12 @@
 import Cocoa
 
 /// added views to contentView not working with vc and without it
-final class Window: NSWindow, NSApplicationDelegate, NSWindowDelegate {
+final class Window: NSWindow, NSApplicationDelegate {
     
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
         super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
+        
+        
         
 //        super.init(contentRect: contentRect, styleMask: [.titled, .resizable, .miniaturizable, .closable, .nonactivatingPanel], backing: .buffered, defer: false)
         
@@ -25,7 +27,7 @@ final class Window: NSWindow, NSApplicationDelegate, NSWindowDelegate {
         
         title = "Cat Images"
         makeKeyAndOrderFront(nil) /// moves the window to the front, but below current front app
-        keepOnTop = true
+//        keepOnTop = true
         
 //        backgroundColor = NSColor.white.withAlphaComponent(0.2)
 //        isOpaque = false
@@ -60,6 +62,8 @@ final class Window: NSWindow, NSApplicationDelegate, NSWindowDelegate {
         isMovableByWindowBackground = true
         
         //hidesOnDeactivate = true
+        
+        delegate = self
     }
 
     /// to open app after close button click we only hide it
@@ -71,4 +75,12 @@ final class Window: NSWindow, NSApplicationDelegate, NSWindowDelegate {
 //        return false
 //    }
     
+}
+extension Window: NSWindowDelegate {
+    
+    /// AutoHideToolbar in full screen mode
+    /// https://stackoverflow.com/a/16027120
+    func window(_ window: NSWindow, willUseFullScreenPresentationOptions proposedOptions: NSApplication.PresentationOptions = []) -> NSApplication.PresentationOptions {
+        return [NSApplication.PresentationOptions.fullScreen, .hideDock, .autoHideToolbar, .autoHideMenuBar]
+    }
 }

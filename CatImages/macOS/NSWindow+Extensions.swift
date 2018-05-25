@@ -11,6 +11,7 @@ import Cocoa
 extension NSWindow {
     
     /// moves the window to the front of all apps (include current front app)
+    /// replace full-screen green button to full size screen
     /// https://stackoverflow.com/questions/5364460/keep-nswindow-front
     var keepOnTop: Bool {
         get {
