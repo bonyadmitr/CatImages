@@ -8,6 +8,18 @@
 
 import Cocoa
 
+/// NSApplication.shared == NSApp
+
+/// posible settings
+// TODO: check video player settings for more features
+/// - keep on top check box
+/// - auto save to pictures
+/// - create folder in pictures
+/// - disable "save to pictures" button after save
+/// - auto change cat timer with time setup
+/// - add share button
+
+
 /// https://gist.github.com/shpakovski/7585136
 /// How to customize NSButton for the image and no background
 //1. Drag and drop `Push` buton to the XIB and change its title;
@@ -21,9 +33,7 @@ import Cocoa
 
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
-
-
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         print("NSHomeDirectory:", NSHomeDirectory())
@@ -36,11 +46,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
+    }
+    
+    /// to open app after close button click we only hide it
+    /// https://stackoverflow.com/a/43332520
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag {
+            for window in sender.windows {
+                window.makeKeyAndOrderFront(self)
+            }
+        }
         
+        return true
     }
 }
 

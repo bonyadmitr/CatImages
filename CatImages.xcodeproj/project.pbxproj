@@ -28,6 +28,7 @@
 		CE49E8FD2099D33D007F05A6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
 		CE97D4A520A0271900514320 /* DisablableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D4A320A0270300514320 /* DisablableView.swift */; };
 		CE97D4A620A0271A00514320 /* DisablableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D4A320A0270300514320 /* DisablableView.swift */; };
+		CE9D0F4F20B825E800FF4B54 /* NSWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */; };
 		CEBAB12420943EE0002824C6 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBAB12320943EE0002824C6 /* NotificationCenter.framework */; };
 		CEBAB12720943EE0002824C6 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBAB12620943EE0002824C6 /* TodayViewController.swift */; };
 		CEBAB12A20943EE0002824C6 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEBAB12820943EE0002824C6 /* MainInterface.storyboard */; };
@@ -42,6 +43,7 @@
 		CEBAB14A20944294002824C6 /* CatImages-macOS-widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CEBAB13B20944293002824C6 /* CatImages-macOS-widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CEBAB14F209442BA002824C6 /* CatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14CEF32091E558003333F9 /* CatService.swift */; };
 		CEBAB150209442BA002824C6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
+		CED18BCF20B88C7000992D64 /* FirstMouseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED18BCD20B88B1F00992D64 /* FirstMouseImageView.swift */; };
 		CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEE2C82620A01FBE00546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7D920B4155900BF5493 /* WindowController.swift */; };
@@ -126,6 +128,7 @@
 		CE46402A20B6F24600EFC1AE /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		CE97D4A320A0270300514320 /* DisablableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisablableView.swift; sourceTree = "<group>"; };
+		CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extensions.swift"; sourceTree = "<group>"; };
 		CEBAB12120943EE0002824C6 /* CatImages-iOS-widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CatImages-iOS-widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBAB12320943EE0002824C6 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		CEBAB12620943EE0002824C6 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 		CEBAB14720944294002824C6 /* CatImages_macOS_widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatImages_macOS_widget.entitlements; sourceTree = "<group>"; };
 		CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CatImages-macOS-widget.entitlements"; sourceTree = "<group>"; };
 		CEBAB1522094499D002824C6 /* SharedUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUserDefaults.swift; sourceTree = "<group>"; };
+		CED18BCD20B88B1F00992D64 /* FirstMouseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMouseImageView.swift; sourceTree = "<group>"; };
 		CEE2C824209C33D500546E64 /* ImageConextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConextMenu.swift; sourceTree = "<group>"; };
 		CEE2E7D920B4155900BF5493 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
@@ -226,15 +230,16 @@
 		CE14CEFB2091E79F003333F9 /* CatImages-macOS */ = {
 			isa = PBXGroup;
 			children = (
-				CE14CF0B2091E7EE003333F9 /* CatImages-macOS.entitlements */,
+				CE14CF022091E7A0003333F9 /* Main.storyboard */,
 				CE14CEFC2091E79F003333F9 /* AppDelegate.swift */,
 				CEE2E7D920B4155900BF5493 /* WindowController.swift */,
+				CE46402A20B6F24600EFC1AE /* Window.swift */,
 				CE14CEFE2091E79F003333F9 /* ViewController.swift */,
 				CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */,
 				CE14CF002091E7A0003333F9 /* Assets.xcassets */,
-				CE14CF022091E7A0003333F9 /* Main.storyboard */,
 				CE14CF052091E7A0003333F9 /* Info.plist */,
 				CE14CF062091E7A0003333F9 /* CatImages_macOS.entitlements */,
+				CE14CF0B2091E7EE003333F9 /* CatImages-macOS.entitlements */,
 			);
 			path = "CatImages-macOS";
 			sourceTree = "<group>";
@@ -246,9 +251,10 @@
 				66DADCB1209BB540004FBC37 /* NSUserNotification+Init.swift */,
 				CEE2C824209C33D500546E64 /* ImageConextMenu.swift */,
 				CE97D4A320A0270300514320 /* DisablableView.swift */,
+				CED18BCD20B88B1F00992D64 /* FirstMouseImageView.swift */,
 				CEE2E7E220B53B5700BF5493 /* SaveManager.swift */,
 				CEE2E7E620B53E6F00BF5493 /* Constants.swift */,
-				CE46402A20B6F24600EFC1AE /* Window.swift */,
+				CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -497,6 +503,8 @@
 				CEF7BA3E209328C100020A85 /* Image.swift in Sources */,
 				CE97D4A520A0271900514320 /* DisablableView.swift in Sources */,
 				CEE2E7EC20B58D1000BF5493 /* String+String.swift in Sources */,
+				CE9D0F4F20B825E800FF4B54 /* NSWindow+Extensions.swift in Sources */,
+				CED18BCF20B88C7000992D64 /* FirstMouseImageView.swift in Sources */,
 				CEE2E7DC20B5371E00BF5493 /* Toolbar.swift in Sources */,
 				CEE2E7E520B53B9100BF5493 /* ImageFormat.swift in Sources */,
 				CE14CEFF2091E79F003333F9 /* ViewController.swift in Sources */,
