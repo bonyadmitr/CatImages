@@ -8,7 +8,7 @@
 
 import Cocoa
 
-/// https://gist.github.com/eonist/0c3cb90b5ad9ebcea83a
+/// added views to contentView not working with vc and without it
 final class Window: NSWindow, NSApplicationDelegate, NSWindowDelegate {
     
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
