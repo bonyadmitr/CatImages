@@ -690,20 +690,20 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="EE09A594-FFF0-48F3-8D65-AA42A40AB91E" autosavesConfiguration="NO" displayMode="labelOnly" sizeMode="regular" id="VnB-Z3-9TS" customClass="Toolbar" customModule="CatImages_macOS" customModuleProvider="target">
+                        <toolbar key="toolbar" implicitIdentifier="EE09A594-FFF0-48F3-8D65-AA42A40AB91E" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="VnB-Z3-9TS" customClass="Toolbar" customModule="CatImages_macOS" customModuleProvider="target">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="O9U-nR-SnV"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="6fk-QZ-6fJ"/>
-                                <toolbarItem implicitItemIdentifier="F7575D4E-62C9-4445-9922-621686919F40" label="Save in Pictures" paletteLabel="Save in Pictures" tag="-1" id="0rN-12-hPT">
+                                <toolbarItem implicitItemIdentifier="F7575D4E-62C9-4445-9922-621686919F40" label="Save in Pictures" paletteLabel="Save in Pictures" tag="-1" image="pictures_folder" autovalidates="NO" id="0rN-12-hPT">
                                     <connections>
                                         <action selector="saveInPictures:" target="VnB-Z3-9TS" id="Flm-ez-dCo"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="FF69FA81-63FE-433E-8F21-FACF93711A3C" label="Save as..." paletteLabel="Save as..." tag="-1" id="sdS-iv-3oY">
+                                <toolbarItem implicitItemIdentifier="FF69FA81-63FE-433E-8F21-FACF93711A3C" label="Save as..." paletteLabel="Save as..." tag="-1" image="download_folder" autovalidates="NO" id="sdS-iv-3oY">
                                     <connections>
                                         <action selector="saveAs:" target="VnB-Z3-9TS" id="lHk-L3-EvH"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="XWE-oj-pgQ"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="0rN-12-hPT"/>
@@ -721,7 +721,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="75" y="286"/>
         </scene>
         <!--Cat View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -731,6 +731,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="5vJ-tq-Gbf">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            </visualEffectView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QdN-Xl-RgB">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <constraints>
@@ -745,10 +748,14 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="dcj-sp-oKS" firstAttribute="centerX" secondItem="QdN-Xl-RgB" secondAttribute="centerX" id="3BU-Tr-isx"/>
+                            <constraint firstAttribute="bottom" secondItem="5vJ-tq-Gbf" secondAttribute="bottom" id="4gy-A1-h2T"/>
+                            <constraint firstItem="5vJ-tq-Gbf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="8I3-rd-S1H"/>
                             <constraint firstAttribute="bottom" secondItem="QdN-Xl-RgB" secondAttribute="bottom" id="Ags-jb-Udh"/>
                             <constraint firstItem="dcj-sp-oKS" firstAttribute="centerY" secondItem="QdN-Xl-RgB" secondAttribute="centerY" id="KEt-TZ-JG8"/>
                             <constraint firstItem="QdN-Xl-RgB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="YIa-o7-QPi"/>
+                            <constraint firstItem="5vJ-tq-Gbf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="bMm-Pf-Hd6"/>
                             <constraint firstAttribute="trailing" secondItem="QdN-Xl-RgB" secondAttribute="trailing" id="gNM-b2-03C"/>
+                            <constraint firstAttribute="trailing" secondItem="5vJ-tq-Gbf" secondAttribute="trailing" id="m7S-zr-m1V"/>
                             <constraint firstItem="QdN-Xl-RgB" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="wla-1j-GAQ"/>
                         </constraints>
                     </view>
@@ -762,4 +769,8 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="download_folder" width="64" height="64"/>
+        <image name="pictures_folder" width="128" height="128"/>
+    </resources>
 </document>

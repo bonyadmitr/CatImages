@@ -20,7 +20,38 @@ final class SaveManager {
         }
         
         let fileExtension = type ?? ImageFormat.get(from: data).imageTypeForSave
-        let pictureFolderUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name).\(fileExtension)")
+        
+        let nameSuffix: String
+        
+        if let files = try? FileManager.default.contentsOfDirectory(atPath: pictureFolderPath) {
+            let imagesWithName = files.filter({ $0.contains(name)})
+            var numbers: [Int] = imagesWithName.compactMap { fileName in
+                let startIndex = name.count + 1 /// 1 for _
+                let endIndex = fileName.count - fileExtension.count - 1 /// 1 for .
+                let numberStr = fileName[startIndex..<endIndex].trimmed
+                if let n = Int(numberStr) {
+                    return n + 1
+                }
+                return 2
+            }
+            numbers.sort()
+            print(numbers)
+            print()
+            
+            if let last = numbers.last {
+                nameSuffix = "_\(last)"
+            } else {
+                nameSuffix = "_1"
+            }
+            
+        } else {
+            nameSuffix = "_1"
+        }
+        
+        
+        
+        
+        let pictureFolderUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)\(nameSuffix).\(fileExtension)")
         try data.write(to: pictureFolderUrl)
     }
     
