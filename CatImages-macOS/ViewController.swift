@@ -25,6 +25,11 @@ final class CatViewController: NSViewController {
     @IBOutlet private weak var catImageView: NSImageView! {
         didSet {
             catImageView.imageScaling = .scaleProportionallyUpOrDown
+            
+            /// https://stackoverflow.com/questions/24323274/nsimageview-and-resizing-of-window
+            let imagePriority = NSLayoutConstraint.Priority.windowSizeStayPut - 1 /// 499
+            catImageView.setContentCompressionResistancePriority(imagePriority, for: .horizontal)
+            catImageView.setContentCompressionResistancePriority(imagePriority, for: .vertical)
         }
     }
     

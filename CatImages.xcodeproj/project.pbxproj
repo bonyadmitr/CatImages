@@ -229,6 +229,7 @@
 				CE14CF0B2091E7EE003333F9 /* CatImages-macOS.entitlements */,
 				CE14CEFC2091E79F003333F9 /* AppDelegate.swift */,
 				CEE2E7D920B4155900BF5493 /* WindowController.swift */,
+				CE46402A20B6F24600EFC1AE /* Window.swift */,
 				CE14CEFE2091E79F003333F9 /* ViewController.swift */,
 				CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */,
 				CE14CF002091E7A0003333F9 /* Assets.xcassets */,
@@ -248,7 +249,6 @@
 				CE97D4A320A0270300514320 /* DisablableView.swift */,
 				CEE2E7E220B53B5700BF5493 /* SaveManager.swift */,
 				CEE2E7E620B53E6F00BF5493 /* Constants.swift */,
-				CE46402A20B6F24600EFC1AE /* Window.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
