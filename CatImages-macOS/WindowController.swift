@@ -19,11 +19,9 @@ final class WindowController: NSWindowController {
             toolBar.customDelegate = vc
         }
         
-        guard let window = window else {
-            return
-        }
-        
-        print(window.title)
+//        guard let window = window else {
+//            return
+//        }
         
 //        let toolbar = Toolbar(identifier: NSToolbar.Identifier(rawValue: "ToolBar"))
 //        /// Set the delegate of the toolbar before adding the toolbar to the window

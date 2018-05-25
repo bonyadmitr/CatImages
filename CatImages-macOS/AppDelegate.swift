@@ -10,6 +10,15 @@ import Cocoa
 
 /// NSApplication.shared == NSApp
 
+/// posible settings
+// TODO: check video player settings for more features
+/// - keep on top check box
+/// - auto save to pictures
+/// - create folder in pictures
+/// - disable "save to pictures" button after save
+/// - auto change cat timer with time setup
+/// - add share button
+
 
 /// https://gist.github.com/shpakovski/7585136
 /// How to customize NSButton for the image and no background
@@ -42,6 +51,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func application(_ application: NSApplication, open urls: [URL]) {
         
+    }
+    
+    /// https://stackoverflow.com/a/43332520
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if !flag {
+            for window in sender.windows {
+                window.makeKeyAndOrderFront(self)
+            }
+        }
+        
+        return true
     }
 }
 

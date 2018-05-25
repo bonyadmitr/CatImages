@@ -63,11 +63,12 @@ final class Window: NSWindow, NSApplicationDelegate, NSWindowDelegate {
     }
 
     /// to open app after close button click we only hide it
-    func windowShouldClose(_ sender: NSWindow) -> Bool {
-        NSApp.hide(nil)
-        orderOut(nil) /// close but not release from memory
-        return false
-    }
-    
+    /// or use applicationShouldHandleReopen in AppDelegate
+    /// https://medium.com/@venj/hide-window-instead-of-close-it-when-clicks-the-close-button-25768e41ee2d
+//    func windowShouldClose(_ sender: NSWindow) -> Bool {
+//        NSApp.hide(nil)
+//        //orderOut(nil) /// close but not release from memory
+//        return false
+//    }
     
 }
