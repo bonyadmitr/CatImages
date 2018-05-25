@@ -53,7 +53,8 @@ final class Toolbar: NSToolbar {
         
         sizeMode = .small
         allowsUserCustomization = true
-        showsBaselineSeparator = true
+//        showsBaselineSeparator = true
+        showsBaselineSeparator = false
         
 //        items.forEach { $0. = .texturedRounded }
     }

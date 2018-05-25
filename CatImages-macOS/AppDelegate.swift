@@ -8,6 +8,9 @@
 
 import Cocoa
 
+/// NSApplication.shared == NSApp
+
+
 /// https://gist.github.com/shpakovski/7585136
 /// How to customize NSButton for the image and no background
 //1. Drag and drop `Push` buton to the XIB and change its title;
