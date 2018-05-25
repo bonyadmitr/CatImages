@@ -24,7 +24,8 @@ final class Window: NSWindow, NSApplicationDelegate, NSWindowDelegate {
         super.awakeFromNib()
         
         title = "Cat Images"
-        makeKeyAndOrderFront(nil) /// moves the window to the front
+        makeKeyAndOrderFront(nil) /// moves the window to the front, but below current front app
+        keepOnTop = true
         
 //        backgroundColor = NSColor.white.withAlphaComponent(0.2)
 //        isOpaque = false
