@@ -46,13 +46,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        
     }
     
+    /// to open app after close button click we only hide it
     /// https://stackoverflow.com/a/43332520
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if !flag {

@@ -734,7 +734,7 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="5vJ-tq-Gbf">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             </visualEffectView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QdN-Xl-RgB">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QdN-Xl-RgB" customClass="FirstMouseImageView" customModule="CatImages_macOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="66y-sw-jvq"/>
                             </imageView>
