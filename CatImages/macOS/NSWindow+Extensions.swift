@@ -25,4 +25,13 @@ extension NSWindow {
             }
         }
     }
+    
+    /// return 0 when:
+    /// window.titlebarAppearsTransparent = true
+    /// or window.styleMask.insert(.fullSizeContentView)
+    /// https://stackoverflow.com/a/43684023
+    var titlebarHeight: CGFloat {
+        let contentHeight = contentRect(forFrameRect: frame).height
+        return frame.height - contentHeight
+    }
 }

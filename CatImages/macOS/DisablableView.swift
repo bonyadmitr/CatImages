@@ -20,9 +20,19 @@ class DisablableView: NSView {
 //    }
     
     override func mouseDown(with event: NSEvent) {
-        if !ignoresMouseEvents {
-            super.mouseDown(with: event)
+        if ignoresMouseEvents {
+            return
         }
+        
+        /// prevent click to drag window by titleBar
+        if let window = window, window.titlebarAppearsTransparent == true {
+            let yFromTop = window.frame.height - event.locationInWindow.y
+            if yFromTop < Constants.windowTitleBarHeightWithHiddenTitle {
+                return
+            }
+        }
+        
+        super.mouseDown(with: event)
     }
     
     override func rightMouseDown(with event: NSEvent) {

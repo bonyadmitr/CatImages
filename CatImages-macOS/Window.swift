@@ -48,17 +48,16 @@ final class Window: NSWindow, NSApplicationDelegate {
         titleVisibility = .hidden
         
         /// clear titlebar.
-        /// use with window.styleMask = window.styleMask.union(.fullSizeContentView),
+        /// use with window.styleMask.insert(.fullSizeContentView)
         /// and toolBar.showsBaselineSeparator = false
         titlebarAppearsTransparent = true
         
         /// blured titlebar
         /// views in vc will be under titlebar. need relayout
         /// also https://stackoverflow.com/questions/24414483/how-can-i-use-nsvisualeffectview-in-windows-title-bar
-        styleMask = styleMask.union(.fullSizeContentView)
-        
+        styleMask.insert(.fullSizeContentView)
         /// for NSPanel.
-//        styleMask = styleMask.union(.nonactivatingPanel)
+        //styleMask.insert(.nonactivatingPanel)
         
         /// not working for me. need to test
         isMovableByWindowBackground = true
