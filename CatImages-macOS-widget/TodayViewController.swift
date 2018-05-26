@@ -33,11 +33,7 @@ class TodayViewController: NSViewController {
         }
     }
     
-    @IBOutlet private weak var catImageProgressIndicator: NSProgressIndicator! {
-        didSet {
-            catImageProgressIndicator.isDisplayedWhenStopped = false
-        }
-    }
+    @IBOutlet private weak var catImageProgressIndicator: NSProgressIndicator!
     
     private lazy var mainView = view as! DisablableView
     

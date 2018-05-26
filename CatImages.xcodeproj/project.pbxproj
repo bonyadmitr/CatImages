@@ -50,6 +50,7 @@
 		CED18BD420B92E1700992D64 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E420B53B9100BF5493 /* ImageFormat.swift */; };
 		CED18BD520B92E1A00992D64 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E420B53B9100BF5493 /* ImageFormat.swift */; };
 		CED18BD620B92E1B00992D64 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E420B53B9100BF5493 /* ImageFormat.swift */; };
+		CED18BD720B9320A00992D64 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED18BD020B8B57500992D64 /* ProgressIndicator.swift */; };
 		CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7D920B4155900BF5493 /* WindowController.swift */; };
 		CEE2E7DC20B5371E00BF5493 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */; };
@@ -240,7 +241,6 @@
 				CE14CEFC2091E79F003333F9 /* AppDelegate.swift */,
 				CEE2E7D920B4155900BF5493 /* WindowController.swift */,
 				CE46402A20B6F24600EFC1AE /* Window.swift */,
-				CED18BD020B8B57500992D64 /* ProgressIndicator.swift */,
 				CE14CEFE2091E79F003333F9 /* ViewController.swift */,
 				CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */,
 				CE14CF002091E7A0003333F9 /* Assets.xcassets */,
@@ -261,6 +261,7 @@
 				CEE2E7E220B53B5700BF5493 /* SaveManager.swift */,
 				CEE2E7E620B53E6F00BF5493 /* Constants.swift */,
 				CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */,
+				CED18BD020B8B57500992D64 /* ProgressIndicator.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -556,6 +557,7 @@
 				CEBAB150209442BA002824C6 /* Image.swift in Sources */,
 				CEF39856209B4B23000EC9BD /* FailableClickGestureRecognizer.swift in Sources */,
 				CEBAB13F20944293002824C6 /* TodayViewController.swift in Sources */,
+				CED18BD720B9320A00992D64 /* ProgressIndicator.swift in Sources */,
 				CED18BD220B92DE800992D64 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
