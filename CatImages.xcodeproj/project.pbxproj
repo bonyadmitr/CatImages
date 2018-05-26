@@ -44,6 +44,7 @@
 		CEBAB14F209442BA002824C6 /* CatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14CEF32091E558003333F9 /* CatService.swift */; };
 		CEBAB150209442BA002824C6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 		CED18BCF20B88C7000992D64 /* FirstMouseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED18BCD20B88B1F00992D64 /* FirstMouseImageView.swift */; };
+		CED18BD120B8B57500992D64 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED18BD020B8B57500992D64 /* ProgressIndicator.swift */; };
 		CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEE2C82620A01FBE00546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7D920B4155900BF5493 /* WindowController.swift */; };
@@ -144,6 +145,7 @@
 		CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CatImages-macOS-widget.entitlements"; sourceTree = "<group>"; };
 		CEBAB1522094499D002824C6 /* SharedUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUserDefaults.swift; sourceTree = "<group>"; };
 		CED18BCD20B88B1F00992D64 /* FirstMouseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMouseImageView.swift; sourceTree = "<group>"; };
+		CED18BD020B8B57500992D64 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		CEE2C824209C33D500546E64 /* ImageConextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConextMenu.swift; sourceTree = "<group>"; };
 		CEE2E7D920B4155900BF5493 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				CE14CEFC2091E79F003333F9 /* AppDelegate.swift */,
 				CEE2E7D920B4155900BF5493 /* WindowController.swift */,
 				CE46402A20B6F24600EFC1AE /* Window.swift */,
+				CED18BD020B8B57500992D64 /* ProgressIndicator.swift */,
 				CE14CEFE2091E79F003333F9 /* ViewController.swift */,
 				CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */,
 				CE14CF002091E7A0003333F9 /* Assets.xcassets */,
@@ -508,6 +511,7 @@
 				CEE2E7DC20B5371E00BF5493 /* Toolbar.swift in Sources */,
 				CEE2E7E520B53B9100BF5493 /* ImageFormat.swift in Sources */,
 				CE14CEFF2091E79F003333F9 /* ViewController.swift in Sources */,
+				CED18BD120B8B57500992D64 /* ProgressIndicator.swift in Sources */,
 				CEE2E7DE20B53B3800BF5493 /* CustomErrors.swift in Sources */,
 				CEE2E7E720B53E6F00BF5493 /* Constants.swift in Sources */,
 				CE46402B20B6F24600EFC1AE /* Window.swift in Sources */,

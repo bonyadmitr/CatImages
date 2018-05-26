@@ -42,4 +42,18 @@ class DisablableView: NSView {
             super.scrollWheel(with: event)
         }
     }
+    
+    // MARK: - backgroundColor
+    
+    var backgroundColor: NSColor?
+    
+    /// https://stackoverflow.com/a/48510638
+    override func draw(_ dirtyRect: NSRect) {
+        if let backgroundColor = backgroundColor {
+            backgroundColor.setFill()
+            dirtyRect.fill()
+        } else {
+            super.draw(dirtyRect)
+        }
+    }
 }
