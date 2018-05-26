@@ -20,6 +20,28 @@ import Cocoa
 /// - add share button
 
 
+
+
+// TODO: add NSTouchBar in subclass and custom window
+// TODO: play gif images
+
+// TODO: open app menu with data
+// TODO: local notification by time (and disable it)
+// TODO: settings menu and window
+// TODO: about
+
+// TODO: error handling with alerts
+
+
+//        @IBAction func quit(_ sender: NSMenuItem) {
+//            NSApp.terminate(nil)
+//        }
+//
+//        @IBAction func about(_ sender: NSMenuItem) {
+//            NSApp.orderFrontStandardAboutPanel(self)
+//        }
+
+
 /// https://gist.github.com/shpakovski/7585136
 /// How to customize NSButton for the image and no background
 //1. Drag and drop `Push` buton to the XIB and change its title;

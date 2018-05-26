@@ -6,37 +6,6 @@
 //  Copyright © 2018 Bondar Yaroslav. All rights reserved.
 //
 
-
-// MARK: Views
-#if os(iOS)
-public typealias View = UIView
-#elseif os(OSX)
-public class View: NSView {
-    public var alpha: CGFloat {
-        get { return alphaValue }
-        set { alphaValue = newValue }
-    }
-}
-#endif
-
-// UIKit/Cocoa Classes
-#if os(OSX)
-//public typealias View = NSView
-public typealias Font = NSFont
-public typealias Color = NSColor
-//public typealias Image = NSImage
-public typealias BezierPath = NSBezierPath
-public typealias ViewController = NSViewController
-#else
-//public typealias View = UIView
-public typealias Font = UIFont
-public typealias Color = UIColor
-//public typealias Image = UIImage
-public typealias BezierPath = UIBezierPath
-public typealias ViewController = UIViewController
-#endif
-
-
 /// https://gist.github.com/erica/ec3e2a4a8526e3fc3ba1fc95a0d53083
 import Foundation
 

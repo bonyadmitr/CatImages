@@ -8,6 +8,8 @@
 
 import Foundation
 
+//let unknownError = NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo: [:])
+
 enum CustomErrors {
     case system
     case debugString(String)

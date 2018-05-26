@@ -12,9 +12,6 @@ protocol ToolbarDelegate: class {
     func passImageData() -> Data?
 }
 
-// TODO: add NSTouchBar in subclass and custom window
-// TODO: play gif images
-
 /// https://developer.apple.com/library/content/samplecode/ToolbarSample/Introduction/Intro.html
 final class Toolbar: NSToolbar {
     

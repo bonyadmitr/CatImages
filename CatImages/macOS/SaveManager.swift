@@ -65,24 +65,6 @@ final class SaveManager {
         /// is not a supported subclass for sandboxing error
         let savePanel = NSSavePanel()
         
-        
-        // TODO: open app menu with data
-        // TODO: local notification by time (and disable it)
-        // TODO: settings menu and window
-        // TODO: about
-        
-        // TODO: error handling with alerts
-        
-        
-        //        @IBAction func quit(_ sender: NSMenuItem) {
-        //            NSApp.terminate(nil)
-        //        }
-        //
-        //        @IBAction func about(_ sender: NSMenuItem) {
-        //            NSApp.orderFrontStandardAboutPanel(self)
-        //        }
-        
-        
         /// https://stackoverflow.com/a/42857068
 //        savePanel.allowedFileTypes = ["jpg", "png"]
 //        savePanel.allowedFileTypes = NSImage.imageTypes
