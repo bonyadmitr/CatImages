@@ -706,6 +706,7 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="XWE-oj-pgQ"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
+                                <toolbarItem reference="XWE-oj-pgQ"/>
                                 <toolbarItem reference="0rN-12-hPT"/>
                                 <toolbarItem reference="sdS-iv-3oY"/>
                             </defaultToolbarItems>
