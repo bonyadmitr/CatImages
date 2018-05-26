@@ -50,6 +50,9 @@ final class Window: NSWindow, NSApplicationDelegate {
         /// clear titlebar.
         /// use with window.styleMask.insert(.fullSizeContentView)
         /// and toolBar.showsBaselineSeparator = false
+        ///
+        /// !!! NSToolBar can't be edited due to system behavior
+        /// use "override func runToolbarCustomizationPalette" to fix it
         titlebarAppearsTransparent = true
         
         /// blured titlebar
@@ -70,12 +73,18 @@ final class Window: NSWindow, NSApplicationDelegate {
     /// to open app after close button click we only hide it
     /// or use applicationShouldHandleReopen in AppDelegate
     /// https://medium.com/@venj/hide-window-instead-of-close-it-when-clicks-the-close-button-25768e41ee2d
-//    func windowShouldClose(_ sender: NSWindow) -> Bool {
-//        NSApp.hide(nil)
-//        //orderOut(nil) /// close but not release from memory
-//        return false
-//    }
+    //func windowShouldClose(_ sender: NSWindow) -> Bool {
+    //    NSApp.hide(nil)
+    //    //orderOut(nil) /// close but not release from memory
+    //    return false
+    //}
     
+    /// to edit NSToolBar with "titlebarAppearsTransparent = true"
+    override func runToolbarCustomizationPalette(_ sender: Any?) {
+        titlebarAppearsTransparent = false
+        super.runToolbarCustomizationPalette(sender) /// open model window
+        titlebarAppearsTransparent = true
+    }
 }
 extension Window: NSWindowDelegate {
     

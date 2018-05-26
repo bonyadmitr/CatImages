@@ -12,6 +12,15 @@ final class WindowController: NSWindowController {
     
     @IBOutlet private weak var toolBar: Toolbar!
     
+//    override init(window: NSWindow?) {
+//        super.init(window: window)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//        
+//    }
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         

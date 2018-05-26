@@ -22,12 +22,19 @@ final class Toolbar: NSToolbar {
     
     override init(identifier: NSToolbar.Identifier) {
         super.init(identifier: identifier)
+        
+        // TODO: test first start values
+//        displayMode = .labelOnly
+//        sizeMode = .regular
+
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        /// Set the delegate of the toolbar before adding the toolbar to the window
+        /// https://stackoverflow.com/a/38405301
+        ///delegate = self
         
         // Configure our toolbar (note: this can also be done in Interface Builder).
         
@@ -41,20 +48,15 @@ final class Toolbar: NSToolbar {
          changes, or reordering will persist. Specifically they will be written in the app domain using
          the toolbar identifier as the key.
          */
+        /// !!! not working when NSToolbar inits from IB so setup it in IB
         autosavesConfiguration = true
         
         // Tell the toolbar to show icons only by default.
-        displayMode = .labelOnly
-        
-        /// Set the delegate of the toolbar before adding the toolbar to the window
-        /// https://stackoverflow.com/a/38405301
-        ///delegate = self
-        
-        sizeMode = .small
+        /// !!! will rewrite user settings here
+//        displayMode = .labelOnly
+//        sizeMode = .small
         
         showsBaselineSeparator = false
-        
-//        items.forEach { $0. = .texturedRounded }
     }
     
     /// removed autovalidation
