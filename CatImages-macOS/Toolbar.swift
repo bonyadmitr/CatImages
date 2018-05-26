@@ -22,7 +22,6 @@ final class Toolbar: NSToolbar {
     
     override init(identifier: NSToolbar.Identifier) {
         super.init(identifier: identifier)
-        
     }
     
     override func awakeFromNib() {
@@ -52,8 +51,7 @@ final class Toolbar: NSToolbar {
         ///delegate = self
         
         sizeMode = .small
-        allowsUserCustomization = true
-//        showsBaselineSeparator = true
+        
         showsBaselineSeparator = false
         
 //        items.forEach { $0. = .texturedRounded }
@@ -95,7 +93,6 @@ final class Toolbar: NSToolbar {
 
 //extension Toolbar: NSToolbarDelegate {
 //
-//    
 //    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 //        return [NSToolbarItem.Identifier.save, .saveAs]
 //    }
@@ -104,17 +101,17 @@ final class Toolbar: NSToolbar {
 //        return [NSToolbarItem.Identifier.flexibleSpace, .space]
 //    }
 // 
-
-/**
- NSToolbar delegates require this function. It returns an array holding identifiers for all allowed
- toolbar items in this toolbar. Any not listed here will not be available in the customization palette.
- */
+//
+///**
+// NSToolbar delegates require this function. It returns an array holding identifiers for all allowed
+// toolbar items in this toolbar. Any not listed here will not be available in the customization palette.
+// */
 //    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 //        return [NSToolbarItem.Identifier.flexibleSpace, .space]
 //    }
 //    
-
-/// https://christiantietze.de/posts/2016/06/segmented-nstoolbaritem/
+//
+//    /// https://christiantietze.de/posts/2016/06/segmented-nstoolbaritem/
 //    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
 //        
 //        
