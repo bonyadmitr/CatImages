@@ -45,8 +45,12 @@
 		CEBAB150209442BA002824C6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7BA3C209328A500020A85 /* Image.swift */; };
 		CED18BCF20B88C7000992D64 /* FirstMouseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED18BCD20B88B1F00992D64 /* FirstMouseImageView.swift */; };
 		CED18BD120B8B57500992D64 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED18BD020B8B57500992D64 /* ProgressIndicator.swift */; };
+		CED18BD220B92DE800992D64 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E620B53E6F00BF5493 /* Constants.swift */; };
+		CED18BD320B92DEE00992D64 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E220B53B5700BF5493 /* SaveManager.swift */; };
+		CED18BD420B92E1700992D64 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E420B53B9100BF5493 /* ImageFormat.swift */; };
+		CED18BD520B92E1A00992D64 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E420B53B9100BF5493 /* ImageFormat.swift */; };
+		CED18BD620B92E1B00992D64 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E420B53B9100BF5493 /* ImageFormat.swift */; };
 		CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
-		CEE2C82620A01FBE00546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7D920B4155900BF5493 /* WindowController.swift */; };
 		CEE2E7DC20B5371E00BF5493 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */; };
 		CEE2E7DE20B53B3800BF5493 /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7DD20B53B3800BF5493 /* CustomErrors.swift */; };
@@ -252,7 +256,6 @@
 			children = (
 				CE158076209B292200C73A2E /* FailableClickGestureRecognizer.swift */,
 				66DADCB1209BB540004FBC37 /* NSUserNotification+Init.swift */,
-				CEE2C824209C33D500546E64 /* ImageConextMenu.swift */,
 				CE97D4A320A0270300514320 /* DisablableView.swift */,
 				CED18BCD20B88B1F00992D64 /* FirstMouseImageView.swift */,
 				CEE2E7E220B53B5700BF5493 /* SaveManager.swift */,
@@ -284,12 +287,13 @@
 		CEBAB13D20944293002824C6 /* CatImages-macOS-widget */ = {
 			isa = PBXGroup;
 			children = (
-				CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */,
 				CEBAB14020944293002824C6 /* TodayViewController.xib */,
 				CEBAB13E20944293002824C6 /* TodayViewController.swift */,
+				CEE2C824209C33D500546E64 /* ImageConextMenu.swift */,
 				CEBAB14320944294002824C6 /* Info.plist */,
 				CEBAB14420944294002824C6 /* InfoPlist.strings */,
 				CEBAB14720944294002824C6 /* CatImages_macOS_widget.entitlements */,
+				CEBAB151209443AE002824C6 /* CatImages-macOS-widget.entitlements */,
 			);
 			path = "CatImages-macOS-widget";
 			sourceTree = "<group>";
@@ -484,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED18BD620B92E1B00992D64 /* ImageFormat.swift in Sources */,
 				CE14CEF52091E581003333F9 /* CatService.swift in Sources */,
 				CEE2E7EB20B58CF900BF5493 /* String+String.swift in Sources */,
 				CEE2E7DF20B53B4400BF5493 /* CustomErrors.swift in Sources */,
@@ -499,7 +504,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66DADCB4209BB554004FBC37 /* NSUserNotification+Init.swift in Sources */,
-				CEE2C82620A01FBE00546E64 /* ImageConextMenu.swift in Sources */,
 				CE14CF0A2091E7C5003333F9 /* CatService.swift in Sources */,
 				66F17393209A10E5002DA594 /* ActivityIndicator.swift in Sources */,
 				CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */,
@@ -524,6 +528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED18BD520B92E1A00992D64 /* ImageFormat.swift in Sources */,
 				CEBAB136209440D5002824C6 /* NSExtensionContext+URL.swift in Sources */,
 				CEE2E7ED20B58D1000BF5493 /* String+String.swift in Sources */,
 				CEE2E7E020B53B4400BF5493 /* CustomErrors.swift in Sources */,
@@ -542,6 +547,8 @@
 				CEE2E7E120B53B4400BF5493 /* CustomErrors.swift in Sources */,
 				CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */,
 				66DADCB3209BB553004FBC37 /* NSUserNotification+Init.swift in Sources */,
+				CED18BD420B92E1700992D64 /* ImageFormat.swift in Sources */,
+				CED18BD320B92DEE00992D64 /* SaveManager.swift in Sources */,
 				66F17395209A10E7002DA594 /* ActivityIndicator.swift in Sources */,
 				CEBAB14F209442BA002824C6 /* CatService.swift in Sources */,
 				CE97D4A620A0271A00514320 /* DisablableView.swift in Sources */,
@@ -549,6 +556,7 @@
 				CEBAB150209442BA002824C6 /* Image.swift in Sources */,
 				CEF39856209B4B23000EC9BD /* FailableClickGestureRecognizer.swift in Sources */,
 				CEBAB13F20944293002824C6 /* TodayViewController.swift in Sources */,
+				CED18BD220B92DE800992D64 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

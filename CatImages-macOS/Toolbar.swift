@@ -64,24 +64,23 @@ final class Toolbar: NSToolbar {
         
         // TODO: sender.isEnabled 
         ///sender.isEnabled = false
-        guard let data = customDelegate?.passImageData() else {
+        guard let imageData = customDelegate?.passImageData() else {
             return
         }
         
         do {
-            try SaveManager.save(data: data, name: Constants.defaultSaveImageName)
-//            NSAlert().beginSheetModal(for: <#T##NSWindow#>, completionHandler: <#T##((NSApplication.ModalResponse) -> Void)?##((NSApplication.ModalResponse) -> Void)?##(NSApplication.ModalResponse) -> Void#>)
+            try SaveManager.save(data: imageData, name: Constants.defaultSaveImageName)
         } catch  {
             print(error.localizedDescription)
         }
     }
     
     @IBAction private func saveAs(_ sender: NSToolbarItem) {
-        guard let data = customDelegate?.passImageData() else {
+        guard let imageData = customDelegate?.passImageData() else {
             return
         }
         
-        SaveManager.saveAs(data: data, name: Constants.defaultSaveImageName) { result in
+        SaveManager.saveAs(data: imageData, name: Constants.defaultSaveImageName) { result in
             switch result {
             case .success:
                 print("success")

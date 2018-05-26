@@ -127,16 +127,7 @@ extension TodayViewController: NCWidgetProviding {
         // Update your data and prepare for a snapshot. Call completion handler when you are done
         // with NoData if nothing has changed or NewData if there is new data since the last
         // time we called you
-        catService.getRandomImage { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let image):
-                    self?.catImageView.image = image
-                case .failure(let error):
-                    print(error.localizedDescription)
-                } 
-            }
-        }
+        getRandomImage()
         
         completionHandler(.newData)
     }
