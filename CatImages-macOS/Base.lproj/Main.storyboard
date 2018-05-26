@@ -738,7 +738,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="66y-sw-jvq"/>
                             </imageView>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="dcj-sp-oKS">
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="dcj-sp-oKS" customClass="ProgressIndicator" customModule="CatImages_macOS" customModuleProvider="target">
                                 <rect key="frame" x="232" y="127" width="16" height="16"/>
                             </progressIndicator>
                         </subviews>
