@@ -24,13 +24,12 @@ import Cocoa
 /// - 
 
 
+// TODO: NSProgressIndicator color
 // TODO: add NSTouchBar
 // TODO: open app menu with data
 // TODO: local notification by time (and disable it)
 // TODO: settings menu and window
 // TODO: about
-
-// TODO: error handling with alerts
 
 // TODO: optimize and clear SaveManager
 // TODO: optimize and clear CatService
@@ -43,6 +42,8 @@ import Cocoa
 /// localizedDescription: "The requested operation couldn’t be completed because the feature is not supported."
 /// localized. example ru: "Операцию не удалось завершить, так как эта функция не поддерживается."
 ///let unknownError = NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo: [:])
+
+// TODO: windowShouldClose, return NSvc commitEditing()
 
 
 //        @IBAction func quit(_ sender: NSMenuItem) {
