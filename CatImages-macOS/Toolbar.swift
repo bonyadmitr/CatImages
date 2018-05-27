@@ -29,6 +29,7 @@ final class Toolbar: NSToolbar {
 //        sizeMode = .regular
 
         NotificationCenter.default.addObserver(self, selector: #selector(didGetNewImage), name: .didGetNewImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSaveInPictures), name: .didSaveInPictures, object: nil)
     }
     
     deinit {
@@ -37,6 +38,10 @@ final class Toolbar: NSToolbar {
     
     @objc private func didGetNewImage(_ notification: Notification) {
         saveInPicturesBarItem?.isEnabled = true
+    }
+    
+    @objc private func didSaveInPictures(_ notification: Notification) {
+        saveInPicturesBarItem?.isEnabled = false
     }
     
     override func awakeFromNib() {
@@ -70,15 +75,14 @@ final class Toolbar: NSToolbar {
     }
     
     @IBAction private func saveInPictures(_ sender: NSToolbarItem) {
-        saveInPicturesBarItem = sender 
-        sender.isEnabled = false
-        
         guard let imageData = customDelegate?.passImageData() else {
             return
         }
         
         do {
             try SaveManager.save(data: imageData, name: Constants.defaultSaveImageName)
+            saveInPicturesBarItem = sender
+            NotificationCenter.default.post(name: .didSaveInPictures, object: nil)
         } catch  {
             print(error.localizedDescription)
         }

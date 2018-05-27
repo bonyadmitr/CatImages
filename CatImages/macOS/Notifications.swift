@@ -10,4 +10,5 @@ import Foundation
 
 extension Notification.Name {
     static let didGetNewImage = Notification.Name("didGetNewImage")
+    static let didSaveInPictures = Notification.Name("didSaveInPictures")
 }

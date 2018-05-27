@@ -107,6 +107,8 @@ class TodayViewController: NSViewController {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
+                
+                NotificationCenter.default.post(name: .didGetNewImage, object: nil)
             }
         }
     }

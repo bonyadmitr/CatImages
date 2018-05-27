@@ -14,6 +14,8 @@ protocol ImageConextMenuDelegate: class {
 
 final class ImageConextMenu: NSMenu {
     
+    private var saveInPicturesMenuItem: NSMenuItem?
+    
     convenience init() {
         self.init(title: "")
     }
@@ -32,19 +34,36 @@ final class ImageConextMenu: NSMenu {
         /// use or autoenablesItems = false
         /// or override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
         autoenablesItems = false
-        seupItems()
+        setupItems()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didGetNewImage), name: .didGetNewImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSaveInPictures), name: .didSaveInPictures, object: nil)
     }
     
-    private func seupItems() {
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func didGetNewImage(_ notification: Notification) {
+        saveInPicturesMenuItem?.isEnabled = true
+    }
+    
+    @objc private func didSaveInPictures(_ notification: Notification) {
+        saveInPicturesMenuItem?.isEnabled = false
+    }
+    
+    private func setupItems() {
         let openInWindowItem = NSMenuItem(title: "Open in window",
                                           action: #selector(openInWindow),
                                           keyEquivalent: "o")
-        let saveItem = NSMenuItem(title: "Save in Pictures",
-                                  action: #selector(saveInImages),
+        let saveInPicturesItem = NSMenuItem(title: "Save in Pictures",
+                                  action: #selector(saveInPictures),
                                   keyEquivalent: "s")
         let saveAsItem = NSMenuItem(title: "Save as...",
                                     action: #selector(saveAs),
                                     keyEquivalent: "S")
+        
+        saveInPicturesMenuItem = saveInPicturesItem
         
         /// keyEquivalent: "s" with keyEquivalentModifierMask [.command, .shift] ==
         /// keyEquivalent: "S" with keyEquivalentModifierMask [.command] or default keyEquivalentModifierMask
@@ -53,12 +72,12 @@ final class ImageConextMenu: NSMenu {
         /// add target or action will not work
         /// and NSMenuItem will be disabled with "autoenablesItems = true"(default value)
         openInWindowItem.target = self
-        saveItem.target = self
+        saveInPicturesItem.target = self
         saveAsItem.target = self
         
         addItem(openInWindowItem)
         addItem(NSMenuItem.separator())
-        addItem(saveItem)
+        addItem(saveInPicturesItem)
         addItem(saveAsItem)
     }
     
@@ -76,13 +95,14 @@ final class ImageConextMenu: NSMenu {
         NSWorkspace.shared.open(url)
     }
     
-    @objc private func saveInImages() {
+    @objc private func saveInPictures() {
         guard let imageData = imageDelegate?.imageConextMenuImageData() else {
             return
         }
         
         do {
             try SaveManager.save(data: imageData, name: Constants.defaultSaveImageName)
+            NotificationCenter.default.post(name: .didSaveInPictures, object: nil)
         } catch  {
             print(error.localizedDescription)
         }
