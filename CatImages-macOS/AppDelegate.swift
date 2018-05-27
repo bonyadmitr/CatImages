@@ -8,6 +8,8 @@
 
 import Cocoa
 
+/// README
+/// some files are not in targets at all
 /// NSApplication.shared == NSApp
 
 /// posible settings
@@ -20,15 +22,25 @@ import Cocoa
 /// - add share button
 
 
-
-
-// TODO: add NSTouchBar in subclass and custom window
+// TODO: add NSTouchBar
 // TODO: open app menu with data
 // TODO: local notification by time (and disable it)
 // TODO: settings menu and window
 // TODO: about
 
 // TODO: error handling with alerts
+
+// TODO: optimize and clear SaveManager
+// TODO: optimize and clear CatService
+
+// TODO: CustomErrors: system or unknown naming ???
+/// It is System error. Send report how did you get it, please. and Button with text "Send report" to email
+
+// TODO: check all code in unknownError NSError
+// TODO: maybe add to CustomErrors system case bcz it is localized string
+/// localizedDescription: "The requested operation couldn’t be completed because the feature is not supported."
+/// localized. example ru: "Операцию не удалось завершить, так как эта функция не поддерживается."
+///let unknownError = NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo: [:])
 
 
 //        @IBAction func quit(_ sender: NSMenuItem) {

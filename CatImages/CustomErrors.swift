@@ -8,18 +8,16 @@
 
 import Foundation
 
-//let unknownError = NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo: [:])
-
 enum CustomErrors {
     case system
-    case debugString(String)
+    case systemDebug(String)
 }
 extension CustomErrors: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .system:
             return "System error"
-        case .debugString(let text):
+        case .systemDebug(let text):
             #if DEBUG
             return text
             #else

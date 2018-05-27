@@ -10,10 +10,11 @@ import Foundation
 
 final class CatService {
     
+    private let url = URL(string: "https://thecatapi.com/api/images/get")!
+    private let catApiKey = "MzA0NjAy"
+    
     func getRandom(handler: @escaping DataResult) {
-        let url = URL(string: "https://thecatapi.com/api/images/get")!
-        let catApiKey = "MzA0NjAy"
-        
+        // TODO: check: reuse of URLRequest. one init 
         var request = URLRequest(url: url)
         request.addValue(catApiKey, forHTTPHeaderField: "api_key")
 //        request.timeoutInterval = timeoutInterval
@@ -25,6 +26,11 @@ final class CatService {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 handler(.success(data))
+            } else if let error = error {
+                handler(.failure(error))
+            } else {
+                let error = CustomErrors.systemDebug(response?.description ?? "response nil")
+                handler(.failure(error))
             }
         }.resume()
     }
