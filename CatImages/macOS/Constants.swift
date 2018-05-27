@@ -15,3 +15,7 @@ enum Constants {
     static let windowTitleBarHeightWithHiddenTitle: CGFloat = 37
     
 }
+
+extension Notification.Name {
+    static let didGetNewImage = Notification.Name("didGetNewImage")
+}

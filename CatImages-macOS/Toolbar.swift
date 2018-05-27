@@ -13,9 +13,13 @@ protocol ToolbarDelegate: class {
 }
 
 /// https://developer.apple.com/library/content/samplecode/ToolbarSample/Introduction/Intro.html
+/// removed autovalidation of NSToolbarItems in IB
+/// removed selectable of NSToolbarItems in IB
 final class Toolbar: NSToolbar {
     
     weak var customDelegate: ToolbarDelegate?
+    
+    private var saveInPicturesBarItem: NSToolbarItem?
     
     override init(identifier: NSToolbar.Identifier) {
         super.init(identifier: identifier)
@@ -24,6 +28,15 @@ final class Toolbar: NSToolbar {
 //        displayMode = .labelOnly
 //        sizeMode = .regular
 
+        NotificationCenter.default.addObserver(self, selector: #selector(didGetNewImage), name: .didGetNewImage, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func didGetNewImage(_ notification: Notification) {
+        saveInPicturesBarItem?.isEnabled = true
     }
     
     override func awakeFromNib() {
@@ -56,11 +69,10 @@ final class Toolbar: NSToolbar {
         showsBaselineSeparator = false
     }
     
-    /// removed autovalidation
     @IBAction private func saveInPictures(_ sender: NSToolbarItem) {
+        saveInPicturesBarItem = sender 
+        sender.isEnabled = false
         
-        // TODO: sender.isEnabled 
-        ///sender.isEnabled = false
         guard let imageData = customDelegate?.passImageData() else {
             return
         }
