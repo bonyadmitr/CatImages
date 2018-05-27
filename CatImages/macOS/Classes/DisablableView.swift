@@ -12,13 +12,6 @@ class DisablableView: NSView {
     
     var ignoresMouseEvents = false
     
-//    override func hitTest(_ point: NSPoint) -> NSView? {
-//        if !ignoresMouseEvents {
-//            return super.hitTest(point)
-//        }
-//        return nil
-//    }
-    
     override func mouseDown(with event: NSEvent) {
         if ignoresMouseEvents {
             return

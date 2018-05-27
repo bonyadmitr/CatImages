@@ -15,7 +15,7 @@ import Cocoa
 /// - keep on top check box
 /// - auto save to pictures
 /// - create folder in pictures
-/// - disable "save to pictures" button after save
+/// - disable "save to pictures" button after 1 save
 /// - auto change cat timer with time setup
 /// - add share button
 
