@@ -31,8 +31,7 @@ class TodayViewController: NSViewController {
         didSet {
             catImageView.imageScaling = .scaleProportionallyUpOrDown
             
-            /// enable gif
-            /// https://stackoverflow.com/a/46150420/5893286
+            /// enable gif https://stackoverflow.com/a/46150420/5893286
             catImageView.animates = true
             catImageView.canDrawSubviewsIntoLayer = true // TODO: check is need (maybe need for wantsLayer = true)
         }
@@ -59,9 +58,10 @@ class TodayViewController: NSViewController {
         imageConextMenu.imageDelegate = self
         
         /// to activate view.layer
-        view.wantsLayer = true
+        //view.wantsLayer = true
         /// to activate view for gestures and mouse clicks
-        view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
+        // TODO: check: why is it working without it?
+        //view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
         
 //        NCWidgetController.widgetController().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
 //        preferredContentSize = NSSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
@@ -89,8 +89,6 @@ class TodayViewController: NSViewController {
     }
     
     private func getRandomImage() {
-        print("getRandomImage")
-        
         mainView.ignoresMouseEvents = true
         catImageProgressIndicator.startAnimation(nil)
         

@@ -31,8 +31,7 @@ final class CatViewController: NSViewController {
             catImageView.setContentCompressionResistancePriority(imagePriority, for: .horizontal)
             catImageView.setContentCompressionResistancePriority(imagePriority, for: .vertical)
             
-            /// enable gif
-            /// https://stackoverflow.com/a/46150420/5893286
+            /// enable gif https://stackoverflow.com/a/46150420/5893286
             catImageView.animates = true
             catImageView.canDrawSubviewsIntoLayer = true // TODO: check is need (maybe need for wantsLayer = true)
         }
@@ -63,8 +62,6 @@ final class CatViewController: NSViewController {
     }
     
     private func getRandomImage() {
-        print("getRandomImage")
-        
         mainView.ignoresMouseEvents = true
         catImageProgressIndicator.startAnimation(nil)
         
