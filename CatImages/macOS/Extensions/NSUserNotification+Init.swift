@@ -9,6 +9,12 @@
 import Foundation
 import NotificationCenter
 
+/// add NSUserNotificationCenter.default.delegate = self
+//extension AppDelegate: NSUserNotificationCenterDelegate {
+//    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+//        return true
+//    }
+//}
 extension NSUserNotification {
     convenience init(title: String?, message: String?) {
         self.init()

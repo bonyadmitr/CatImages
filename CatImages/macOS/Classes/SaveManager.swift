@@ -98,7 +98,7 @@ final class SaveManager {
             default:
                 let errorString = "\(result), raw: \(result.rawValue)" 
                 let error = CustomErrors.systemDebug(errorString)
-                print(error.localizedDescription)
+                print("⚠️", error.localizedDescription)
                 handler(.failure(error))
             }   
         }
