@@ -10,8 +10,12 @@ import Cocoa
 
 /// https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Dialog/Dialog.html
 /// if called some alerts system shows them in queue
-
+/// don't use in widget
 extension NSAlert {
+    
+    static func showError(message: String) {
+        NSAlert(title: "Error", message: message, style: .warning).show()
+    }
     
     convenience init(title: String, message: String, style: NSAlert.Style) {
         self.init()
@@ -20,11 +24,15 @@ extension NSAlert {
         alertStyle = style
     }
     
-    func show() {
-        runModal()
+    func show(sheetModal: Bool = false) {
+        if sheetModal, let window = NSApp.keyWindow {
+            beginSheetModal(for: window, completionHandler: nil)
+        } else {
+            runModal()
+        }
     }
     
-    func show(handler: @escaping BoolResult) {
+    func show(sheetModal: Bool = false, handler: @escaping BoolResult) {
         
         let resultHandler: (NSApplication.ModalResponse) -> Void = { result in
             switch result {
@@ -40,7 +48,7 @@ extension NSAlert {
             }
         }
         
-        if let window = NSApp.keyWindow {
+        if sheetModal, let window = NSApp.keyWindow {
             beginSheetModal(for: window, completionHandler: resultHandler)
         } else {
             resultHandler(runModal())

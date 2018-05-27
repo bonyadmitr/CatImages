@@ -84,7 +84,7 @@ final class Toolbar: NSToolbar {
             saveInPicturesBarItem = sender
             NotificationCenter.default.post(name: .didSaveInPictures, object: nil)
         } catch  {
-            print(error.localizedDescription)
+            NSAlert.showError(message: error.localizedDescription)
         }
     }
     
@@ -98,7 +98,7 @@ final class Toolbar: NSToolbar {
             case .success:
                 print("success")
             case .failure(let error):
-                print(error.localizedDescription)
+                NSAlert.showError(message: error.localizedDescription)
             case .cancel:
                 print("cancel")
             }

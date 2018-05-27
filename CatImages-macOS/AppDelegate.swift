@@ -20,6 +20,8 @@ import Cocoa
 /// - disable "save to pictures" button after 1 save
 /// - auto change cat timer with time setup
 /// - add share button
+/// - widget height
+/// - 
 
 
 // TODO: add NSTouchBar

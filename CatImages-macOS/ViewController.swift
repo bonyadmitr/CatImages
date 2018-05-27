@@ -81,7 +81,7 @@ final class CatViewController: NSViewController {
                         self.catImageView.image = image
                     }
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    NSAlert.showError(message: error.localizedDescription)
                 }
                 
                 NotificationCenter.default.post(name: .didGetNewImage, object: nil)

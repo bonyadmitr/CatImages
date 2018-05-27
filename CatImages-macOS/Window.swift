@@ -29,7 +29,7 @@ final class Window: NSWindow, NSApplicationDelegate {
         
         /// moves the window to the front, but below current front app
         makeKeyAndOrderFront(nil)
-//        keepOnTop = true
+        keepOnTop = true
         
 //        backgroundColor = NSColor.white.withAlphaComponent(0.2)
 //        isOpaque = false
