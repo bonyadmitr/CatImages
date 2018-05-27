@@ -23,8 +23,6 @@ import Cocoa
 
 
 // TODO: add NSTouchBar in subclass and custom window
-// TODO: play gif images
-
 // TODO: open app menu with data
 // TODO: local notification by time (and disable it)
 // TODO: settings menu and window

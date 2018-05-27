@@ -30,6 +30,11 @@ class TodayViewController: NSViewController {
     @IBOutlet private weak var catImageView: NSImageView! {
         didSet {
             catImageView.imageScaling = .scaleProportionallyUpOrDown
+            
+            /// enable gif
+            /// https://stackoverflow.com/a/46150420/5893286
+            catImageView.animates = true
+            catImageView.canDrawSubviewsIntoLayer = true // TODO: check is need (maybe need for wantsLayer = true)
         }
     }
     

@@ -30,6 +30,11 @@ final class CatViewController: NSViewController {
             let imagePriority = NSLayoutConstraint.Priority.windowSizeStayPut - 1 /// 499
             catImageView.setContentCompressionResistancePriority(imagePriority, for: .horizontal)
             catImageView.setContentCompressionResistancePriority(imagePriority, for: .vertical)
+            
+            /// enable gif
+            /// https://stackoverflow.com/a/46150420/5893286
+            catImageView.animates = true
+            catImageView.canDrawSubviewsIntoLayer = true // TODO: check is need (maybe need for wantsLayer = true)
         }
     }
     
