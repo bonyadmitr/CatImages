@@ -13,7 +13,7 @@ final class SaveManager {
     /// Capabilities - File Access list - Pictures Folder - Read/Write
     /// type: png, jpg, etc..
     /// if type == nil it will be detected from data
-    static func save(data: Data, name: String, type: String? = nil) throws {
+    static func save(data: Data, name: String, type: String? = nil) throws -> URL {
         let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
         guard let pictureFolderPath = pictureDirectories.first else {
             throw CustomErrors.system
@@ -28,9 +28,9 @@ final class SaveManager {
             var numbers: [Int] = imagesWithName.compactMap { fileName in
                 let startIndex = name.count + 1 /// 1 for _
                 let endIndex = fileName.count - fileExtension.count - 1 /// 1 for .
-                let numberStr = fileName[startIndex..<endIndex].trimmed
+                let numberStr = fileName[startIndex..<endIndex]
                 if let n = Int(numberStr) {
-                    return n + 1
+                    return n + 1 /// 1 for next number
                 }
                 return 2
             }
@@ -48,11 +48,9 @@ final class SaveManager {
             nameSuffix = "_1"
         }
         
-        
-        
-        
-        let pictureFolderUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)\(nameSuffix).\(fileExtension)")
-        try data.write(to: pictureFolderUrl)
+        let pictureUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)\(nameSuffix).\(fileExtension)")
+        try data.write(to: pictureUrl)
+        return pictureUrl
     }
     
     static func saveAs(data: Data, name: String, type: String? = nil,  handler: @escaping VoidCancelableResult) {
