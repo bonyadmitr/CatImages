@@ -41,6 +41,10 @@
 		CE1ED13920BA78B100A912C8 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E220B53B5700BF5493 /* SaveManager.swift */; };
 		CE1ED13A20BA78B100A912C8 /* FailableClickGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE158076209B292200C73A2E /* FailableClickGestureRecognizer.swift */; };
 		CE1ED13D20BABA5D00A912C8 /* NSAlert+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1ED13B20BABA3F00A912C8 /* NSAlert+Init.swift */; };
+		CE1ED14120BBD67A00A912C8 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1ED14020BBD67A00A912C8 /* PreferencesWindowController.swift */; };
+		CE1ED14320BBD6A000A912C8 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1ED14220BBD6A000A912C8 /* PreferencesViewController.swift */; };
+		CE1ED14520BBD70500A912C8 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1ED14420BBD70500A912C8 /* Preferences.storyboard */; };
+		CE1ED14820BBDD2F00A912C8 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1ED14720BBDD2F00A912C8 /* Storyboards.swift */; };
 		CE46402B20B6F24600EFC1AE /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46402A20B6F24600EFC1AE /* Window.swift */; };
 		CE49E8FD2099D33D007F05A6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
 		CE64415E20B9370E00418E53 /* NSWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */; };
@@ -150,6 +154,10 @@
 		CE1ED12920B9E91400A912C8 /* UIKit_Cocoa_typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKit_Cocoa_typealias.swift; sourceTree = "<group>"; };
 		CE1ED12E20BA771700A912C8 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		CE1ED13B20BABA3F00A912C8 /* NSAlert+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Init.swift"; sourceTree = "<group>"; };
+		CE1ED14020BBD67A00A912C8 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		CE1ED14220BBD6A000A912C8 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		CE1ED14420BBD70500A912C8 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		CE1ED14720BBDD2F00A912C8 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		CE46402A20B6F24600EFC1AE /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		CE97D4A320A0270300514320 /* DisablableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisablableView.swift; sourceTree = "<group>"; };
@@ -262,6 +270,7 @@
 				CE46402A20B6F24600EFC1AE /* Window.swift */,
 				CE14CEFE2091E79F003333F9 /* ViewController.swift */,
 				CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */,
+				CE1ED14620BBD70A00A912C8 /* Preferences */,
 				CE14CF002091E7A0003333F9 /* Assets.xcassets */,
 				CE14CF052091E7A0003333F9 /* Info.plist */,
 				CE14CF062091E7A0003333F9 /* CatImages_macOS.entitlements */,
@@ -277,6 +286,7 @@
 				CE1ED13320BA780D00A912C8 /* Extensions */,
 				CEE2E7E620B53E6F00BF5493 /* Constants.swift */,
 				CE1ED12E20BA771700A912C8 /* Notifications.swift */,
+				CE1ED14720BBDD2F00A912C8 /* Storyboards.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -301,6 +311,16 @@
 				CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE1ED14620BBD70A00A912C8 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				CE1ED14420BBD70500A912C8 /* Preferences.storyboard */,
+				CE1ED14020BBD67A00A912C8 /* PreferencesWindowController.swift */,
+				CE1ED14220BBD6A000A912C8 /* PreferencesViewController.swift */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		CEBAB12220943EE0002824C6 /* Frameworks */ = {
@@ -500,6 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1ED14520BBD70500A912C8 /* Preferences.storyboard in Resources */,
 				CE14CF012091E7A0003333F9 /* Assets.xcassets in Resources */,
 				CE14CF042091E7A0003333F9 /* Main.storyboard in Resources */,
 			);
@@ -546,12 +567,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1ED14320BBD6A000A912C8 /* PreferencesViewController.swift in Sources */,
 				66DADCB4209BB554004FBC37 /* NSUserNotification+Init.swift in Sources */,
 				CE14CF0A2091E7C5003333F9 /* CatService.swift in Sources */,
 				CE1ED12320B9E62E00A912C8 /* Result.swift in Sources */,
 				66F17393209A10E5002DA594 /* ActivityIndicator.swift in Sources */,
 				CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */,
 				CE1ED13620BA78B100A912C8 /* DisablableView.swift in Sources */,
+				CE1ED14120BBD67A00A912C8 /* PreferencesWindowController.swift in Sources */,
 				CEF7BA3E209328C100020A85 /* Image.swift in Sources */,
 				CEE2E7EC20B58D1000BF5493 /* String+String.swift in Sources */,
 				CE1ED13820BA78B100A912C8 /* ProgressIndicator.swift in Sources */,
@@ -566,6 +589,7 @@
 				CEE2E7DE20B53B3800BF5493 /* CustomErrors.swift in Sources */,
 				CE1ED13420BA78A300A912C8 /* Notifications.swift in Sources */,
 				CE1ED13A20BA78B100A912C8 /* FailableClickGestureRecognizer.swift in Sources */,
+				CE1ED14820BBDD2F00A912C8 /* Storyboards.swift in Sources */,
 				CEE2E7E720B53E6F00BF5493 /* Constants.swift in Sources */,
 				CE46402B20B6F24600EFC1AE /* Window.swift in Sources */,
 				CE14CEFD2091E79F003333F9 /* AppDelegate.swift in Sources */,

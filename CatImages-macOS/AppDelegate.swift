@@ -69,6 +69,11 @@ import Cocoa
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
     
+    private lazy var preferencesWindowController: NSWindowController? = {
+        let storyboard = NSStoryboard(name: .preferences, bundle: nil)
+        return storyboard.instantiateInitialController() as? NSWindowController
+    }()
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         print("- NSHomeDirectory:", NSHomeDirectory())
@@ -78,7 +83,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         }
     }
-
+    
+    @IBAction func showPreferences(_ sender: NSMenuItem) {
+        preferencesWindowController?.showWindow(sender)
+    }
+    
     func applicationWillTerminate(_ aNotification: Notification) {
     }
 

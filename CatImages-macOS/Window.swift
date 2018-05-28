@@ -76,6 +76,7 @@ final class Window: NSWindow, NSApplicationDelegate {
     //func windowShouldClose(_ sender: NSWindow) -> Bool {
     //    NSApp.hide(nil)
     //    //orderOut(nil) /// close but not release from memory
+    //    //orderOut(sender) //TODO: check for hide like NSApp.hide(nil)
     //    return false
     //}
     
