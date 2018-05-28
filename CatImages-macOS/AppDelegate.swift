@@ -21,7 +21,7 @@ import Cocoa
 /// - auto change cat timer with time setup
 /// - add share button
 /// - widget height
-/// - 
+/// - added link to api
 
 
 // TODO: NSProgressIndicator color
