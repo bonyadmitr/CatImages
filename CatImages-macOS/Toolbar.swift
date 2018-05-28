@@ -12,23 +12,44 @@ protocol ToolbarDelegate: class {
     func passImageData() -> Data?
 }
 
-// TODO: add NSTouchBar in subclass and custom window
-// TODO: play gif images
-
 /// https://developer.apple.com/library/content/samplecode/ToolbarSample/Introduction/Intro.html
+/// removed autovalidation of NSToolbarItems in IB
+/// removed selectable of NSToolbarItems in IB
 final class Toolbar: NSToolbar {
     
     weak var customDelegate: ToolbarDelegate?
     
+    private var saveInPicturesBarItem: NSToolbarItem?
+    
     override init(identifier: NSToolbar.Identifier) {
         super.init(identifier: identifier)
         
+        // TODO: test first start values
+//        displayMode = .labelOnly
+//        sizeMode = .regular
+
+        NotificationCenter.default.addObserver(self, selector: #selector(didGetNewImage), name: .didGetNewImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didSaveInPictures), name: .didSaveInPictures, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func didGetNewImage(_ notification: Notification) {
+        saveInPicturesBarItem?.isEnabled = true
+    }
+    
+    @objc private func didSaveInPictures(_ notification: Notification) {
+        saveInPicturesBarItem?.isEnabled = false
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        /// Set the delegate of the toolbar before adding the toolbar to the window
+        /// https://stackoverflow.com/a/38405301
+        ///delegate = self
         
         // Configure our toolbar (note: this can also be done in Interface Builder).
         
@@ -42,51 +63,42 @@ final class Toolbar: NSToolbar {
          changes, or reordering will persist. Specifically they will be written in the app domain using
          the toolbar identifier as the key.
          */
+        /// !!! not working when NSToolbar inits from IB so setup it in IB
         autosavesConfiguration = true
         
         // Tell the toolbar to show icons only by default.
-        displayMode = .labelOnly
+        /// !!! will rewrite user settings here
+//        displayMode = .labelOnly
+//        sizeMode = .small
         
-        /// Set the delegate of the toolbar before adding the toolbar to the window
-        /// https://stackoverflow.com/a/38405301
-        ///delegate = self
-        
-        sizeMode = .small
-        allowsUserCustomization = true
-//        showsBaselineSeparator = true
         showsBaselineSeparator = false
-        
-//        items.forEach { $0. = .texturedRounded }
     }
     
-    /// removed autovalidation
     @IBAction private func saveInPictures(_ sender: NSToolbarItem) {
-        
-        // TODO: sender.isEnabled 
-        ///sender.isEnabled = false
-        guard let data = customDelegate?.passImageData() else {
+        guard let imageData = customDelegate?.passImageData() else {
             return
         }
         
         do {
-            try SaveManager.save(data: data, name: Constants.defaultSaveImageName)
-//            NSAlert().beginSheetModal(for: <#T##NSWindow#>, completionHandler: <#T##((NSApplication.ModalResponse) -> Void)?##((NSApplication.ModalResponse) -> Void)?##(NSApplication.ModalResponse) -> Void#>)
+            try SaveManager.save(data: imageData, name: Constants.defaultSaveImageName)
+            saveInPicturesBarItem = sender
+            NotificationCenter.default.post(name: .didSaveInPictures, object: nil)
         } catch  {
-            print(error.localizedDescription)
+            NSAlert.showError(message: error.localizedDescription)
         }
     }
     
     @IBAction private func saveAs(_ sender: NSToolbarItem) {
-        guard let data = customDelegate?.passImageData() else {
+        guard let imageData = customDelegate?.passImageData() else {
             return
         }
         
-        SaveManager.saveAs(data: data, name: Constants.defaultSaveImageName) { result in
+        SaveManager.saveAs(data: imageData, name: Constants.defaultSaveImageName) { result in
             switch result {
             case .success:
                 print("success")
             case .failure(let error):
-                print(error.localizedDescription)
+                NSAlert.showError(message: error.localizedDescription)
             case .cancel:
                 print("cancel")
             }
@@ -96,7 +108,6 @@ final class Toolbar: NSToolbar {
 
 //extension Toolbar: NSToolbarDelegate {
 //
-//    
 //    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 //        return [NSToolbarItem.Identifier.save, .saveAs]
 //    }
@@ -105,17 +116,17 @@ final class Toolbar: NSToolbar {
 //        return [NSToolbarItem.Identifier.flexibleSpace, .space]
 //    }
 // 
-
-/**
- NSToolbar delegates require this function. It returns an array holding identifiers for all allowed
- toolbar items in this toolbar. Any not listed here will not be available in the customization palette.
- */
+//
+///**
+// NSToolbar delegates require this function. It returns an array holding identifiers for all allowed
+// toolbar items in this toolbar. Any not listed here will not be available in the customization palette.
+// */
 //    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
 //        return [NSToolbarItem.Identifier.flexibleSpace, .space]
 //    }
 //    
-
-/// https://christiantietze.de/posts/2016/06/segmented-nstoolbaritem/
+//
+//    /// https://christiantietze.de/posts/2016/06/segmented-nstoolbaritem/
 //    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
 //        
 //        

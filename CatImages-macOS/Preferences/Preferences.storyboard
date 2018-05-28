@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Psa-DJ-NZQ">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="8mQ-ou-d7Q">
+            <objects>
+                <windowController id="Psa-DJ-NZQ" customClass="PreferencesWindowController" customModule="CatImages_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="563-de-nFo">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+                        <connections>
+                            <outlet property="delegate" destination="Psa-DJ-NZQ" id="5bR-tD-6h1"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="c2D-mu-fri" kind="relationship" relationship="window.shadowedContentViewController" id="wB9-AC-A7X"/>
+                    </connections>
+                </windowController>
+                <customObject id="H9A-e8-xFu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="119" y="111"/>
+        </scene>
+        <!--Preferences View Controller-->
+        <scene sceneID="uo7-NA-Bjc">
+            <objects>
+                <viewController id="c2D-mu-fri" customClass="PreferencesViewController" customModule="CatImages_macOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="2Xh-OZ-4Fi">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="aVB-rJ-KU2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="723" y="111"/>
+        </scene>
+    </scenes>
+</document>

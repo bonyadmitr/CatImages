@@ -8,41 +8,13 @@
 
 import Foundation
 
-typealias HandlerResult<T> = (ResponseResult<T>) -> Void
-typealias ArrayHandlerResult<T> = (ResponseResult<[T]>) -> Void
-
-typealias VoidResult = (ResponseResult<Void>) -> Void
-typealias BoolResult = (ResponseResult<Bool>) -> Void
-typealias DataResult = (ResponseResult<Data>) -> Void
-
-typealias ImageResult = (ResponseResult<Image>) -> Void
-
-enum ResponseResult<T> {
-    case success(T)
-    case failure(Error)
-}
-
-
-
-
-typealias VoidCancelableResult = (CancelableResult<Void>) -> Void
-
-enum CancelableResult<T> {
-    case success(T)
-    case failure(Error)
-    case cancel
-}
-
-
-
-let unknownError = NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo: [:])
-
 final class CatService {
     
+    private let url = URL(string: "https://thecatapi.com/api/images/get")!
+    private let catApiKey = "MzA0NjAy"
+    
     func getRandom(handler: @escaping DataResult) {
-        let url = URL(string: "https://thecatapi.com/api/images/get")!
-        let catApiKey = "MzA0NjAy"
-        
+        // TODO: check: reuse of URLRequest. one init 
         var request = URLRequest(url: url)
         request.addValue(catApiKey, forHTTPHeaderField: "api_key")
 //        request.timeoutInterval = timeoutInterval
@@ -54,6 +26,11 @@ final class CatService {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 handler(.success(data))
+            } else if let error = error {
+                handler(.failure(error))
+            } else {
+                let error = CustomErrors.systemDebug(response?.description ?? "response nil")
+                handler(.failure(error))
             }
         }.resume()
     }
@@ -65,7 +42,7 @@ final class CatService {
                 if let image = Image(data: data) {
                     handler(.success(image))
                 } else {
-                    handler(.failure(unknownError))
+                    handler(.failure(CustomErrors.system))
                 }
             case .failure(let error):
                 handler(.failure(error))

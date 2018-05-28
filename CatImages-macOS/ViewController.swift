@@ -30,14 +30,14 @@ final class CatViewController: NSViewController {
             let imagePriority = NSLayoutConstraint.Priority.windowSizeStayPut - 1 /// 499
             catImageView.setContentCompressionResistancePriority(imagePriority, for: .horizontal)
             catImageView.setContentCompressionResistancePriority(imagePriority, for: .vertical)
+            
+            /// enable gif https://stackoverflow.com/a/46150420/5893286
+            catImageView.animates = true
+            catImageView.canDrawSubviewsIntoLayer = true // TODO: check is need (maybe need for wantsLayer = true)
         }
     }
     
-    @IBOutlet private weak var catImageProgressIndicator: NSProgressIndicator! {
-        didSet {
-            catImageProgressIndicator.isDisplayedWhenStopped = false
-        }
-    }
+    @IBOutlet private weak var catImageProgressIndicator: NSProgressIndicator!
     
     private lazy var mainView = view as! DisablableView
     
@@ -62,8 +62,6 @@ final class CatViewController: NSViewController {
     }
     
     private func getRandomImage() {
-        print("getRandomImage")
-        
         mainView.ignoresMouseEvents = true
         catImageProgressIndicator.startAnimation(nil)
         
@@ -83,8 +81,10 @@ final class CatViewController: NSViewController {
                         self.catImageView.image = image
                     }
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    NSAlert.showError(message: error.localizedDescription)
                 }
+                
+                NotificationCenter.default.post(name: .didGetNewImage, object: nil)
             }
         }
     }

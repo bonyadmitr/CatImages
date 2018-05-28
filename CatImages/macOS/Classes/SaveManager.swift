@@ -61,25 +61,9 @@ final class SaveManager {
         /// https://stackoverflow.com/a/48248271
         ///
         /// https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/UsingtheOpenandSavePanels/UsingtheOpenandSavePanels.html
+        ///
+        /// is not a supported subclass for sandboxing error
         let savePanel = NSSavePanel()
-        
-        
-        
-        // TODO: enable window of NSSavePanel, allow editing
-        // TODO: open app menu
-        // TODO: local notification by time (and disable it)
-        // TODO: settings menu and window
-        // TODO: about
-        
-        
-        //        @IBAction func quit(_ sender: NSMenuItem) {
-        //            NSApp.terminate(nil)
-        //        }
-        //
-        //        @IBAction func about(_ sender: NSMenuItem) {
-        //            NSApp.orderFrontStandardAboutPanel(self)
-        //        }
-        
         
         /// https://stackoverflow.com/a/42857068
 //        savePanel.allowedFileTypes = ["jpg", "png"]
@@ -113,8 +97,8 @@ final class SaveManager {
                 handler(.cancel)
             default:
                 let errorString = "\(result), raw: \(result.rawValue)" 
-                let error = CustomErrors.debugString(errorString)
-                print(error.localizedDescription)
+                let error = CustomErrors.systemDebug(errorString)
+                print("⚠️", error.localizedDescription)
                 handler(.failure(error))
             }   
         }
@@ -125,5 +109,25 @@ final class SaveManager {
         } else {
             savePanel.begin(completionHandler: savePanelCompletionHandler)
         }
+        
+        // TODO: WIDGET ONLY
+        
+        /// moves the window to the front, but below current front app
+        /// here need for widget, to be hight than main app 
+        savePanel.makeKeyAndOrderFront(nil)
+        
+        /// same as main app
+        savePanel.keepOnTop = true
+        
+        /// make active for widget
+        savePanel.becomeKey()
+        
+        /// can be used insted savePanel.begin
+        ///let result = savePanel.runModal()
+        
+        ///savePanel.becomesKeyOnlyIfNeeded = true
+        
+        // TODO: check: don't need outside widget simulator
+        NSApp.activate(ignoringOtherApps: true)
     }
 }

@@ -30,14 +30,14 @@ class TodayViewController: NSViewController {
     @IBOutlet private weak var catImageView: NSImageView! {
         didSet {
             catImageView.imageScaling = .scaleProportionallyUpOrDown
+            
+            /// enable gif https://stackoverflow.com/a/46150420/5893286
+            catImageView.animates = true
+            catImageView.canDrawSubviewsIntoLayer = true // TODO: check is need (maybe need for wantsLayer = true)
         }
     }
     
-    @IBOutlet private weak var catImageProgressIndicator: NSProgressIndicator! {
-        didSet {
-            catImageProgressIndicator.isDisplayedWhenStopped = false
-        }
-    }
+    @IBOutlet private weak var catImageProgressIndicator: NSProgressIndicator!
     
     private lazy var mainView = view as! DisablableView
     
@@ -58,9 +58,10 @@ class TodayViewController: NSViewController {
         imageConextMenu.imageDelegate = self
         
         /// to activate view.layer
-        view.wantsLayer = true
+        //view.wantsLayer = true
         /// to activate view for gestures and mouse clicks
-        view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
+        // TODO: check: why is it working without it?
+        //view.layer?.backgroundColor = NSColor(white: 1, alpha: 0.001).cgColor
         
 //        NCWidgetController.widgetController().setHasContent(true, forWidgetWithBundleIdentifier: "com.by.CatImages-macOS.CatImages-macOS-widget")
 //        preferredContentSize = NSSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
@@ -88,8 +89,6 @@ class TodayViewController: NSViewController {
     }
     
     private func getRandomImage() {
-        print("getRandomImage")
-        
         mainView.ignoresMouseEvents = true
         catImageProgressIndicator.startAnimation(nil)
         
@@ -111,6 +110,8 @@ class TodayViewController: NSViewController {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
+                
+                NotificationCenter.default.post(name: .didGetNewImage, object: nil)
             }
         }
     }
@@ -127,16 +128,7 @@ extension TodayViewController: NCWidgetProviding {
         // Update your data and prepare for a snapshot. Call completion handler when you are done
         // with NoData if nothing has changed or NewData if there is new data since the last
         // time we called you
-        catService.getRandomImage { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let image):
-                    self?.catImageView.image = image
-                case .failure(let error):
-                    print(error.localizedDescription)
-                } 
-            }
-        }
+        getRandomImage()
         
         completionHandler(.newData)
     }
