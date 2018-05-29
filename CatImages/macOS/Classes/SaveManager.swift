@@ -13,6 +13,7 @@ final class SaveManager {
     /// Capabilities - File Access list - Pictures Folder - Read/Write
     /// type: png, jpg, etc..
     /// if type == nil it will be detected from data
+    @discardableResult
     static func save(data: Data, name: String, type: String? = nil) throws -> URL {
         let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
         guard let pictureFolderPath = pictureDirectories.first else {
