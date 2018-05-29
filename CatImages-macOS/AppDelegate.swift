@@ -30,6 +30,7 @@ import Cocoa
 // TODO: local notification by time (and disable it)
 // TODO: settings menu and window
 // TODO: about
+// TODO: add tool bar item OPEN PICTURES
 
 // TODO: optimize and clear SaveManager
 // TODO: optimize and clear CatService
