@@ -16,7 +16,7 @@ final class PreferencesViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setupUserDefaults()
+        setupUserDefaults()
         
         // Set the size for each views
         //self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height)
@@ -26,8 +26,8 @@ final class PreferencesViewController: NSViewController {
     private func setupUserDefaults() {
         let defaults = NSUserDefaultsController.shared
         let options = [NSBindingOption.continuouslyUpdatesValue: true]
-        widgetHeightTextFiled.bind(.value, to: defaults, withKeyPath: "widgetHeightTextFiled.value", options: options)
-        keepOnTopButton.bind(.value, to: defaults, withKeyPath: "keepOnTopButton.value", options: options)
+        widgetHeightTextFiled.bind(.value, to: defaults, withKeyPath: "values.widgetHeightTextFiled", options: options)
+        keepOnTopButton.bind(.value, to: defaults, withKeyPath: "values.keepOnTopButton", options: options)
     }
     
     override func viewDidAppear() {
