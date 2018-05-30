@@ -16,14 +16,14 @@ import Cocoa
 // TODO: check video player settings for more features
 /// - keep on top check box
 /// - auto save to pictures
-/// - create folder in pictures
-/// - disable "save to pictures" button after 1 save
 /// - auto change cat timer with time setup
 /// - add share button
 /// - widget height
 /// - added link to api
 
 
+
+// TODO: create folder in pictures
 // TODO: NSProgressIndicator color
 // TODO: add NSTouchBar
 // TODO: open app menu with data

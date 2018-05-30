@@ -20,6 +20,13 @@ final class Window: NSWindow, NSApplicationDelegate {
         
         /// don't set title in init if you use IB
         ///title = "Cat Images"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+    }
+    
+    @objc private func userDefaultsDidChange(_ notification: Notification) {
+        let keep =  NSUserDefaultsController.shared.defaults.bool(forKey: "keepOnTopButton.value")
+        keepOnTop = keep
     }
     
     override func awakeFromNib() {
@@ -29,7 +36,7 @@ final class Window: NSWindow, NSApplicationDelegate {
         
         /// moves the window to the front, but below current front app
         makeKeyAndOrderFront(nil)
-        keepOnTop = true
+//        keepOnTop = true
         
 //        backgroundColor = NSColor.white.withAlphaComponent(0.2)
 //        isOpaque = false

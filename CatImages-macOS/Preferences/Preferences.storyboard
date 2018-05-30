@@ -4,6 +4,7 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -34,7 +35,46 @@
                     <view key="view" id="2Xh-OZ-4Fi">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNA-V4-Oyj">
+                                <rect key="frame" x="20" y="199" width="96" height="51"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UvH-47-l1p">
+                                        <rect key="frame" x="-2" y="35" width="61" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="dyD-J5-eyz">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cw9-Oa-93r">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="22"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Ftm-bl-EtO">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <real value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HNA-V4-Oyj" secondAttribute="trailing" constant="40" id="Uja-Xx-a1U"/>
+                            <constraint firstItem="HNA-V4-Oyj" firstAttribute="top" secondItem="2Xh-OZ-4Fi" secondAttribute="top" constant="20" id="Vo5-UP-JzY"/>
+                            <constraint firstItem="HNA-V4-Oyj" firstAttribute="leading" secondItem="2Xh-OZ-4Fi" secondAttribute="leading" constant="20" id="rln-bJ-RVh"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="keepOnTopButton" destination="UvH-47-l1p" id="tcU-pe-UnG"/>
+                        <outlet property="widgetHeightTextFiled" destination="cw9-Oa-93r" id="fmi-Au-ePV"/>
+                    </connections>
                 </viewController>
                 <customObject id="aVB-rJ-KU2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
