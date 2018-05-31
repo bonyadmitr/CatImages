@@ -10,29 +10,34 @@ import Cocoa
 
 final class PreferencesViewController: NSViewController {
     
-    @IBOutlet private weak var keepOnTopButton: NSButton!
-    @IBOutlet private weak var widgetHeightTextFiled: NSTextField!
+    @IBOutlet private weak var keepOnTopButton: NSButton! {
+        willSet {
+            newValue.title = "Keep on top"
+        }
+    }
+    @IBOutlet private weak var widgetHeightTextFiled: NSTextField! {
+        didSet {
+            widgetHeightTextFiled.formatter = OnlyIntegerValueFormatter()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUserDefaults()
+        setupBindings()
         
         // Set the size for each views
         //self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height)
         preferredContentSize = view.frame.size
     }
     
-    private func setupUserDefaults() {
-        let defaults = NSUserDefaultsController.shared
-        let options = [NSBindingOption.continuouslyUpdatesValue: true]
-        widgetHeightTextFiled.bind(.value, to: defaults, withKeyPath: "values.widgetHeightTextFiled", options: options)
-        keepOnTopButton.bind(.value, to: defaults, withKeyPath: "values.keepOnTopButton", options: options)
+    private func setupBindings() {
+        widgetHeightTextFiled.bind(.value, key: BindKeys.widgetHeightTextFiled)
+        keepOnTopButton.bind(.value, key: BindKeys.keepOnTopButton)
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        
         // Update window title with the active TabView Title
         if let title = title {
             parent?.view.window?.title = title

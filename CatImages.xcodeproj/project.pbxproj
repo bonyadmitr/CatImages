@@ -46,7 +46,12 @@
 		CE1ED14520BBD70500A912C8 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1ED14420BBD70500A912C8 /* Preferences.storyboard */; };
 		CE1ED14820BBDD2F00A912C8 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1ED14720BBDD2F00A912C8 /* Storyboards.swift */; };
 		CE46402B20B6F24600EFC1AE /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46402A20B6F24600EFC1AE /* Window.swift */; };
-		CE47155B20BFC2EB001DF164 /* OnlyIntegerValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47155A20BFC2EB001DF164 /* OnlyIntegerValueFormatter.swift */; };
+		CE47155C20BFC4D9001DF164 /* OnlyIntegerValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47155A20BFC2EB001DF164 /* OnlyIntegerValueFormatter.swift */; };
+		CE47155D20BFC4DA001DF164 /* OnlyIntegerValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47155A20BFC2EB001DF164 /* OnlyIntegerValueFormatter.swift */; };
+		CE47156220C01EE5001DF164 /* NSObject+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47156020C01EDA001DF164 /* NSObject+Bind.swift */; };
+		CE47156320C01EE7001DF164 /* NSObject+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47156020C01EDA001DF164 /* NSObject+Bind.swift */; };
+		CE47156620C01F10001DF164 /* BindKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47156420C01F04001DF164 /* BindKeys.swift */; };
+		CE47156720C01F11001DF164 /* BindKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE47156420C01F04001DF164 /* BindKeys.swift */; };
 		CE49E8FD2099D33D007F05A6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */; };
 		CE64415E20B9370E00418E53 /* NSWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */; };
 		CE97D4A620A0271A00514320 /* DisablableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE97D4A320A0270300514320 /* DisablableView.swift */; };
@@ -161,6 +166,8 @@
 		CE1ED14720BBDD2F00A912C8 /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		CE46402A20B6F24600EFC1AE /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		CE47155A20BFC2EB001DF164 /* OnlyIntegerValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyIntegerValueFormatter.swift; sourceTree = "<group>"; };
+		CE47156020C01EDA001DF164 /* NSObject+Bind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Bind.swift"; sourceTree = "<group>"; };
+		CE47156420C01F04001DF164 /* BindKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindKeys.swift; sourceTree = "<group>"; };
 		CE49E8FC2099D33D007F05A6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		CE97D4A320A0270300514320 /* DisablableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisablableView.swift; sourceTree = "<group>"; };
 		CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extensions.swift"; sourceTree = "<group>"; };
@@ -287,6 +294,7 @@
 				CE1ED13220BA77F300A912C8 /* Classes */,
 				CE1ED13320BA780D00A912C8 /* Extensions */,
 				CEE2E7E620B53E6F00BF5493 /* Constants.swift */,
+				CE47156420C01F04001DF164 /* BindKeys.swift */,
 				CE1ED12E20BA771700A912C8 /* Notifications.swift */,
 				CE1ED14720BBDD2F00A912C8 /* Storyboards.swift */,
 			);
@@ -312,6 +320,7 @@
 				66DADCB1209BB540004FBC37 /* NSUserNotification+Init.swift */,
 				CE1ED13B20BABA3F00A912C8 /* NSAlert+Init.swift */,
 				CE9D0F4E20B825E800FF4B54 /* NSWindow+Extensions.swift */,
+				CE47156020C01EDA001DF164 /* NSObject+Bind.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -553,7 +562,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE47155B20BFC2EB001DF164 /* OnlyIntegerValueFormatter.swift in Sources */,
 				CE1ED12220B9E60400A912C8 /* CancelableResult.swift in Sources */,
 				CE1ED12020B9E5EF00A912C8 /* Result.swift in Sources */,
 				CED18BD620B92E1B00992D64 /* ImageFormat.swift in Sources */,
@@ -577,6 +585,7 @@
 				CE1ED12320B9E62E00A912C8 /* Result.swift in Sources */,
 				66F17393209A10E5002DA594 /* ActivityIndicator.swift in Sources */,
 				CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */,
+				CE47156620C01F10001DF164 /* BindKeys.swift in Sources */,
 				CE1ED13620BA78B100A912C8 /* DisablableView.swift in Sources */,
 				CE1ED14120BBD67A00A912C8 /* PreferencesWindowController.swift in Sources */,
 				CEF7BA3E209328C100020A85 /* Image.swift in Sources */,
@@ -589,6 +598,8 @@
 				CEE2E7DC20B5371E00BF5493 /* Toolbar.swift in Sources */,
 				CE1ED13720BA78B100A912C8 /* FirstMouseImageView.swift in Sources */,
 				CEE2E7E520B53B9100BF5493 /* ImageFormat.swift in Sources */,
+				CE47156220C01EE5001DF164 /* NSObject+Bind.swift in Sources */,
+				CE47155C20BFC4D9001DF164 /* OnlyIntegerValueFormatter.swift in Sources */,
 				CE14CEFF2091E79F003333F9 /* ViewController.swift in Sources */,
 				CEE2E7DE20B53B3800BF5493 /* CustomErrors.swift in Sources */,
 				CE1ED13420BA78A300A912C8 /* Notifications.swift in Sources */,
@@ -624,12 +635,14 @@
 				CE1ED13520BA78A400A912C8 /* Notifications.swift in Sources */,
 				663CB11D209A277A00F44E4F /* NSExtensionContext+URL.swift in Sources */,
 				CEE2E7E120B53B4400BF5493 /* CustomErrors.swift in Sources */,
+				CE47156720C01F11001DF164 /* BindKeys.swift in Sources */,
 				CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */,
 				66DADCB3209BB553004FBC37 /* NSUserNotification+Init.swift in Sources */,
 				CED18BD420B92E1700992D64 /* ImageFormat.swift in Sources */,
 				CED18BD320B92DEE00992D64 /* SaveManager.swift in Sources */,
 				66F17395209A10E7002DA594 /* ActivityIndicator.swift in Sources */,
 				CEBAB14F209442BA002824C6 /* CatService.swift in Sources */,
+				CE47155D20BFC4DA001DF164 /* OnlyIntegerValueFormatter.swift in Sources */,
 				CE64415E20B9370E00418E53 /* NSWindow+Extensions.swift in Sources */,
 				CE97D4A620A0271A00514320 /* DisablableView.swift in Sources */,
 				CEE2E7EE20B58D1100BF5493 /* String+String.swift in Sources */,
@@ -640,6 +653,7 @@
 				CE1ED12720B9E62F00A912C8 /* Result.swift in Sources */,
 				CED18BD720B9320A00992D64 /* ProgressIndicator.swift in Sources */,
 				CE1ED12820B9E62F00A912C8 /* CancelableResult.swift in Sources */,
+				CE47156320C01EE7001DF164 /* NSObject+Bind.swift in Sources */,
 				CED18BD220B92DE800992D64 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

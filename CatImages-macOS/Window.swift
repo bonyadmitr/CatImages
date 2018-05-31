@@ -25,8 +25,8 @@ final class Window: NSWindow, NSApplicationDelegate {
     }
     
     @objc private func userDefaultsDidChange(_ notification: Notification) {
-        keepOnTop = NSUserDefaultsController.shared.defaults.bool(forKey: "keepOnTopButton")
-        print(NSUserDefaultsController.shared.defaults.string(forKey: "widgetHeightTextFiled") ?? "nil")
+        keepOnTop = NSUserDefaultsController.shared.defaults.bool(forKey: BindKeys.widgetHeightTextFiled)
+        
     }
     
     override func awakeFromNib() {
