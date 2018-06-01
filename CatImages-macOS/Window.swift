@@ -25,7 +25,22 @@ final class Window: NSWindow, NSApplicationDelegate {
     }
     
     @objc private func userDefaultsDidChange(_ notification: Notification) {
-        keepOnTop = NSUserDefaultsController.shared.defaults.bool(forKey: BindKeys.widgetHeightTextFiled)
+        
+        keepOnTop = NSUserDefaultsController.shared.defaults.bool(forKey: BindKeys.keepOnTopButton)
+        
+        if NSUserDefaultsController.shared.defaults.bool(forKey: BindKeys.titleVisibilityButton) {
+            titleVisibility = .visible
+        } else {
+            titleVisibility = .hidden
+        }
+        
+        if NSUserDefaultsController.shared.defaults.bool(forKey: BindKeys.transparentTitlebarButton) {
+            titlebarAppearsTransparent = true
+            styleMask.insert(.fullSizeContentView)
+        } else {
+            titlebarAppearsTransparent = false
+            styleMask.remove(.fullSizeContentView)
+        }
         
     }
     
@@ -42,7 +57,7 @@ final class Window: NSWindow, NSApplicationDelegate {
 //        isOpaque = false
 //        makeMain() ///makes it the apps main menu?
 //        self.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
-//        center()
+        center()
 
 //        guard let contentView = contentView else {
 //            return
@@ -52,7 +67,7 @@ final class Window: NSWindow, NSApplicationDelegate {
         /// http://robin.github.io/cocoa/mac/2016/03/28/title-bar-and-toolbar-showcase/
         
         /// compact tool bar with buttons
-        titleVisibility = .hidden
+//        titleVisibility = .hidden
         
         /// clear titlebar.
         /// use with window.styleMask.insert(.fullSizeContentView)
@@ -60,12 +75,12 @@ final class Window: NSWindow, NSApplicationDelegate {
         ///
         /// !!! NSToolBar can't be edited due to system behavior
         /// use "override func runToolbarCustomizationPalette" to fix it
-        titlebarAppearsTransparent = true
+//        titlebarAppearsTransparent = true
         
         /// blured titlebar
         /// views in vc will be under titlebar. need relayout
         /// also https://stackoverflow.com/questions/24414483/how-can-i-use-nsvisualeffectview-in-windows-title-bar
-        styleMask.insert(.fullSizeContentView)
+//        styleMask.insert(.fullSizeContentView)
         /// for NSPanel.
         //styleMask.insert(.nonactivatingPanel)
         

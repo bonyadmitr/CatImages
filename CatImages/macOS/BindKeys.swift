@@ -10,5 +10,7 @@ import Foundation
 
 enum BindKeys {
     static let keepOnTopButton = "keepOnTopButton"
+    static let titleVisibilityButton = "titleVisibilityButton"
+    static let transparentTitlebarButton = "transparentTitlebarButton"
     static let widgetHeightTextFiled = "widgetHeightTextFiled"
 }

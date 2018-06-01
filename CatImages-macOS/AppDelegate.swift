@@ -14,7 +14,6 @@ import Cocoa
 
 /// posible settings
 // TODO: check video player settings for more features
-/// - keep on top check box
 /// - auto save to pictures
 /// - auto change cat timer with time setup
 /// - add share button

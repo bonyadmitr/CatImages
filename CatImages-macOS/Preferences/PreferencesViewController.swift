@@ -15,6 +15,16 @@ final class PreferencesViewController: NSViewController {
             newValue.title = "Keep on top"
         }
     }
+    @IBOutlet private weak var titleVisibilityButton: NSButton! {
+        willSet {
+            newValue.title = "Show title"
+        }
+    }
+    @IBOutlet private weak var transparentTitlebarButton: NSButton! {
+        willSet {
+            newValue.title = "Transparent titlebar"
+        }
+    }
     @IBOutlet private weak var widgetHeightTextFiled: NSTextField! {
         didSet {
             widgetHeightTextFiled.formatter = OnlyIntegerValueFormatter()
@@ -32,8 +42,10 @@ final class PreferencesViewController: NSViewController {
     }
     
     private func setupBindings() {
-        widgetHeightTextFiled.bind(.value, key: BindKeys.widgetHeightTextFiled)
         keepOnTopButton.bind(.value, key: BindKeys.keepOnTopButton)
+        titleVisibilityButton.bind(.value, key: BindKeys.titleVisibilityButton)
+        transparentTitlebarButton.bind(.value, key: BindKeys.transparentTitlebarButton)
+        widgetHeightTextFiled.bind(.value, key: BindKeys.widgetHeightTextFiled)
     }
     
     override func viewDidAppear() {
