@@ -40,29 +40,42 @@ final class SaveManager {
         
         let nameSuffix: String
         
+        let suffixConcat = "_"
+        
         if let files = try? FileManager.default.contentsOfDirectory(atPath: pictureFolderPath) {
             let imagesWithName = files.filter({ $0.contains(name)})
             var numbers: [Int] = imagesWithName.compactMap { fileName in
-                let startIndex = name.count + 1 /// 1 for _
-                let endIndex = fileName.count - fileExtension.count - 1 /// 1 for .
-                let numberStr = fileName[startIndex..<endIndex]
+                
+                let fileSuffix = fileName[name.count ..< (name.count + suffixConcat.count)]
+                
+                if suffixConcat != fileSuffix {
+                    return nil
+                }
+                
+                let startIndex = name.count + suffixConcat.count
+                let endIndex = fileName.count - fileExtension.count - 1 /// 1 for "." char
+                let numberStr = fileName[startIndex ..< endIndex]
+                
+                
                 if let n = Int(numberStr) {
                     return n + 1 /// 1 for next number
                 }
-                return 2
+                
+                /// will call if we changed name saving rule. (ex: change suffixConcat)
+                return nil
             }
             numbers.sort()
             print(numbers)
             print()
             
             if let last = numbers.last {
-                nameSuffix = "_\(last)"
+                nameSuffix = "\(suffixConcat)\(last)"
             } else {
-                nameSuffix = "_1"
+                nameSuffix = "\(suffixConcat)1"
             }
             
         } else {
-            nameSuffix = "_1"
+            nameSuffix = "\(suffixConcat)1"
         }
         
         let pictureUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)\(nameSuffix).\(fileExtension)")
