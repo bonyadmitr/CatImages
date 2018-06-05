@@ -15,10 +15,26 @@ final class SaveManager {
     /// if type == nil it will be detected from data
     @discardableResult
     static func save(data: Data, name: String, type: String? = nil) throws -> URL {
-        let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
-        guard let pictureFolderPath = pictureDirectories.first else {
+        
+//        let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
+//        guard let pictureFolderPath = pictureDirectories.first else {
+//            throw CustomErrors.system
+//        }
+        
+        guard let pictureDirectoryUrl = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask).first else {
             throw CustomErrors.system
         }
+        
+        let catFolderUrl = pictureDirectoryUrl.appendingPathComponent("Cat Images")
+        let pictureFolderPath = catFolderUrl.path
+        
+        /// with "withIntermediateDirectories: false" will fail with "file already exists"
+        /// with "withIntermediateDirectories: true" will not clear folder and will not fail if it exists, so we don't need to check ourselfs by "fileExists" func
+        try FileManager.default.createDirectory(atPath: pictureFolderPath,
+                                                withIntermediateDirectories: true,
+                                                attributes: nil)
+        
+        
         
         let fileExtension = type ?? ImageFormat.get(from: data).imageTypeForSave
         
