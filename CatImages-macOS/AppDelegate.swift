@@ -22,7 +22,6 @@ import Cocoa
 
 
 
-// TODO: create folder in pictures
 // TODO: NSProgressIndicator color
 // TODO: add NSTouchBar
 // TODO: open app menu with data
