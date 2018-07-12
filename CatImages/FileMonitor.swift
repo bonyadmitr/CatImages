@@ -58,6 +58,7 @@ open class FileMonitor {
         }
     }
     
+    /// maybe can optimzied by create one eventSource
     private func startObservingFileChanges() {
         guard isFileExists else {
             return
@@ -68,18 +69,15 @@ open class FileMonitor {
             return
         }
         
-        eventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: descriptor, eventMask: fileSystemEvent, queue: dispatchQueue)
+        let newEventSource = DispatchSource.makeFileSystemObjectSource(fileDescriptor: descriptor, eventMask: fileSystemEvent, queue: dispatchQueue)
+
+        newEventSource.setEventHandler(handler: onFileEvent)
         
-        /// check!!!!
-        //eventSource?.setEventHandler(handler: onFileEvent)
-        eventSource?.setEventHandler { [weak self] in
-            self?.onFileEvent?()
-        }
-        
-        eventSource?.setCancelHandler() {
+        newEventSource.setCancelHandler() {
             close(descriptor)
         }
         
-        eventSource?.resume()
+        newEventSource.resume()
+        eventSource = newEventSource
     }
 }
