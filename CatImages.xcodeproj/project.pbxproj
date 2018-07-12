@@ -78,6 +78,10 @@
 		CED18BD520B92E1A00992D64 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E420B53B9100BF5493 /* ImageFormat.swift */; };
 		CED18BD620B92E1B00992D64 /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7E420B53B9100BF5493 /* ImageFormat.swift */; };
 		CED18BD720B9320A00992D64 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED18BD020B8B57500992D64 /* ProgressIndicator.swift */; };
+		CED7CC5D20F77A8300DBE019 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7CC5C20F77A8300DBE019 /* FileMonitor.swift */; };
+		CED7CC5E20F77A9500DBE019 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7CC5C20F77A8300DBE019 /* FileMonitor.swift */; };
+		CED7CC5F20F77A9500DBE019 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7CC5C20F77A8300DBE019 /* FileMonitor.swift */; };
+		CED7CC6020F77A9600DBE019 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED7CC5C20F77A8300DBE019 /* FileMonitor.swift */; };
 		CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2C824209C33D500546E64 /* ImageConextMenu.swift */; };
 		CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7D920B4155900BF5493 /* WindowController.swift */; };
 		CEE2E7DC20B5371E00BF5493 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */; };
@@ -190,6 +194,7 @@
 		CEBAB1522094499D002824C6 /* SharedUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUserDefaults.swift; sourceTree = "<group>"; };
 		CED18BCD20B88B1F00992D64 /* FirstMouseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstMouseImageView.swift; sourceTree = "<group>"; };
 		CED18BD020B8B57500992D64 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
+		CED7CC5C20F77A8300DBE019 /* FileMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
 		CEE2C824209C33D500546E64 /* ImageConextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConextMenu.swift; sourceTree = "<group>"; };
 		CEE2E7D920B4155900BF5493 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		CEE2E7DB20B5371E00BF5493 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
@@ -386,6 +391,7 @@
 				CEE2E7EA20B58CF900BF5493 /* String+String.swift */,
 				CE1ED11F20B9E5EF00A912C8 /* Result.swift */,
 				CE1ED12120B9E60400A912C8 /* CancelableResult.swift */,
+				CED7CC5C20F77A8300DBE019 /* FileMonitor.swift */,
 				CE158078209B295500C73A2E /* macOS */,
 			);
 			path = CatImages;
@@ -576,6 +582,7 @@
 				CEF7BA3D209328A500020A85 /* Image.swift in Sources */,
 				CE14CEE62091E539003333F9 /* ViewController.swift in Sources */,
 				CE14CEE42091E539003333F9 /* AppDelegate.swift in Sources */,
+				CED7CC5D20F77A8300DBE019 /* FileMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +597,7 @@
 				66F17393209A10E5002DA594 /* ActivityIndicator.swift in Sources */,
 				CEE2E7DA20B4155900BF5493 /* WindowController.swift in Sources */,
 				CE47156620C01F10001DF164 /* BindKeys.swift in Sources */,
+				CED7CC5E20F77A9500DBE019 /* FileMonitor.swift in Sources */,
 				CE1ED13620BA78B100A912C8 /* DisablableView.swift in Sources */,
 				CE6DC81920C5D37800083A9A /* HyperlinkTextField.swift in Sources */,
 				CE1ED14120BBD67A00A912C8 /* PreferencesWindowController.swift in Sources */,
@@ -630,6 +638,7 @@
 				CEBAB13320943EF0002824C6 /* CatService.swift in Sources */,
 				CEBAB13420943EF0002824C6 /* Image.swift in Sources */,
 				CEBAB12720943EE0002824C6 /* TodayViewController.swift in Sources */,
+				CED7CC5F20F77A9500DBE019 /* FileMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +653,7 @@
 				CE47156720C01F11001DF164 /* BindKeys.swift in Sources */,
 				CEE2C825209C33D500546E64 /* ImageConextMenu.swift in Sources */,
 				66DADCB3209BB553004FBC37 /* NSUserNotification+Init.swift in Sources */,
+				CED7CC6020F77A9600DBE019 /* FileMonitor.swift in Sources */,
 				CED18BD420B92E1700992D64 /* ImageFormat.swift in Sources */,
 				CED18BD320B92DEE00992D64 /* SaveManager.swift in Sources */,
 				66F17395209A10E7002DA594 /* ActivityIndicator.swift in Sources */,
