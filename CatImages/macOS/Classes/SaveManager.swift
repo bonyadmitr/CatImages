@@ -13,8 +13,6 @@ import Cocoa
 
 final class SaveManager {
     
-    static var fileMonitor: FileMonitor?
-    
     /// Capabilities - File Access list - Pictures Folder - Read/Write
     /// type: png, jpg, etc..
     /// if type == nil it will be detected from data
@@ -85,12 +83,6 @@ final class SaveManager {
         
         let pictureUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)\(nameSuffix).\(fileExtension)")
         try data.write(to: pictureUrl)
-        
-        fileMonitor = FileMonitor(withFilePath: pictureUrl.path)
-        fileMonitor?.onFileEvent = {
-            print("file changed")
-            print()
-        }
         return pictureUrl
     }
     

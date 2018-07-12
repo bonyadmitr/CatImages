@@ -27,9 +27,7 @@ open class FileMonitor {
         }
     }
     
-    /// event .rename work for "move to trash"
-    /// event .attrib called after file saving/observer added
-    init?(withFilePath path: String, observeEvent event: DispatchSource.FileSystemEvent = [.rename, .delete], queue: DispatchQueue = DispatchQueue.global(), createFile create: Bool = false) {
+    init?(withFilePath path: String, observeEvent event: DispatchSource.FileSystemEvent, queue: DispatchQueue = DispatchQueue.global(), createFile create: Bool = false) {
         self.filePath = path
         self.fileSystemEvent = event
         self.dispatchQueue = queue

@@ -19,6 +19,8 @@ final class Toolbar: NSToolbar {
     
     weak var customDelegate: ToolbarDelegate?
     
+    private var fileMonitor: FileMonitor?
+    
     private var saveInPicturesBarItem: NSToolbarItem?
     
     override init(identifier: NSToolbar.Identifier) {
@@ -80,7 +82,15 @@ final class Toolbar: NSToolbar {
         }
         
         do {
-            try SaveManager.save(data: imageData, name: Constants.defaultSaveImageName)
+            let pictureUrl = try SaveManager.save(data: imageData, name: Constants.defaultSaveImageName)
+            
+            /// event .rename work for "move to trash"
+            /// event .attrib called after file saving/observer added
+            fileMonitor = FileMonitor(withFilePath: pictureUrl.path, observeEvent: [.rename, .delete], queue: .main)
+            fileMonitor?.onFileEvent = {
+                NotificationCenter.default.post(name: .didGetNewImage, object: nil)
+            }
+            
             saveInPicturesBarItem = sender
             NotificationCenter.default.post(name: .didSaveInPictures, object: nil)
         } catch  {

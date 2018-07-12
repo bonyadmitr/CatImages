@@ -9,6 +9,9 @@
 import Foundation
 
 extension Notification.Name {
+    /// notification to enable save button
     static let didGetNewImage = Notification.Name("didGetNewImage")
+    
+    /// notification to disable save button
     static let didSaveInPictures = Notification.Name("didSaveInPictures")
 }
