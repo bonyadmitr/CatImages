@@ -36,27 +36,34 @@ final class SaveManager {
             picturePath = pictureDirectoryUrl.path
         }
         
-
-        
-        
-        
         let fileExtension = type ?? ImageFormat.get(from: data).imageTypeForSave
         
-        let nameSuffix: String
+        let suffixDivider = "_"
+        let suffixNumber = suffixNumberFor(directoryPath: picturePath,
+                                           baseFileName: name,
+                                           fileExtension: fileExtension,
+                                           suffixDivider: suffixDivider)
+        let nameSuffix = "\(suffixDivider)\(suffixNumber)"
         
-        let suffixConcat = "_"
+        let pictureUrl = URL(fileURLWithPath: "\(picturePath)/\(name)\(nameSuffix).\(fileExtension)")
+        try data.write(to: pictureUrl)
+        return pictureUrl
+    }
+    
+    private static func suffixNumberFor(directoryPath: String, baseFileName: String, fileExtension: String, suffixDivider: String) -> Int {
+        let startNumber = 1
         
-        if let files = try? FileManager.default.contentsOfDirectory(atPath: picturePath) {
-            let imagesWithName = files.filter({ $0.contains(name)})
-            var numbers: [Int] = imagesWithName.compactMap { fileName in
+        if let files = try? FileManager.default.contentsOfDirectory(atPath: directoryPath) {
+            let sameNames = files.filter({ $0.contains(baseFileName)})
+            var fileNameNumbers: [Int] = sameNames.compactMap { fileName in
                 
-                let fileSuffix = fileName[name.count ..< (name.count + suffixConcat.count)]
+                let fileSuffix = fileName[baseFileName.count ..< (baseFileName.count + suffixDivider.count)]
                 
-                if suffixConcat != fileSuffix {
+                if suffixDivider != fileSuffix {
                     return nil
                 }
                 
-                let startIndex = name.count + suffixConcat.count
+                let startIndex = baseFileName.count + suffixDivider.count
                 let endIndex = fileName.count - fileExtension.count - 1 /// 1 for "." char
                 let numberStr = fileName[startIndex ..< endIndex]
                 
@@ -65,26 +72,16 @@ final class SaveManager {
                     return n + 1 /// 1 for next number
                 }
                 
-                /// will call if we changed name saving rule. (ex: change suffixConcat)
+                /// will call if we changed name saving rule. (ex: changed suffixConcat)
                 return nil
             }
-            numbers.sort()
-            print(numbers)
-            print()
+            fileNameNumbers.sort()
+            print(fileNameNumbers)
             
-            if let last = numbers.last {
-                nameSuffix = "\(suffixConcat)\(last)"
-            } else {
-                nameSuffix = "\(suffixConcat)1"
-            }
-            
+            return fileNameNumbers.last ?? startNumber
         } else {
-            nameSuffix = "\(suffixConcat)1"
+            return startNumber
         }
-        
-        let pictureUrl = URL(fileURLWithPath: "\(picturePath)/\(name)\(nameSuffix).\(fileExtension)")
-        try data.write(to: pictureUrl)
-        return pictureUrl
     }
     
     static func saveAs(data: Data, name: String, type: String? = nil,  handler: @escaping VoidCancelableResult) {
