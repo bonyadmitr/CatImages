@@ -84,8 +84,6 @@ final class Toolbar: NSToolbar {
         do {
             let pictureUrl = try SaveManager.saveImage(data: imageData, name: Constants.defaultSaveImageName, folderName: Constants.defaultSavingFolderName)
             
-            /// event .rename work for "move to trash"
-            /// event .attrib called after file saving/observer added
             fileMonitor = FileMonitor(withFilePath: pictureUrl.path, observeEvent: [.rename, .delete], queue: .main)
             fileMonitor?.onFileEvent = {
                 NotificationCenter.default.post(name: .didGetNewImage, object: nil)

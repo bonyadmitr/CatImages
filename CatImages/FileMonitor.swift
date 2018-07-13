@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// event .rename work for "move to trash"
+/// event .attrib called after file saving/observer added
 /// https://github.com/dagostini/DAFileMonitor
 open class FileMonitor {
     

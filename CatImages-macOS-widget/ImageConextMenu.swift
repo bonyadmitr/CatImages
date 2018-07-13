@@ -15,6 +15,7 @@ protocol ImageConextMenuDelegate: class {
 final class ImageConextMenu: NSMenu {
     
     private var saveInPicturesMenuItem: NSMenuItem?
+    private var fileMonitor: FileMonitor?
     
     convenience init() {
         self.init(title: "")
@@ -101,7 +102,13 @@ final class ImageConextMenu: NSMenu {
         }
         
         do {
-            try SaveManager.saveImage(data: imageData, name: Constants.defaultSaveImageName, folderName: Constants.defaultSavingFolderName)
+            let pictureUrl = try SaveManager.saveImage(data: imageData, name: Constants.defaultSaveImageName, folderName: Constants.defaultSavingFolderName)
+            
+            fileMonitor = FileMonitor(withFilePath: pictureUrl.path, observeEvent: [.rename, .delete], queue: .main)
+            fileMonitor?.onFileEvent = {
+                NotificationCenter.default.post(name: .didGetNewImage, object: nil)
+            }
+            
             NotificationCenter.default.post(name: .didSaveInPictures, object: nil)
         } catch  {
             print(error.localizedDescription)
