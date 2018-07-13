@@ -8,9 +8,6 @@
 
 import Cocoa
 
-
-
-
 final class SaveManager {
     
     /// Capabilities - File Access list - Pictures Folder - Read/Write
@@ -19,11 +16,8 @@ final class SaveManager {
     @discardableResult
     static func saveImage(data: Data, name: String, type: String? = nil, folderName: String? = nil) throws -> URL {
         
-//        let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
-//        guard let pictureFolderPath = pictureDirectories.first else {
-//            throw CustomErrors.system
-//        }
-        
+        /// way to get picture directory path (not url!)
+        //guard let path = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true).first
         guard let pictureDirectoryUrl = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask).first else {
             throw CustomErrors.system
         }
