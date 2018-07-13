@@ -17,7 +17,7 @@ final class SaveManager {
     /// type: png, jpg, etc..
     /// if type == nil it will be detected from data
     @discardableResult
-    static func save(data: Data, name: String, type: String? = nil) throws -> URL {
+    static func saveImage(data: Data, name: String, type: String? = nil, folderName: String? = nil) throws -> URL {
         
 //        let pictureDirectories = NSSearchPathForDirectoriesInDomains(.picturesDirectory, [.userDomainMask], true)
 //        guard let pictureFolderPath = pictureDirectories.first else {
@@ -28,14 +28,21 @@ final class SaveManager {
             throw CustomErrors.system
         }
         
-        let catFolderUrl = pictureDirectoryUrl.appendingPathComponent("Cat Images")
-        let pictureFolderPath = catFolderUrl.path
+        let picturePath: String
+        if let folderName = folderName {
+            let catFolderUrl = pictureDirectoryUrl.appendingPathComponent(folderName)
+            picturePath = catFolderUrl.path
+            
+            /// with "withIntermediateDirectories: false" will fail with "file already exists"
+            /// with "withIntermediateDirectories: true" will not clear folder and will not fail if it exists, so we don't need to check ourselfs by "fileExists" func
+            try FileManager.default.createDirectory(atPath: picturePath,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
+        } else {
+            picturePath = pictureDirectoryUrl.path
+        }
         
-        /// with "withIntermediateDirectories: false" will fail with "file already exists"
-        /// with "withIntermediateDirectories: true" will not clear folder and will not fail if it exists, so we don't need to check ourselfs by "fileExists" func
-        try FileManager.default.createDirectory(atPath: pictureFolderPath,
-                                                withIntermediateDirectories: true,
-                                                attributes: nil)
+
         
         
         
@@ -45,7 +52,7 @@ final class SaveManager {
         
         let suffixConcat = "_"
         
-        if let files = try? FileManager.default.contentsOfDirectory(atPath: pictureFolderPath) {
+        if let files = try? FileManager.default.contentsOfDirectory(atPath: picturePath) {
             let imagesWithName = files.filter({ $0.contains(name)})
             var numbers: [Int] = imagesWithName.compactMap { fileName in
                 
@@ -81,7 +88,7 @@ final class SaveManager {
             nameSuffix = "\(suffixConcat)1"
         }
         
-        let pictureUrl = URL(fileURLWithPath: "\(pictureFolderPath)/\(name)\(nameSuffix).\(fileExtension)")
+        let pictureUrl = URL(fileURLWithPath: "\(picturePath)/\(name)\(nameSuffix).\(fileExtension)")
         try data.write(to: pictureUrl)
         return pictureUrl
     }

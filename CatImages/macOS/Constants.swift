@@ -10,6 +10,7 @@ import Foundation
 
 enum Constants {
     static let defaultSaveImageName = "cat_image"
+    static let defaultSavingFolderName = "Cat Images"
     
     /// HiddenTitle means titleVisibility = .hidden
     static let windowTitleBarHeightWithHiddenTitle: CGFloat = 37

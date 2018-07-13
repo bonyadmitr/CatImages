@@ -82,7 +82,7 @@ final class Toolbar: NSToolbar {
         }
         
         do {
-            let pictureUrl = try SaveManager.save(data: imageData, name: Constants.defaultSaveImageName)
+            let pictureUrl = try SaveManager.saveImage(data: imageData, name: Constants.defaultSaveImageName, folderName: Constants.defaultSavingFolderName)
             
             /// event .rename work for "move to trash"
             /// event .attrib called after file saving/observer added

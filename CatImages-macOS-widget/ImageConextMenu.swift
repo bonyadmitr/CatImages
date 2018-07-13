@@ -101,7 +101,7 @@ final class ImageConextMenu: NSMenu {
         }
         
         do {
-            try SaveManager.save(data: imageData, name: Constants.defaultSaveImageName)
+            try SaveManager.saveImage(data: imageData, name: Constants.defaultSaveImageName, folderName: Constants.defaultSavingFolderName)
             NotificationCenter.default.post(name: .didSaveInPictures, object: nil)
         } catch  {
             print(error.localizedDescription)
